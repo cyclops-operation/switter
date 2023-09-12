@@ -1,19 +1,6 @@
 "use client"
 
-import axios from "axios"
-
-import { Button } from "@/components/ui/button"
-
 export default function IndexPage() {
-  const fetchUser = async () => {
-    axios
-      .post("/api", {
-        guildName: `길드-${new Date().getTime()}`,
-        name: `유저-${new Date().getTime()}`,
-      })
-      .then((res) => res.data)
-  }
-
   return (
     <section className="container flex h-full items-center justify-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[980px] flex-col items-center justify-center gap-2">
@@ -27,8 +14,6 @@ export default function IndexPage() {
         </h2>
 
         <p className="w-full text-center text-lg text-slate-700">coming soon</p>
-
-        <Button onClick={fetchUser}>Create User</Button>
       </div>
     </section>
   )

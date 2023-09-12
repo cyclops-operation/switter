@@ -1,6 +1,4 @@
 import {
-  ComponentIcon,
-  GithubIcon,
   LucideProps,
   Moon,
   SunMedium,
