@@ -22,7 +22,9 @@
     "classname",
     "ianvs",
     "switter",
-    "Switter"
+    "Switter",
+    "shadcn",
+    "Tanstack"
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"

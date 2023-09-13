@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
   name: "Switter",
-  description: "increase grow your power",
+  description: "Increase grow your power",
 
   mainNav: [
     {

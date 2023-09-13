@@ -10,10 +10,12 @@ export default function IndexPage() {
         />
 
         <h2 className="relative text-center text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          Increase Grow Your Power
+          Increase grow your Power
         </h2>
 
-        <p className="w-full text-center text-lg text-slate-700">coming soon</p>
+        <p className="w-full text-center text-lg leading-tight text-slate-700 dark:text-gray-400">
+          coming soon
+        </p>
       </div>
     </section>
   )
