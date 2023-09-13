@@ -8,6 +8,7 @@ module.exports = {
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
+    "",
     "<THIRD_PARTY_MODULES>",
     "",
     "^types$",
@@ -18,6 +19,7 @@ module.exports = {
     "^@/components/ui/(.*)$",
     "^@/components/(.*)$",
     "^@/styles/(.*)$",
+    "^@/theme/(.*)$",
     "^@/app/(.*)$",
     "",
     "^[./]",

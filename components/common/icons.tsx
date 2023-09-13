@@ -9,9 +9,7 @@ import {
 
 type Icon = LucideIcon
 
-export type { Icon }
-
-export const Icons = {
+const Icons = {
   sun: SunMedium,
   moon: Moon,
   twitter: Twitter,
@@ -25,3 +23,5 @@ export const Icons = {
     </svg>
   ),
 }
+
+export { type Icon, Icons }
