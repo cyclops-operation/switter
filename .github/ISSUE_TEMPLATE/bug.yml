@@ -1,0 +1,30 @@
+name: 버그 리포트
+title: "[Fix]: "
+labels: ["👻 BugFix"]
+description: 버그 리포트를 위한 이슈 템플릿입니다.
+body:
+  - type: dropdown
+    attributes:
+      label: 브라우저 환경
+      description: 버그가 발생한 브라우저 환경을 선택해주세요. "Anywhere" 옵션은 모든 환경을 의미합니다.
+      options:
+        - 모든 브라우저
+        - 크롬
+        - 사파리
+        - 파이어폭스
+        - 엣지
+      multiple: true
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 상황 설명
+      description: 문제 상황에 대한 설명을 작성해주세요. 상황에 대한 설명은 상세히 작성할 수록 문제 해결에 도움이 됩니다.
+    validations:
+      required: true  
+
+  - type: textarea
+    attributes:
+      label: 해결책
+      description: 생각한 해결책이 있다면 함께 작성해주세요. 작성한 해결책은 해당 이슈를 해결하는 당사자에게 도움이 됩니다.
