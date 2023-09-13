@@ -24,7 +24,9 @@
     "switter",
     "Switter",
     "shadcn",
-    "Tanstack"
+    "Tanstack",
+    "pandoc",
+    "cpina"
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
