@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - releases/**
+    paths:
+      - "**/*.tsx"
+      - "**/*.ts"
+      - "**/*.css"
 
 jobs:
   build:
