@@ -4,9 +4,10 @@ import { Metadata } from "next"
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
+import { TailwindIndicator } from "@/components/common/tailwind-indicator"
+import { SiteHeader } from "@/components/layout/site-header"
+import { ThemeProvider } from "@/theme/theme-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -20,8 +21,6 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
   },
 }
 
@@ -47,7 +46,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <div className="h-[calc(100%-64px)]">{children}</div>
             </div>
 
+            {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
             <TailwindIndicator />
+
+            {/* Toast Container */}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
