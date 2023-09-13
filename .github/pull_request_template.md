@@ -12,5 +12,5 @@
 
 ## 🚨 Merge 전 필요 작업 (Checklist before merge)
 
-- [ ] 예) XX 테이블 추가, 앱 배포 등
-- [ ] eg) Create XX table, Deploy app etc
+- [ ] 컨벤션에 맞는 코드를 작성했나요?
+- [ ] 로컬 빌드시 에러가 발생하지 않았나요?
