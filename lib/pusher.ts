@@ -1,7 +1,7 @@
 const pusherOptions = {
-  appId: process.env.PUSHER_APP_ID,
+  appId: process.env.NEXT_PUBLIC_PUSHER_APP_ID as string,
   key: process.env.NEXT_PUBLIC_PUSHER_KEY as string,
-  secret: process.env.PUSHER_SECRET,
+  secret: process.env.NEXT_PUBLIC_PUSHER_SECRET as string,
   cluster: process.env.NEXT_PUBLIC_CLUSTER as string,
   useTLS: true,
 } as const

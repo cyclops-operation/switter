@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site"
 import { pusherChannel, pusherEvent, pusherOptions } from "@/lib/pusher"
 import { ThemeToggle } from "@/components/common/theme-toggle"
 
+import { ToastAction } from "../ui/toast"
 import { useToast } from "../ui/use-toast"
 import { MainNav } from "./main-nav"
 
@@ -23,8 +24,9 @@ export function SiteHeader() {
 
     channel.bind(pusherEvent.SignIn, (data: any) => {
       toast({
-        title: data.message,
-        description: "Your message has been sent.",
+        title: `${data.message} 유저가 가입을 신청했습니다.`,
+        description: "유저 권한을 확인해주세요.",
+        action: <ToastAction altText="유저리스트">유저리스트 확인</ToastAction>,
       })
     })
 
@@ -40,23 +42,6 @@ export function SiteHeader() {
 
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
-            {/* <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: "icon",
-                  variant: "ghost",
-                })}
-              >
-                <Icons.gitHub className="h-5 w-5" />
-
-                <span className="sr-only">GitHub</span>
-              </div>
-            </Link> */}
-
             <ThemeToggle />
           </nav>
         </div>

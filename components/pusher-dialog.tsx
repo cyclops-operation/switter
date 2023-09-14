@@ -1,8 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
+import Pusher from "pusher"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { pusherSend } from "@/app/action"
+import { apiRoute } from "@/lib/api-route"
+import { formErrorMessage } from "@/lib/error-message"
+import { pusherOptions } from "@/lib/pusher"
 
 import { Button } from "./ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
@@ -19,7 +23,7 @@ import { Input } from "./ui/input"
 
 const formSchema = z.object({
   username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: formErrorMessage.id.length,
   }),
 })
 
@@ -30,17 +34,26 @@ export default function PusherDialog() {
       username: "",
     },
   })
+
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    const pusher = new Pusher(pusherOptions)
+
+    if (!pusher) return
+
+    //TODO: 추후에 useMutation으로 교체
+    await axios.post(apiRoute.Pusher, { message: values.username })
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Open Pusher Dialog</Button>
+        <Button>Pusher Event (Sample)</Button>
       </DialogTrigger>
+
       <DialogContent>
         <Form {...form}>
           <form
-            action={async (formData) => {
-              await pusherSend(formData)
-            }}
+            onSubmit={form.handleSubmit(handleSubmit)}
             className="space-y-8"
           >
             <FormField
@@ -49,19 +62,23 @@ export default function PusherDialog() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>아이디</FormLabel>
+
                   <FormControl>
                     <Input
                       placeholder="인게임 아이디를 입력해주세요."
                       {...field}
                     />
                   </FormControl>
+
                   <FormDescription>
                     가입요청시 어드민의 확인이 필요합니다.
                   </FormDescription>
+
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <Button className="w-full" type="submit">
               가입요청
             </Button>
