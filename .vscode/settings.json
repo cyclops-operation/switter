@@ -27,6 +27,7 @@
     "Tanstack",
     "pandoc",
     "cpina",
+    "hookform"
     "commitlint"
   ],
   "[prisma]": {
