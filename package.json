@@ -54,6 +54,8 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@types/node": "^17.0.45",
     "@types/react": "^18.2.14",
