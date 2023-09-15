@@ -9,6 +9,7 @@ export const siteConfig = {
       title: "Home",
       href: "/",
     },
+    { title: "Docs", href: "/docs" },
   ],
 
   links: {

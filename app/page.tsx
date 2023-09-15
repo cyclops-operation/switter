@@ -1,6 +1,12 @@
 "use client"
 
+import { useRouter } from "next/navigation"
+
+import { Button } from "@/components/ui/button"
+
 export default function IndexPage() {
+  const { push: routerPush } = useRouter()
+
   return (
     <section className="container flex h-full items-center justify-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[980px] flex-col items-center justify-center gap-2">
@@ -13,9 +19,9 @@ export default function IndexPage() {
           Increase grow your Power
         </h2>
 
-        <p className="w-full text-center text-lg leading-tight text-slate-700 dark:text-gray-400">
-          coming soon
-        </p>
+        <Button variant="link" onClick={() => routerPush("/feed")}>
+          Go Main
+        </Button>
       </div>
     </section>
   )
