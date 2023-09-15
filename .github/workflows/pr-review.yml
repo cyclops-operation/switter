@@ -1,0 +1,66 @@
+name: Pull Request Review
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  approved:
+    if: ${{ github.event.review.state == 'approved' }}
+    name: PR approved alarm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send comment alarm message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            PR이 성공적으로 승인되었어요! ✅
+
+            📰 PR 제목: ${{ github.event.pull_request.title }}
+            👤 PR 작성자: ${{ github.event.pull_request.user.login }}
+            🗣️ 리뷰어: ${{ github.event.review.user.login }}
+
+            다음 [링크](${{ github.event.pull_request.html_url }})를 확인해주세요!
+
+  comment:
+    if: ${{ github.event.review.state == 'dismissed' }}
+    name: Comment alarm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send comment alarm message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            PR 요청에 대한 답변이 달렸어요! 💬
+
+            📰 PR 제목: ${{ github.event.pull_request.title }}
+            👤 PR 작성자: ${{ github.event.pull_request.user.login }}
+            🗣️ 리뷰어: ${{ github.event.review.user.login }}
+
+            다음 [링크](${{ github.event.pull_request.html_url }})를 확인해주세요!
+
+  change_requested:
+    if: ${{ github.event.review.state == 'changes_requested' }}
+    name: Changed requested alarm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send comment alarm message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            PR 수정 요청을 보냈습니다! 🖋️
+
+            📰 PR 제목: ${{ github.event.pull_request.title }}
+            👤 PR 작성자: ${{ github.event.pull_request.user.login }}
+            🗣️ 리뷰어: ${{ github.event.review.user.login }}
+
+            다음 [링크](${{ github.event.pull_request.html_url }})를 확인해주세요!
