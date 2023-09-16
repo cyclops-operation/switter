@@ -24,4 +24,4 @@ const Icons = {
   ),
 }
 
-export { type Icon, Icons }
+export { Icons, type Icon }
