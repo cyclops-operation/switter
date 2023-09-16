@@ -17,4 +17,4 @@ const pusherEvent = {
   FeedCreate: "feedCreate",
 } as const
 
-export { pusherOptions, pusherChannel, pusherEvent }
+export { pusherChannel, pusherEvent, pusherOptions }

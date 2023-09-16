@@ -1,6 +1,7 @@
 import Link from "next/link"
 
-import { NavItem } from "@/types/nav"
+import { NavItem } from "@/interface/nav"
+
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/common/icons"

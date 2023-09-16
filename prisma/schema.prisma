@@ -21,6 +21,14 @@ enum Status {
   ACTIVE
 }
 
+enum ElementType {
+  fire
+  water
+  wind
+  light
+  dark
+}
+
 model User {
   id        Int    @id @default(autoincrement())
   guildName String
@@ -38,4 +46,12 @@ model Post {
   authorId Int
 
   @@index([authorId])
+}
+
+model Monster {
+  id          Int          @id @default(autoincrement())
+  originName  String
+  monsterName String?      @default("")
+  elementType ElementType?
+  keyword     Json         @default("[]")
 }
