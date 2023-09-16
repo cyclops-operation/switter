@@ -1,0 +1,2274 @@
+.sprite {
+  width: 60px;
+  height: 60px;
+  background-image: url("../public/images/img_monster_sp.png");
+}
+.monster-elements {
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+}
+.monster-elements.dark {
+  background-image: url("../public/images/img_elements_dark.png");
+}
+
+.monster-elements.light {
+  background-image: url("../public/images/img_elements_light.png");
+}
+
+.monster-elements.fire {
+  background-image: url("../public/images/img_elements_fire.png");
+}
+
+.monster-elements.water {
+  background-image: url("../public/images/img_elements_water.png");
+}
+
+.monster-elements.wind {
+  background-image: url("../public/images/img_elements_wind.png");
+}
+
+.sprite.Kiki {
+  background-position: right 68px top -8px;
+}
+.sprite.Momo {
+  background-position: right 144px top -8px;
+}
+.sprite.Dagora {
+  background-position: right 220px top -8px;
+}
+.sprite.Danu {
+  background-position: right 296px top -8px;
+}
+.sprite.Adrian {
+  background-position: right 372px top -8px;
+}
+.sprite.Aeilene {
+  background-position: right 448px top -8px;
+}
+.sprite.Daphnis {
+  background-position: right 524px top -8px;
+}
+.sprite.Belladeon {
+  background-position: right 600px top -8px;
+}
+.sprite.Devaraja {
+  background-position: right 676px top -8px;
+}
+.sprite.Birman {
+  background-position: right 752px top -8px;
+}
+.sprite.Bombay {
+  background-position: right 828px top -8px;
+}
+.sprite.Chakra {
+  background-position: right 904px top -8px;
+}
+.sprite.Cheryl {
+  background-position: right 980px top -8px;
+}
+.sprite.Dova {
+  background-position: right 1056px top -8px;
+}
+.sprite.Dyeus {
+  background-position: right 1132px top -8px;
+}
+.sprite.Eirgar {
+  background-position: right 1208px top -8px;
+}
+.sprite.Elucia {
+  background-position: right 1284px top -8px;
+}
+.sprite.Eluin {
+  background-position: right 1360px top -8px;
+}
+.sprite.Emma {
+  background-position: right 1436px top -8px;
+}
+.sprite.Erwin {
+  background-position: right 1512px top -8px;
+}
+.sprite.Helena {
+  background-position: right 1588px top -8px;
+}
+.sprite.Homunculus-F {
+  background-position: right 1664px top -8px;
+}
+.sprite.Homunculus-W {
+  background-position: right 1740px top -8px;
+}
+.sprite.Icaru {
+  background-position: right 1816px top -8px;
+}
+.sprite.Iselia {
+  background-position: right 1892px top -8px;
+}
+.sprite.Jeanne {
+  background-position: right 1968px top -8px;
+}
+.sprite.Josephine {
+  background-position: right 2044px top -8px;
+}
+.sprite.Kacey {
+  background-position: right 2120px top -8px;
+}
+.sprite.Kro {
+  background-position: right 2196px top -8px;
+}
+.sprite.Kroa {
+  background-position: right 2272px top -8px;
+}
+.sprite.Lisa {
+  background-position: right 2348px top -8px;
+}
+.sprite.Lusha {
+  background-position: right 2424px top -8px;
+}
+.sprite.Manx {
+  background-position: right 2500px top -8px;
+}
+.sprite.Mayasura {
+  background-position: right 2576px top -8px;
+}
+.sprite.Minato {
+  background-position: right 2652px top -8px;
+}
+.sprite.Neal {
+  background-position: right 2728px top -8px;
+}
+.sprite.Nebelung {
+  background-position: right 2804px top -8px;
+}
+.sprite.Nyx {
+  background-position: right 2880px top -8px;
+}
+.sprite.Olivia {
+  background-position: right 2956px top -8px;
+}
+.sprite.Ophilia {
+  background-position: right 3032px top -8px;
+}
+.sprite.Parjanya {
+  background-position: right 3108px top -8px;
+}
+.sprite.Ritsu {
+  background-position: right 3184px top -8px;
+}
+.sprite.Ramagos {
+  background-position: right 3260px top -8px;
+}
+.sprite.Ramahan {
+  background-position: right 68px top -84px;
+}
+.sprite.Ran {
+  background-position: right 144px top -84px;
+}
+.sprite.Raoq {
+  background-position: right 220px top -84px;
+}
+.sprite.Raviti {
+  background-position: right 296px top -84px;
+}
+.sprite.Remy {
+  background-position: right 372px top -84px;
+}
+.sprite.Ren {
+  background-position: right 448px top -84px;
+}
+.sprite.Shannon {
+  background-position: right 524px top -84px;
+}
+.sprite.Shun {
+  background-position: right 600px top -84px;
+}
+.sprite.Siamese {
+  background-position: right 676px top -84px;
+}
+.sprite.SonZhangLao {
+  background-position: right 752px top -84px;
+}
+.sprite.Sorin {
+  background-position: right 828px top -84px;
+}
+.sprite.Sylvia {
+  background-position: right 904px top -84px;
+}
+.sprite.Tatu {
+  background-position: right 980px top -84px;
+}
+.sprite.Ursha {
+  background-position: right 1056px top -84px;
+}
+.sprite.Usha {
+  background-position: right 1132px top -84px;
+}
+.sprite.Varuna {
+  background-position: right 1208px top -84px;
+}
+.sprite.Vendhan {
+  background-position: right 1284px top -84px;
+}
+.sprite.Vritra {
+  background-position: right 1360px top -84px;
+}
+.sprite.Zen {
+  background-position: right 1436px top -84px;
+}
+.sprite.Aaliyah {
+  background-position: right 1512px top -84px;
+}
+.sprite.Dagorr {
+  background-position: right 1588px top -84px;
+}
+.sprite.Daharenos {
+  background-position: right 1664px top -84px;
+}
+.sprite.Daniel {
+  background-position: right 1740px top -84px;
+}
+.sprite.Abellio {
+  background-position: right 1816px top -84px;
+}
+.sprite.Abigail {
+  background-position: right 1892px top -84px;
+}
+.sprite.Acasis {
+  background-position: right 1968px top -84px;
+}
+.sprite.Adriana {
+  background-position: right 2044px top -84px;
+}
+.sprite.Aegir {
+  background-position: right 2120px top -84px;
+}
+.sprite.Ahman {
+  background-position: right 2196px top -84px;
+}
+.sprite.Ahmed {
+  background-position: right 2272px top -84px;
+}
+.sprite.Akhamamir {
+  background-position: right 2348px top -84px;
+}
+.sprite.Akia {
+  background-position: right 2424px top -84px;
+}
+.sprite.Akroma {
+  background-position: right 2500px top -84px;
+}
+.sprite.Alexandra {
+  background-position: right 2576px top -84px;
+}
+.sprite.Alice {
+  background-position: right 2652px top -84px;
+}
+.sprite.Alicia {
+  background-position: right 2728px top -84px;
+}
+.sprite.Darion {
+  background-position: right 2804px top -84px;
+}
+.sprite.Altair {
+  background-position: right 2880px top -84px;
+}
+.sprite.Amanda {
+  background-position: right 2956px top -84px;
+}
+.sprite.Amarna {
+  background-position: right 3032px top -84px;
+}
+.sprite.Amber {
+  background-position: right 3108px top -84px;
+}
+.sprite.Amduat {
+  background-position: right 3184px top -84px;
+}
+.sprite.Amelia {
+  background-position: right 3260px top -84px;
+}
+.sprite.Anavel {
+  background-position: right 68px top -160px;
+}
+.sprite.Anduril {
+  background-position: right 144px top -160px;
+}
+.sprite.Angela {
+  background-position: right 220px top -160px;
+}
+.sprite.Anne {
+  background-position: right 296px top -160px;
+}
+.sprite.Antares {
+  background-position: right 372px top -160px;
+}
+.sprite.Aqcus {
+  background-position: right 448px top -160px;
+}
+.sprite.Aquila {
+  background-position: right 524px top -160px;
+}
+.sprite.Arang {
+  background-position: right 600px top -160px;
+}
+.sprite.Deborah {
+  background-position: right 676px top -160px;
+}
+.sprite.Ardella {
+  background-position: right 752px top -160px;
+}
+.sprite.Argen {
+  background-position: right 828px top -160px;
+}
+.sprite.Aria {
+  background-position: right 904px top -160px;
+}
+.sprite.Ariana {
+  background-position: right 980px top -160px;
+}
+.sprite.Ariel {
+  background-position: right 1056px top -160px;
+}
+.sprite.Arkajan {
+  background-position: right 1132px top -160px;
+}
+.sprite.Arnold {
+  background-position: right 1208px top -160px;
+}
+.sprite.Artamiel {
+  background-position: right 1284px top -160px;
+}
+.sprite.Aschubel {
+  background-position: right 1360px top -160px;
+}
+.sprite.Ashour {
+  background-position: right 1436px top -160px;
+}
+.sprite.Decamaron {
+  background-position: right 1512px top -160px;
+}
+.sprite.Asima {
+  background-position: right 1588px top -160px;
+}
+.sprite.Astar {
+  background-position: right 1664px top -160px;
+}
+.sprite.Delphoi {
+  background-position: right 1740px top -160px;
+}
+.sprite.Astrid {
+  background-position: right 1816px top -160px;
+}
+.sprite.Atenai {
+  background-position: right 1892px top -160px;
+}
+.sprite.Audrey {
+  background-position: right 1968px top -160px;
+}
+.sprite.Aurelia {
+  background-position: right 2044px top -160px;
+}
+.sprite.Avaris {
+  background-position: right 2120px top -160px;
+}
+.sprite.Baekdu {
+  background-position: right 2196px top -160px;
+}
+.sprite.Bael {
+  background-position: right 2272px top -160px;
+}
+.sprite.Bagir {
+  background-position: right 2348px top -160px;
+}
+.sprite.Bailey {
+  background-position: right 2424px top -160px;
+}
+.sprite.Baleygr {
+  background-position: right 2500px top -160px;
+}
+.sprite.Destiny {
+  background-position: right 2576px top -160px;
+}
+.sprite.Barbara {
+  background-position: right 2652px top -160px;
+}
+.sprite.Baretta {
+  background-position: right 2728px top -160px;
+}
+.sprite.Barque {
+  background-position: right 2804px top -160px;
+}
+.sprite.Basalt {
+  background-position: right 2880px top -160px;
+}
+.sprite.Bastet {
+  background-position: right 2956px top -160px;
+}
+.sprite.Bayek-D {
+  background-position: right 3032px top -160px;
+}
+.sprite.Bayek-F {
+  background-position: right 3108px top -160px;
+}
+.sprite.Bayek-L {
+  background-position: right 3184px top -160px;
+}
+.sprite.Bayek-W {
+  background-position: right 3260px top -160px;
+}
+.sprite.Bayek-WA {
+  background-position: right 68px top -236px;
+}
+.sprite.Beelzebub {
+  background-position: right 144px top -236px;
+}
+.sprite.Belial {
+  background-position: right 220px top -236px;
+}
+.sprite.Belita {
+  background-position: right 296px top -236px;
+}
+.sprite.Deva {
+  background-position: right 372px top -236px;
+}
+.sprite.Bella {
+  background-position: right 448px top -236px;
+}
+.sprite.Bellenus {
+  background-position: right 524px top -236px;
+}
+.sprite.Benedict {
+  background-position: right 600px top -236px;
+}
+.sprite.Berenice {
+  background-position: right 676px top -236px;
+}
+.sprite.Berghild {
+  background-position: right 752px top -236px;
+}
+.sprite.Bering {
+  background-position: right 828px top -236px;
+}
+.sprite.Bernadotte {
+  background-position: right 904px top -236px;
+}
+.sprite.Bernard {
+  background-position: right 980px top -236px;
+}
+.sprite.Beth {
+  background-position: right 1056px top -236px;
+}
+.sprite.Bethony {
+  background-position: right 1132px top -236px;
+}
+.sprite.Betta {
+  background-position: right 1208px top -236px;
+}
+.sprite.Bloodya {
+  background-position: right 1284px top -236px;
+}
+.sprite.Bolverk {
+  background-position: right 1360px top -236px;
+}
+.sprite.Borgnine {
+  background-position: right 1436px top -236px;
+}
+.sprite.Brandia {
+  background-position: right 1512px top -236px;
+}
+.sprite.Briand {
+  background-position: right 1588px top -236px;
+}
+.sprite.Brig {
+  background-position: right 1664px top -236px;
+}
+.sprite.Devinodon {
+  background-position: right 1740px top -236px;
+}
+.sprite.Brita {
+  background-position: right 1816px top -236px;
+}
+.sprite.Bulldozer {
+  background-position: right 1892px top -236px;
+}
+.sprite.Burentau {
+  background-position: right 1968px top -236px;
+}
+.sprite.Cadiz {
+  background-position: right 2044px top -236px;
+}
+.sprite.Calicus {
+  background-position: right 2120px top -236px;
+}
+.sprite.Camaryn {
+  background-position: right 2196px top -236px;
+}
+.sprite.Camilla {
+  background-position: right 2272px top -236px;
+}
+.sprite.Camules {
+  background-position: right 2348px top -236px;
+}
+.sprite.Carbine {
+  background-position: right 2424px top -236px;
+}
+.sprite.Carcano {
+  background-position: right 2500px top -236px;
+}
+.sprite.Dhalsim-D {
+  background-position: right 2576px top -236px;
+}
+.sprite.Carlos {
+  background-position: right 2652px top -236px;
+}
+.sprite.Carrack {
+  background-position: right 2728px top -236px;
+}
+.sprite.Cassie {
+  background-position: right 2804px top -236px;
+}
+.sprite.Cayde {
+  background-position: right 2880px top -236px;
+}
+.sprite.Celia {
+  background-position: right 2956px top -236px;
+}
+.sprite.Celine {
+  background-position: right 3032px top -236px;
+}
+.sprite.Ceres {
+  background-position: right 3108px top -236px;
+}
+.sprite.Chacha {
+  background-position: right 3184px top -236px;
+}
+.sprite.Chamie {
+  background-position: right 3260px top -236px;
+}
+.sprite.Chamomile {
+  background-position: right 68px top -312px;
+}
+.sprite.Dhalsim-F {
+  background-position: right 144px top -312px;
+}
+.sprite.Chandra {
+  background-position: right 220px top -312px;
+}
+.sprite.Charlotte {
+  background-position: right 296px top -312px;
+}
+.sprite.Chasun {
+  background-position: right 372px top -312px;
+}
+.sprite.Cheongpung {
+  background-position: right 448px top -312px;
+}
+.sprite.Chichi {
+  background-position: right 524px top -312px;
+}
+.sprite.Chilling {
+  background-position: right 600px top -312px;
+}
+.sprite.Chiwu {
+  background-position: right 676px top -312px;
+}
+.sprite.Chloe {
+  background-position: right 752px top -312px;
+}
+.sprite.Chow {
+  background-position: right 828px top -312px;
+}
+.sprite.Chris {
+  background-position: right 904px top -312px;
+}
+.sprite.Christina {
+  background-position: right 980px top -312px;
+}
+.sprite.Chunli-D {
+  background-position: right 1056px top -312px;
+}
+.sprite.Chunli-L {
+  background-position: right 1132px top -312px;
+}
+.sprite.Chunli-W {
+  background-position: right 1208px top -312px;
+}
+.sprite.Dhalsim-L {
+  background-position: right 1284px top -312px;
+}
+.sprite.Chunli-WA {
+  background-position: right 1360px top -312px;
+}
+.sprite.ChunLi {
+  background-position: right 1436px top -312px;
+}
+.sprite.Cichlid {
+  background-position: right 1512px top -312px;
+}
+.sprite.Claire {
+  background-position: right 1588px top -312px;
+}
+.sprite.Clara {
+  background-position: right 1664px top -312px;
+}
+.sprite.Coco {
+  background-position: right 1740px top -312px;
+}
+.sprite.Cogma {
+  background-position: right 1816px top -312px;
+}
+.sprite.Conrad {
+  background-position: right 1892px top -312px;
+}
+.sprite.Dhalsim-W {
+  background-position: right 1968px top -312px;
+}
+.sprite.Copper {
+  background-position: right 2044px top -312px;
+}
+.sprite.Cordelia {
+  background-position: right 2120px top -312px;
+}
+.sprite.Covenant {
+  background-position: right 2196px top -312px;
+}
+.sprite.Craig {
+  background-position: right 2272px top -312px;
+}
+.sprite.Craka {
+  background-position: right 2348px top -312px;
+}
+.sprite.Crane {
+  background-position: right 2424px top -312px;
+}
+.sprite.Crawler {
+  background-position: right 2500px top -312px;
+}
+.sprite.Dhalsim-WA {
+  background-position: right 2576px top -312px;
+}
+.sprite.Diana {
+  background-position: right 2652px top -312px;
+}
+.sprite.Dias {
+  background-position: right 2728px top -312px;
+}
+.sprite.Dominic {
+  background-position: right 2804px top -312px;
+}
+.sprite.Dona {
+  background-position: right 2880px top -312px;
+}
+.sprite.Dongbaek {
+  background-position: right 2956px top -312px;
+}
+.sprite.Dorothy {
+  background-position: right 3032px top -312px;
+}
+.sprite.Douglas {
+  background-position: right 3108px top -312px;
+}
+.sprite.Douman {
+  background-position: right 3184px top -312px;
+}
+.sprite.Dover {
+  background-position: right 3260px top -312px;
+}
+.sprite.Draco {
+  background-position: right 68px top -388px;
+}
+.sprite.Dragunov {
+  background-position: right 144px top -388px;
+}
+.sprite.Driller {
+  background-position: right 220px top -388px;
+}
+.sprite.Drogan {
+  background-position: right 296px top -388px;
+}
+.sprite.Duamutef {
+  background-position: right 372px top -388px;
+}
+.sprite.Dusky {
+  background-position: right 448px top -388px;
+}
+.sprite.Einheri {
+  background-position: right 524px top -388px;
+}
+.sprite.Eintau {
+  background-position: right 600px top -388px;
+}
+.sprite.Eivor-D {
+  background-position: right 676px top -388px;
+}
+.sprite.Eivor-F {
+  background-position: right 752px top -388px;
+}
+.sprite.Eivor-L {
+  background-position: right 828px top -388px;
+}
+.sprite.Eivor-W {
+  background-position: right 904px top -388px;
+}
+.sprite.Eivor-WA {
+  background-position: right 980px top -388px;
+}
+.sprite.Eladriel {
+  background-position: right 1056px top -388px;
+}
+.sprite.Eleanor {
+  background-position: right 1132px top -388px;
+}
+.sprite.Elena {
+  background-position: right 1208px top -388px;
+}
+.sprite.Eleni {
+  background-position: right 1284px top -388px;
+}
+.sprite.Elenoa {
+  background-position: right 1360px top -388px;
+}
+.sprite.Ella {
+  background-position: right 1436px top -388px;
+}
+.sprite.Ellena {
+  background-position: right 1512px top -388px;
+}
+.sprite.Ellin {
+  background-position: right 1588px top -388px;
+}
+.sprite.Elpuria {
+  background-position: right 1664px top -388px;
+}
+.sprite.Elsharion {
+  background-position: right 1740px top -388px;
+}
+.sprite.Eludain {
+  background-position: right 1816px top -388px;
+}
+.sprite.Eludia {
+  background-position: right 1892px top -388px;
+}
+.sprite.Emily {
+  background-position: right 1968px top -388px;
+}
+.sprite.Eredas {
+  background-position: right 2044px top -388px;
+}
+.sprite.Ermeda {
+  background-position: right 2120px top -388px;
+}
+.sprite.Eshir {
+  background-position: right 2196px top -388px;
+}
+.sprite.EspressoCookie-D {
+  background-position: right 2272px top -388px;
+}
+.sprite.EspressoCookie-F {
+  background-position: right 2348px top -388px;
+}
+.sprite.EspressoCookie-L {
+  background-position: right 2424px top -388px;
+}
+.sprite.EspressoCookie-W {
+  background-position: right 2500px top -388px;
+}
+.sprite.EspressoCookie-WA {
+  background-position: right 2576px top -388px;
+}
+.sprite.Ethna {
+  background-position: right 2652px top -388px;
+}
+.sprite.Eva {
+  background-position: right 2728px top -388px;
+}
+.sprite.Evan {
+  background-position: right 2804px top -388px;
+}
+.sprite.Ezio-D {
+  background-position: right 2880px top -388px;
+}
+.sprite.Ezio-F {
+  background-position: right 2956px top -388px;
+}
+.sprite.Ezio-L {
+  background-position: right 3032px top -388px;
+}
+.sprite.Ezio-W {
+  background-position: right 3108px top -388px;
+}
+.sprite.Ezio-WA {
+  background-position: right 3184px top -388px;
+}
+.sprite.Fairo {
+  background-position: right 3260px top -388px;
+}
+.sprite.Fami {
+  background-position: right 68px top -464px;
+}
+.sprite.Fao {
+  background-position: right 144px top -464px;
+}
+.sprite.Federica {
+  background-position: right 220px top -464px;
+}
+.sprite.Fedora {
+  background-position: right 296px top -464px;
+}
+.sprite.Fei {
+  background-position: right 372px top -464px;
+}
+.sprite.Felleria {
+  background-position: right 448px top -464px;
+}
+.sprite.FengYan {
+  background-position: right 524px top -464px;
+}
+.sprite.Fermion {
+  background-position: right 600px top -464px;
+}
+.sprite.Figaro {
+  background-position: right 676px top -464px;
+}
+.sprite.Fran {
+  background-position: right 752px top -464px;
+}
+.sprite.Frederic {
+  background-position: right 828px top -464px;
+}
+.sprite.Fria {
+  background-position: right 904px top -464px;
+}
+.sprite.Frigate {
+  background-position: right 980px top -464px;
+}
+.sprite.Fuco {
+  background-position: right 1056px top -464px;
+}
+.sprite.Fudge {
+  background-position: right 1132px top -464px;
+}
+.sprite.Fuuki {
+  background-position: right 1208px top -464px;
+}
+.sprite.Fynn {
+  background-position: right 1284px top -464px;
+}
+.sprite.Galleon {
+  background-position: right 1360px top -464px;
+}
+.sprite.Gamir {
+  background-position: right 1436px top -464px;
+}
+.sprite.Ganache {
+  background-position: right 1512px top -464px;
+}
+.sprite.Gangchun {
+  background-position: right 1588px top -464px;
+}
+.sprite.Ganymede {
+  background-position: right 1664px top -464px;
+}
+.sprite.Garo {
+  background-position: right 1740px top -464px;
+}
+.sprite.Garoche {
+  background-position: right 1816px top -464px;
+}
+.sprite.Garok {
+  background-position: right 1892px top -464px;
+}
+.sprite.Geldnir {
+  background-position: right 1968px top -464px;
+}
+.sprite.Gemini {
+  background-position: right 2044px top -464px;
+}
+.sprite.Geoffrey {
+  background-position: right 2120px top -464px;
+}
+.sprite.Giana {
+  background-position: right 2196px top -464px;
+}
+.sprite.Gildong {
+  background-position: right 2272px top -464px;
+}
+.sprite.Gin {
+  background-position: right 2348px top -464px;
+}
+.sprite.Gina {
+  background-position: right 2424px top -464px;
+}
+.sprite.GingerBrave {
+  background-position: right 2500px top -464px;
+}
+.sprite.Giou {
+  background-position: right 2576px top -464px;
+}
+.sprite.Giselle {
+  background-position: right 2652px top -464px;
+}
+.sprite.Glinodon {
+  background-position: right 2728px top -464px;
+}
+.sprite.Gorgo {
+  background-position: right 2804px top -464px;
+}
+.sprite.Granite {
+  background-position: right 2880px top -464px;
+}
+.sprite.Grego {
+  background-position: right 2956px top -464px;
+}
+.sprite.Grogen {
+  background-position: right 3032px top -464px;
+}
+.sprite.Groggo {
+  background-position: right 3108px top -464px;
+}
+.sprite.Grotau {
+  background-position: right 3184px top -464px;
+}
+.sprite.Gruda {
+  background-position: right 3260px top -464px;
+}
+.sprite.Guillaume {
+  background-position: right 68px top -540px;
+}
+.sprite.Gunpyeong {
+  background-position: right 144px top -540px;
+}
+.sprite.Gurkha {
+  background-position: right 220px top -540px;
+}
+.sprite.Haegang {
+  background-position: right 296px top -540px;
+}
+.sprite.Haken {
+  background-position: right 372px top -540px;
+}
+.sprite.Halphas {
+  background-position: right 448px top -540px;
+}
+.sprite.Han {
+  background-position: right 524px top -540px;
+}
+.sprite.Hannah {
+  background-position: right 600px top -540px;
+}
+.sprite.Hanra {
+  background-position: right 676px top -540px;
+}
+.sprite.Hanwul {
+  background-position: right 752px top -540px;
+}
+.sprite.Harmonia {
+  background-position: right 828px top -540px;
+}
+.sprite.Hathor {
+  background-position: right 904px top -540px;
+}
+.sprite.Hector {
+  background-position: right 980px top -540px;
+}
+.sprite.Hekerson {
+  background-position: right 1056px top -540px;
+}
+.sprite.Hellea {
+  background-position: right 1132px top -540px;
+}
+.sprite.Hemos {
+  background-position: right 1208px top -540px;
+}
+.sprite.Herne {
+  background-position: right 1284px top -540px;
+}
+.sprite.Herteit {
+  background-position: right 1360px top -540px;
+}
+.sprite.Hibiscus {
+  background-position: right 1436px top -540px;
+}
+.sprite.Hina {
+  background-position: right 1512px top -540px;
+}
+.sprite.Hiro {
+  background-position: right 1588px top -540px;
+}
+.sprite.Hiva {
+  background-position: right 1664px top -540px;
+}
+.sprite.HollyberryCookie-WA {
+  background-position: right 1740px top -540px;
+}
+.sprite.HollyberryCookie-D {
+  background-position: right 1816px top -540px;
+}
+.sprite.HollyberryCookie-F {
+  background-position: right 1892px top -540px;
+}
+.sprite.HollyberryCookie-L {
+  background-position: right 1968px top -540px;
+}
+.sprite.HollyberryCookie-W {
+  background-position: right 2044px top -540px;
+}
+.sprite.Homunculus-D {
+  background-position: right 2120px top -540px;
+}
+.sprite.Homunculus-L {
+  background-position: right 2196px top -540px;
+}
+.sprite.Homunculus-WA {
+  background-position: right 2272px top -540px;
+}
+.sprite.HongHua {
+  background-position: right 2348px top -540px;
+}
+.sprite.Hongyeon {
+  background-position: right 2424px top -540px;
+}
+.sprite.Howl {
+  background-position: right 2500px top -540px;
+}
+.sprite.Hraesvelg {
+  background-position: right 2576px top -540px;
+}
+.sprite.Hrungnir {
+  background-position: right 2652px top -540px;
+}
+.sprite.Huan {
+  background-position: right 2728px top -540px;
+}
+.sprite.Huga {
+  background-position: right 2804px top -540px;
+}
+.sprite.Hwa {
+  background-position: right 2880px top -540px;
+}
+.sprite.Hwadam {
+  background-position: right 2956px top -540px;
+}
+.sprite.Hwahee {
+  background-position: right 3032px top -540px;
+}
+.sprite.Hyanes {
+  background-position: right 3108px top -540px;
+}
+.sprite.Ian {
+  background-position: right 3184px top -540px;
+}
+.sprite.Icares {
+  background-position: right 3260px top -540px;
+}
+.sprite.Icasha {
+  background-position: right 68px top -616px;
+}
+.sprite.Igmanodon {
+  background-position: right 144px top -616px;
+}
+.sprite.Ignicus {
+  background-position: right 220px top -616px;
+}
+.sprite.Illianna {
+  background-position: right 296px top -616px;
+}
+.sprite.Imesety {
+  background-position: right 372px top -616px;
+}
+.sprite.ImpChampion-D {
+  background-position: right 448px top -616px;
+}
+.sprite.ImpChampion-F {
+  background-position: right 524px top -616px;
+}
+.sprite.ImpChampion-L {
+  background-position: right 600px top -616px;
+}
+.sprite.ImpChampion-W {
+  background-position: right 676px top -616px;
+}
+.sprite.ImpChampion-WA {
+  background-position: right 752px top -616px;
+}
+.sprite.Iona {
+  background-position: right 828px top -616px;
+}
+.sprite.Irene {
+  background-position: right 904px top -616px;
+}
+.sprite.Iris {
+  background-position: right 980px top -616px;
+}
+.sprite.Iron {
+  background-position: right 1056px top -616px;
+}
+.sprite.Isabelle {
+  background-position: right 1132px top -616px;
+}
+.sprite.Isael {
+  background-position: right 1208px top -616px;
+}
+.sprite.Isillen {
+  background-position: right 1284px top -616px;
+}
+.sprite.Isis {
+  background-position: right 1360px top -616px;
+}
+.sprite.Iunu {
+  background-position: right 1436px top -616px;
+}
+.sprite.Izaria {
+  background-position: right 1512px top -616px;
+}
+.sprite.Jaara {
+  background-position: right 1588px top -616px;
+}
+.sprite.Jackie {
+  background-position: right 1664px top -616px;
+}
+.sprite.Jackson {
+  background-position: right 1740px top -616px;
+}
+.sprite.Jade {
+  background-position: right 1816px top -616px;
+}
+.sprite.Jager {
+  background-position: right 1892px top -616px;
+}
+.sprite.Jamie {
+  background-position: right 1968px top -616px;
+}
+.sprite.Jamire {
+  background-position: right 2044px top -616px;
+}
+.sprite.Janssen {
+  background-position: right 2120px top -616px;
+}
+.sprite.Jansson {
+  background-position: right 2196px top -616px;
+}
+.sprite.Jarrett {
+  background-position: right 2272px top -616px;
+}
+.sprite.Jasmine {
+  background-position: right 2348px top -616px;
+}
+.sprite.Jean {
+  background-position: right 2424px top -616px;
+}
+.sprite.Jeogun {
+  background-position: right 2500px top -616px;
+}
+.sprite.Jessica {
+  background-position: right 2576px top -616px;
+}
+.sprite.John {
+  background-position: right 2652px top -616px;
+}
+.sprite.Jojo {
+  background-position: right 2728px top -616px;
+}
+.sprite.Jubelle {
+  background-position: right 2804px top -616px;
+}
+.sprite.Julianne {
+  background-position: right 2880px top -616px;
+}
+.sprite.Julie {
+  background-position: right 2956px top -616px;
+}
+.sprite.Julien {
+  background-position: right 3032px top -616px;
+}
+.sprite.Jultan {
+  background-position: right 3108px top -616px;
+}
+.sprite.Jumaline {
+  background-position: right 3184px top -616px;
+}
+.sprite.Jun {
+  background-position: right 3260px top -616px;
+}
+.sprite.Juno {
+  background-position: right 68px top -692px;
+}
+.sprite.Kabilla {
+  background-position: right 144px top -692px;
+}
+.sprite.Kahli {
+  background-position: right 220px top -692px;
+}
+.sprite.Kahn {
+  background-position: right 296px top -692px;
+}
+.sprite.Kaien {
+  background-position: right 372px top -692px;
+}
+.sprite.Kaimann {
+  background-position: right 448px top -692px;
+}
+.sprite.Kaito {
+  background-position: right 524px top -692px;
+}
+.sprite.Kaki {
+  background-position: right 600px top -692px;
+}
+.sprite.Kalantatze {
+  background-position: right 676px top -692px;
+}
+.sprite.Kamatau {
+  background-position: right 752px top -692px;
+}
+.sprite.Kamiya {
+  background-position: right 828px top -692px;
+}
+.sprite.Karakum {
+  background-position: right 904px top -692px;
+}
+.sprite.Karl {
+  background-position: right 980px top -692px;
+}
+.sprite.Karnal {
+  background-position: right 1056px top -692px;
+}
+.sprite.Kashmir {
+  background-position: right 1132px top -692px;
+}
+.sprite.Kassandra-D {
+  background-position: right 1208px top -692px;
+}
+.sprite.Kassandra-F {
+  background-position: right 1284px top -692px;
+}
+.sprite.Kassandra-L {
+  background-position: right 1360px top -692px;
+}
+.sprite.Kassandra-W {
+  background-position: right 1436px top -692px;
+}
+.sprite.Kassandra-WA {
+  background-position: right 1512px top -692px;
+}
+.sprite.Katarina {
+  background-position: right 1588px top -692px;
+}
+.sprite.Kaz {
+  background-position: right 1664px top -692px;
+}
+.sprite.Ken {
+  background-position: right 1740px top -692px;
+}
+.sprite.Kernodon {
+  background-position: right 1816px top -692px;
+}
+.sprite.Khmun {
+  background-position: right 1892px top -692px;
+}
+.sprite.Kiara {
+  background-position: right 1968px top -692px;
+}
+.sprite.Kinki {
+  background-position: right 2044px top -692px;
+}
+.sprite.Konamiya {
+  background-position: right 2120px top -692px;
+}
+.sprite.Korona {
+  background-position: right 2196px top -692px;
+}
+.sprite.Kovarci {
+  background-position: right 2272px top -692px;
+}
+.sprite.Krakdon {
+  background-position: right 2348px top -692px;
+}
+.sprite.Kugo {
+  background-position: right 2424px top -692px;
+}
+.sprite.Kuhn {
+  background-position: right 2500px top -692px;
+}
+.sprite.Kumae {
+  background-position: right 2576px top -692px;
+}
+.sprite.Kumar {
+  background-position: right 2652px top -692px;
+}
+.sprite.Kuna {
+  background-position: right 2728px top -692px;
+}
+.sprite.Kunda {
+  background-position: right 2804px top -692px;
+}
+.sprite.Kungen {
+  background-position: right 2880px top -692px;
+}
+.sprite.Kunite {
+  background-position: right 2956px top -692px;
+}
+.sprite.Kyle {
+  background-position: right 3032px top -692px;
+}
+.sprite.Laima {
+  background-position: right 3108px top -692px;
+}
+.sprite.Laika {
+  background-position: right 3184px top -692px;
+}
+.sprite.Lagmaron {
+  background-position: right 3260px top -692px;
+}
+.sprite.Lala {
+  background-position: right 68px top -768px;
+}
+.sprite.Lanett {
+  background-position: right 144px top -768px;
+}
+.sprite.Lapis {
+  background-position: right 220px top -768px;
+}
+.sprite.Lariel {
+  background-position: right 296px top -768px;
+}
+.sprite.Layla {
+  background-position: right 372px top -768px;
+}
+.sprite.Lavender {
+  background-position: right 448px top -768px;
+}
+.sprite.Leah {
+  background-position: right 524px top -768px;
+}
+.sprite.Leo {
+  background-position: right 600px top -768px;
+}
+.sprite.Leona {
+  background-position: right 676px top -768px;
+}
+.sprite.Lexy {
+  background-position: right 752px top -768px;
+}
+.sprite.Liam {
+  background-position: right 828px top -768px;
+}
+.sprite.Liebli {
+  background-position: right 904px top -768px;
+}
+.sprite.Liesel {
+  background-position: right 980px top -768px;
+}
+.sprite.Liliana {
+  background-position: right 1056px top -768px;
+}
+.sprite.Linda {
+  background-position: right 1132px top -768px;
+}
+.sprite.Lindermen {
+  background-position: right 1208px top -768px;
+}
+.sprite.LingLing {
+  background-position: right 1284px top -768px;
+}
+.sprite.Lionel {
+  background-position: right 1360px top -768px;
+}
+.sprite.LiuMei {
+  background-position: right 1436px top -768px;
+}
+.sprite.Lo {
+  background-position: right 1512px top -768px;
+}
+.sprite.Logan {
+  background-position: right 1588px top -768px;
+}
+.sprite.Loque {
+  background-position: right 1664px top -768px;
+}
+.sprite.Lora {
+  background-position: right 1740px top -768px;
+}
+.sprite.Loren {
+  background-position: right 1816px top -768px;
+}
+.sprite.Louis {
+  background-position: right 1892px top -768px;
+}
+.sprite.Louise {
+  background-position: right 1968px top -768px;
+}
+.sprite.Luan {
+  background-position: right 2044px top -768px;
+}
+.sprite.Lucas {
+  background-position: right 2120px top -768px;
+}
+.sprite.Lucasha {
+  background-position: right 2196px top -768px;
+}
+.sprite.Lucia {
+  background-position: right 2272px top -768px;
+}
+.sprite.Lucien {
+  background-position: right 2348px top -768px;
+}
+.sprite.Lucifer {
+  background-position: right 2424px top -768px;
+}
+.sprite.Ludo {
+  background-position: right 2500px top -768px;
+}
+.sprite.Luer {
+  background-position: right 2576px top -768px;
+}
+.sprite.Lukan {
+  background-position: right 2652px top -768px;
+}
+.sprite.Lumirecia {
+  background-position: right 2728px top -768px;
+}
+.sprite.Luna {
+  background-position: right 2804px top -768px;
+}
+.sprite.Lupinus {
+  background-position: right 2880px top -768px;
+}
+.sprite.Lushen {
+  background-position: right 2956px top -768px;
+}
+.sprite.Lydia {
+  background-position: right 3032px top -768px;
+}
+.sprite.Lyn {
+  background-position: right 3108px top -768px;
+}
+.sprite.Madeleine {
+  background-position: right 3184px top -768px;
+}
+.sprite.MadeleineCookie-F {
+  background-position: right 3260px top -768px;
+}
+.sprite.MadeleineCookie-D {
+  background-position: right 68px top -844px;
+}
+.sprite.MadeleineCookie-W {
+  background-position: right 144px top -844px;
+}
+.sprite.MadeleineCookie-WA {
+  background-position: right 220px top -844px;
+}
+.sprite.Maggi {
+  background-position: right 296px top -844px;
+}
+.sprite.Magnum {
+  background-position: right 372px top -844px;
+}
+.sprite.Malite {
+  background-position: right 448px top -844px;
+}
+.sprite.Malaka {
+  background-position: right 524px top -844px;
+}
+.sprite.Manannan {
+  background-position: right 600px top -844px;
+}
+.sprite.Manon {
+  background-position: right 676px top -844px;
+}
+.sprite.Mantura {
+  background-position: right 752px top -844px;
+}
+.sprite.Mao {
+  background-position: right 828px top -844px;
+}
+.sprite.Mara {
+  background-position: right 904px top -844px;
+}
+.sprite.Marble {
+  background-position: right 980px top -844px;
+}
+.sprite.Martina {
+  background-position: right 1056px top -844px;
+}
+.sprite.Maruna {
+  background-position: right 1132px top -844px;
+}
+.sprite.Masha {
+  background-position: right 1208px top -844px;
+}
+.sprite.Mav {
+  background-position: right 1284px top -844px;
+}
+.sprite.Maximilian {
+  background-position: right 1360px top -844px;
+}
+.sprite.Maya {
+  background-position: right 1436px top -844px;
+}
+.sprite.Mbison-D {
+  background-position: right 1512px top -844px;
+}
+.sprite.Mbison-F {
+  background-position: right 1588px top -844px;
+}
+.sprite.Mbison-W {
+  background-position: right 1664px top -844px;
+}
+.sprite.Mbison-L {
+  background-position: right 1740px top -844px;
+}
+.sprite.Mbison-WA {
+  background-position: right 1816px top -844px;
+}
+.sprite.Megan {
+  background-position: right 1892px top -844px;
+}
+.sprite.Mei {
+  background-position: right 1968px top -844px;
+}
+.sprite.MeiHouWang {
+  background-position: right 2044px top -844px;
+}
+.sprite.Melissa {
+  background-position: right 2120px top -844px;
+}
+.sprite.Mellia {
+  background-position: right 2196px top -844px;
+}
+.sprite.Mephisto {
+  background-position: right 2272px top -844px;
+}
+.sprite.Michelle {
+  background-position: right 2348px top -844px;
+}
+.sprite.Mihael {
+  background-position: right 2424px top -844px;
+}
+.sprite.Miho {
+  background-position: right 2500px top -844px;
+}
+.sprite.Mihyang {
+  background-position: right 2576px top -844px;
+}
+.sprite.Mikene {
+  background-position: right 2652px top -844px;
+}
+.sprite.Miles {
+  background-position: right 2728px top -844px;
+}
+.sprite.Mimirr {
+  background-position: right 2804px top -844px;
+}
+.sprite.Mina {
+  background-position: right 2880px top -844px;
+}
+.sprite.Miriam {
+  background-position: right 2956px top -844px;
+}
+.sprite.Mirinae {
+  background-position: right 3032px top -844px;
+}
+.sprite.Misty {
+  background-position: right 3108px top -844px;
+}
+.sprite.MiYing {
+  background-position: right 3184px top -844px;
+}
+.sprite.Molly {
+  background-position: right 3260px top -844px;
+}
+.sprite.Molong {
+  background-position: right 68px top -920px;
+}
+.sprite.Monte {
+  background-position: right 144px top -920px;
+}
+.sprite.Mookwol {
+  background-position: right 220px top -920px;
+}
+.sprite.Moore {
+  background-position: right 296px top -920px;
+}
+.sprite.Moria {
+  background-position: right 372px top -920px;
+}
+.sprite.Morris {
+  background-position: right 448px top -920px;
+}
+.sprite.Naki {
+  background-position: right 524px top -920px;
+}
+.sprite.Namib {
+  background-position: right 600px top -920px;
+}
+.sprite.Nana {
+  background-position: right 676px top -920px;
+}
+.sprite.Nangrim {
+  background-position: right 752px top -920px;
+}
+.sprite.Naomi {
+  background-position: right 828px top -920px;
+}
+.sprite.Narsha {
+  background-position: right 904px top -920px;
+}
+.sprite.Natalie {
+  background-position: right 980px top -920px;
+}
+.sprite.Nephthys {
+  background-position: right 1056px top -920px;
+}
+.sprite.Nickel {
+  background-position: right 1132px top -920px;
+}
+.sprite.Nicki {
+  background-position: right 1208px top -920px;
+}
+.sprite.Nigong {
+  background-position: right 1284px top -920px;
+}
+.sprite.Nisha {
+  background-position: right 1360px top -920px;
+}
+.sprite.Nubia {
+  background-position: right 1436px top -920px;
+}
+.sprite.Nora {
+  background-position: right 1512px top -920px;
+}
+.sprite.Oberon {
+  background-position: right 1588px top -920px;
+}
+.sprite.Odin {
+  background-position: right 1664px top -920px;
+}
+.sprite.Okeanos {
+  background-position: right 1740px top -920px;
+}
+.sprite.Oliver {
+  background-position: right 1816px top -920px;
+}
+.sprite.Olivine {
+  background-position: right 1892px top -920px;
+}
+.sprite.Omar {
+  background-position: right 1968px top -920px;
+}
+.sprite.Ongyouki {
+  background-position: right 2044px top -920px;
+}
+.sprite.Onyx {
+  background-position: right 2120px top -920px;
+}
+.sprite.Orion {
+  background-position: right 2196px top -920px;
+}
+.sprite.Orochi {
+  background-position: right 2272px top -920px;
+}
+.sprite.Pang {
+  background-position: right 2348px top -920px;
+}
+.sprite.Pater {
+  background-position: right 2424px top -920px;
+}
+.sprite.Patrick {
+  background-position: right 2500px top -920px;
+}
+.sprite.Pave {
+  background-position: right 2576px top -920px;
+}
+.sprite.Perna {
+  background-position: right 2652px top -920px;
+}
+.sprite.Phenaka {
+  background-position: right 2728px top -920px;
+}
+.sprite.Pigma {
+  background-position: right 2804px top -920px;
+}
+.sprite.Platy {
+  background-position: right 2880px top -920px;
+}
+.sprite.Pontos {
+  background-position: right 2956px top -920px;
+}
+.sprite.Poseidon {
+  background-position: right 3032px top -920px;
+}
+.sprite.Praha {
+  background-position: right 3108px top -920px;
+}
+.sprite.Praline {
+  background-position: right 3184px top -920px;
+}
+.sprite.Prilea {
+  background-position: right 3260px top -920px;
+}
+.sprite.Priz {
+  background-position: right 68px top -996px;
+}
+.sprite.Prom {
+  background-position: right 144px top -996px;
+}
+.sprite.Psamathe {
+  background-position: right 220px top -996px;
+}
+.sprite.Pungbaek {
+  background-position: right 296px top -996px;
+}
+.sprite.PureVanillaCookie-F {
+  background-position: right 372px top -996px;
+}
+.sprite.PureVanillaCookie-WA {
+  background-position: right 448px top -996px;
+}
+.sprite.PureVanillaCookie-D {
+  background-position: right 524px top -996px;
+}
+.sprite.PureVanillaCookie-L {
+  background-position: right 600px top -996px;
+}
+.sprite.PureVanillaCookie-W {
+  background-position: right 676px top -996px;
+}
+.sprite.Purian {
+  background-position: right 752px top -996px;
+}
+.sprite.Qebehsenuef {
+  background-position: right 828px top -996px;
+}
+.sprite.QitianDasheng {
+  background-position: right 904px top -996px;
+}
+.sprite.Racuni {
+  background-position: right 980px top -996px;
+}
+.sprite.Ragdoll {
+  background-position: right 1056px top -996px;
+}
+.sprite.Ragion {
+  background-position: right 1132px top -996px;
+}
+.sprite.Rahul {
+  background-position: right 1208px top -996px;
+}
+.sprite.Rica {
+  background-position: right 1284px top -996px;
+}
+.sprite.Rigel {
+  background-position: right 1360px top -996px;
+}
+.sprite.Riley {
+  background-position: right 1436px top -996px;
+}
+.sprite.Rina {
+  background-position: right 1512px top -996px;
+}
+.sprite.Ritesh {
+  background-position: right 1588px top -996px;
+}
+.sprite.Rizak {
+  background-position: right 1664px top -996px;
+}
+.sprite.ROBO-E65 {
+  background-position: right 1740px top -996px;
+}
+.sprite.ROBO-F29 {
+  background-position: right 1816px top -996px;
+}
+.sprite.ROBO-G92 {
+  background-position: right 1892px top -996px;
+}
+.sprite.ROBO-P27 {
+  background-position: right 1968px top -996px;
+}
+.sprite.ROBO-R40 {
+  background-position: right 2044px top -996px;
+}
+.sprite.Roger {
+  background-position: right 2120px top -996px;
+}
+.sprite.Roid {
+  background-position: right 2196px top -996px;
+}
+.sprite.Rakan {
+  background-position: right 2272px top -996px;
+}
+.sprite.Rakaja {
+  background-position: right 2348px top -996px;
+}
+.sprite.Rosemary {
+  background-position: right 2424px top -996px;
+}
+.sprite.Raki {
+  background-position: right 2500px top -996px;
+}
+.sprite.Ralph {
+  background-position: right 2576px top -996px;
+}
+.sprite.Ramira {
+  background-position: right 2652px top -996px;
+}
+.sprite.Randy {
+  background-position: right 2728px top -996px;
+}
+.sprite.Rasheed {
+  background-position: right 2804px top -996px;
+}
+.sprite.Rebecca {
+  background-position: right 2880px top -996px;
+}
+.sprite.Reno {
+  background-position: right 2956px top -996px;
+}
+.sprite.Rumicus {
+  background-position: right 3032px top -996px;
+}
+.sprite.Ryan {
+  background-position: right 3108px top -996px;
+}
+.sprite.Ryu-D {
+  background-position: right 3184px top -996px;
+}
+.sprite.Ryu-F {
+  background-position: right 3260px top -996px;
+}
+.sprite.Ryu-L {
+  background-position: right 68px top -1072px;
+}
+.sprite.Ryu-W {
+  background-position: right 144px top -1072px;
+}
+.sprite.Ryu-WA {
+  background-position: right 220px top -1072px;
+}
+.sprite.Sabrina {
+  background-position: right 296px top -1072px;
+}
+.sprite.Sagar {
+  background-position: right 372px top -1072px;
+}
+.sprite.Sahara {
+  background-position: right 448px top -1072px;
+}
+.sprite.Salah {
+  background-position: right 524px top -1072px;
+}
+.sprite.Sath {
+  background-position: right 600px top -1072px;
+}
+.sprite.Savannah {
+  background-position: right 676px top -1072px;
+}
+.sprite.Scarlett {
+  background-position: right 752px top -1072px;
+}
+.sprite.Seal {
+  background-position: right 828px top -1072px;
+}
+.sprite.Seara {
+  background-position: right 904px top -1072px;
+}
+.sprite.Seimei {
+  background-position: right 980px top -1072px;
+}
+.sprite.Sekhmet {
+  background-position: right 1056px top -1072px;
+}
+.sprite.Selena {
+  background-position: right 1132px top -1072px;
+}
+.sprite.Sera {
+  background-position: right 1208px top -1072px;
+}
+.sprite.Seren {
+  background-position: right 1284px top -1072px;
+}
+.sprite.Shahat {
+  background-position: right 1360px top -1072px;
+}
+.sprite.Shailoq {
+  background-position: right 1436px top -1072px;
+}
+.sprite.Shaina {
+  background-position: right 1512px top -1072px;
+}
+.sprite.Shamann {
+  background-position: right 1588px top -1072px;
+}
+.sprite.Shakan {
+  background-position: right 1664px top -1072px;
+}
+.sprite.Shamar {
+  background-position: right 1740px top -1072px;
+}
+.sprite.Shan {
+  background-position: right 1816px top -1072px;
+}
+.sprite.Sharman {
+  background-position: right 1892px top -1072px;
+}
+.sprite.Sharron {
+  background-position: right 1968px top -1072px;
+}
+.sprite.Shazam {
+  background-position: right 2044px top -1072px;
+}
+.sprite.Shihou {
+  background-position: right 2120px top -1072px;
+}
+.sprite.Shihwa {
+  background-position: right 2196px top -1072px;
+}
+.sprite.Shimitae {
+  background-position: right 2272px top -1072px;
+}
+.sprite.Shren {
+  background-position: right 2348px top -1072px;
+}
+.sprite.Shizuka {
+  background-position: right 2424px top -1072px;
+}
+.sprite.Shumar {
+  background-position: right 2500px top -1072px;
+}
+.sprite.Shushu {
+  background-position: right 2576px top -1072px;
+}
+.sprite.Sia {
+  background-position: right 2652px top -1072px;
+}
+.sprite.Sian {
+  background-position: right 2728px top -1072px;
+}
+.sprite.Sieq {
+  background-position: right 2804px top -1072px;
+}
+.sprite.Sige {
+  background-position: right 2880px top -1072px;
+}
+.sprite.Sigmarus {
+  background-position: right 2956px top -1072px;
+}
+.sprite.Sigrid {
+  background-position: right 3032px top -1072px;
+}
+.sprite.Silver {
+  background-position: right 3108px top -1072px;
+}
+.sprite.Silia {
+  background-position: right 3184px top -1072px;
+}
+.sprite.Sin {
+  background-position: right 3260px top -1072px;
+}
+.sprite.Sisroo {
+  background-position: right 68px top -1148px;
+}
+.sprite.Skogul {
+  background-position: right 144px top -1148px;
+}
+.sprite.Smicer {
+  background-position: right 220px top -1148px;
+}
+.sprite.Smokey {
+  background-position: right 296px top -1148px;
+}
+.sprite.Soha {
+  background-position: right 372px top -1148px;
+}
+.sprite.Solveig {
+  background-position: right 448px top -1148px;
+}
+.sprite.Songseol {
+  background-position: right 524px top -1148px;
+}
+.sprite.Sonia {
+  background-position: right 600px top -1148px;
+}
+.sprite.Sonnet {
+  background-position: right 676px top -1148px;
+}
+.sprite.Sonora {
+  background-position: right 752px top -1148px;
+}
+.sprite.Sophia {
+  background-position: right 828px top -1148px;
+}
+.sprite.Spectra {
+  background-position: right 904px top -1148px;
+}
+.sprite.Stella {
+  background-position: right 980px top -1148px;
+}
+.sprite.Su {
+  background-position: right 1056px top -1148px;
+}
+.sprite.Suiki {
+  background-position: right 1132px top -1148px;
+}
+.sprite.Suri {
+  background-position: right 1208px top -1148px;
+}
+.sprite.Surtr {
+  background-position: right 1284px top -1148px;
+}
+.sprite.Susan {
+  background-position: right 1360px top -1148px;
+}
+.sprite.Susano {
+  background-position: right 1436px top -1148px;
+}
+.sprite.Tablo {
+  background-position: right 1512px top -1148px;
+}
+.sprite.Tagaros {
+  background-position: right 1588px top -1148px;
+}
+.sprite.Talc {
+  background-position: right 1664px top -1148px;
+}
+.sprite.Talia {
+  background-position: right 1740px top -1148px;
+}
+.sprite.Talisman {
+  background-position: right 1816px top -1148px;
+}
+.sprite.Tantra {
+  background-position: right 1892px top -1148px;
+}
+.sprite.Tanya {
+  background-position: right 1968px top -1148px;
+}
+.sprite.Tanzaite {
+  background-position: right 2044px top -1148px;
+}
+.sprite.Taor {
+  background-position: right 2120px top -1148px;
+}
+.sprite.Taranys {
+  background-position: right 2196px top -1148px;
+}
+.sprite.Tarq {
+  background-position: right 2272px top -1148px;
+}
+.sprite.Taru {
+  background-position: right 2348px top -1148px;
+}
+.sprite.Teon {
+  background-position: right 2424px top -1148px;
+}
+.sprite.Taurus {
+  background-position: right 2500px top -1148px;
+}
+.sprite.Tesarion {
+  background-position: right 2576px top -1148px;
+}
+.sprite.Teshar {
+  background-position: right 2652px top -1148px;
+}
+.sprite.Tetra {
+  background-position: right 2728px top -1148px;
+}
+.sprite.Thebae {
+  background-position: right 2804px top -1148px;
+}
+.sprite.Theomars {
+  background-position: right 2880px top -1148px;
+}
+.sprite.Thomas {
+  background-position: right 2956px top -1148px;
+}
+.sprite.Thrain {
+  background-position: right 3032px top -1148px;
+}
+.sprite.Tiana {
+  background-position: right 3108px top -1148px;
+}
+.sprite.TianLang {
+  background-position: right 3184px top -1148px;
+}
+.sprite.Tilasha {
+  background-position: right 3260px top -1148px;
+}
+.sprite.TienQin {
+  background-position: right 68px top -1224px;
+}
+.sprite.Todd {
+  background-position: right 144px top -1224px;
+}
+.sprite.Toma {
+  background-position: right 220px top -1224px;
+}
+.sprite.Tosi {
+  background-position: right 296px top -1224px;
+}
+.sprite.Tomoe {
+  background-position: right 372px top -1224px;
+}
+.sprite.Tractor {
+  background-position: right 448px top -1224px;
+}
+.sprite.Trasar {
+  background-position: right 524px top -1224px;
+}
+.sprite.Trevor {
+  background-position: right 600px top -1224px;
+}
+.sprite.Triana {
+  background-position: right 676px top -1224px;
+}
+.sprite.Trinity {
+  background-position: right 752px top -1224px;
+}
+.sprite.Triton {
+  background-position: right 828px top -1224px;
+}
+.sprite.Truffle {
+  background-position: right 904px top -1224px;
+}
+.sprite.Tyron {
+  background-position: right 980px top -1224px;
+}
+.sprite.Urtau {
+  background-position: right 1056px top -1224px;
+}
+.sprite.Valantis {
+  background-position: right 1132px top -1224px;
+}
+.sprite.Vancliffe {
+  background-position: right 1208px top -1224px;
+}
+.sprite.Vanessa {
+  background-position: right 1284px top -1224px;
+}
+.sprite.Varus {
+  background-position: right 1360px top -1224px;
+}
+.sprite.Verad {
+  background-position: right 1436px top -1224px;
+}
+.sprite.Vegabond {
+  background-position: right 1512px top -1224px;
+}
+.sprite.Velajuel {
+  background-position: right 1588px top -1224px;
+}
+.sprite.Velfinodon {
+  background-position: right 1664px top -1224px;
+}
+.sprite.Vereesa {
+  background-position: right 1740px top -1224px;
+}
+.sprite.Veromos {
+  background-position: right 1816px top -1224px;
+}
+.sprite.Verdehile {
+  background-position: right 1892px top -1224px;
+}
+.sprite.Veronica {
+  background-position: right 1968px top -1224px;
+}
+.sprite.Vivachel {
+  background-position: right 2044px top -1224px;
+}
+.sprite.Vidurr {
+  background-position: right 2120px top -1224px;
+}
+.sprite.Vigor {
+  background-position: right 2196px top -1224px;
+}
+.sprite.Walkers {
+  background-position: right 2272px top -1224px;
+}
+.sprite.Wedjat {
+  background-position: right 2348px top -1224px;
+}
+.sprite.Walter {
+  background-position: right 2424px top -1224px;
+}
+.sprite.Wayne {
+  background-position: right 2500px top -1224px;
+}
+.sprite.WeiShin {
+  background-position: right 2576px top -1224px;
+}
+.sprite.Wolyung {
+  background-position: right 2652px top -1224px;
+}
+.sprite.Woonhak {
+  background-position: right 2728px top -1224px;
+}
+.sprite.Windy {
+  background-position: right 2804px top -1224px;
+}
+.sprite.Woonsa {
+  background-position: right 2880px top -1224px;
+}
+.sprite.Xiana {
+  background-position: right 2956px top -1224px;
+}
+.sprite.Woochi {
+  background-position: right 3032px top -1224px;
+}
+.sprite.XiaoLing {
+  background-position: right 3108px top -1224px;
+}
+.sprite.XingZhe {
+  background-position: right 3184px top -1224px;
+}
+.sprite.XiongFei {
+  background-position: right 3260px top -1224px;
+}
+.sprite.Woosa {
+  background-position: right 68px top -1300px;
+}
+.sprite.Yaku {
+  background-position: right 144px top -1300px;
+}
+.sprite.Xiao-Lin {
+  background-position: right 220px top -1300px;
+}
+.sprite.Yen {
+  background-position: right 296px top -1300px;
+}
+.sprite.XiaoChun {
+  background-position: right 372px top -1300px;
+}
+.sprite.Yeonhong {
+  background-position: right 448px top -1300px;
+}
+.sprite.Yeonhwa {
+  background-position: right 524px top -1300px;
+}
+.sprite.Zaiross {
+  background-position: right 600px top -1300px;
+}
+.sprite.Zenisek {
+  background-position: right 676px top -1300px;
+}
+.sprite.Zenobia {
+  background-position: right 752px top -1300px;
+}
+.sprite.Zephicus {
+  background-position: right 828px top -1300px;
+}
+.sprite.Zerath {
+  background-position: right 904px top -1300px;
+}
+.sprite.Zeratu {
+  background-position: right 980px top -1300px;
+}
+.sprite.Zibala {
+  background-position: right 1056px top -1300px;
+}
+.sprite.Zibrolta {
+  background-position: right 1132px top -1300px;
+}
+.sprite.Zima {
+  background-position: right 1208px top -1300px;
+}
+.sprite.Zinc {
+  background-position: right 1284px top -1300px;
+}

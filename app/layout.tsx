@@ -1,5 +1,8 @@
 import "@/styles/globals.css"
+import "@/styles/monster.css"
 import { Metadata } from "next"
+
+import TanstackProviders from "@/providers/query-provider"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -39,19 +42,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex h-full flex-col">
-              <SiteHeader />
+          <TanstackProviders>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <div className="relative flex h-full flex-col">
+                <SiteHeader />
 
-              <div className="h-[calc(100%-64px)]">{children}</div>
-            </div>
+                <div className="h-[calc(100%-64px)]">{children}</div>
+              </div>
 
-            {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
-            <TailwindIndicator />
+              {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
+              <TailwindIndicator />
 
-            {/* Toast Container */}
-            <Toaster />
-          </ThemeProvider>
+              {/* Toast Container */}
+              <Toaster />
+            </ThemeProvider>
+          </TanstackProviders>
         </body>
       </html>
     </>
