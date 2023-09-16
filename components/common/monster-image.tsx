@@ -154,6 +154,14 @@ export default function MonsterImage({
                   <FormControl>
                     <Input
                       {...field}
+                      onChange={(e) => {
+                        const space = /\s/
+                        if (space.test(e.target.value)) {
+                          return
+                        }
+
+                        field.onChange(e)
+                      }}
                       value={field.value || ""}
                       placeholder="전속성 공통이름 (ex. 드루이드)"
                     />
@@ -175,6 +183,11 @@ export default function MonsterImage({
                       placeholder="(ex. 물,물드루)"
                       onChange={(e) => {
                         const replaceValue = e.target.value.split(",")
+                        const space = /\s/
+
+                        if (space.test(e.target.value)) {
+                          return
+                        }
 
                         field.onChange(replaceValue)
                       }}
