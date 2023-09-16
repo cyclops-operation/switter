@@ -9,7 +9,17 @@ import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experime
 export default function TanstackProviders({
   children,
 }: React.PropsWithChildren) {
-  const [client] = React.useState(new QueryClient())
+  const [client] = React.useState(
+    new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+          refetchOnMount: false,
+          refetchOnWindowFocus: false,
+        },
+      },
+    })
+  )
 
   return (
     <QueryClientProvider client={client}>
