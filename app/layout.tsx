@@ -47,7 +47,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <div className="relative flex h-full flex-col">
                 <SiteHeader />
 
-                <div className="h-[calc(100%-64px)]">{children}</div>
+                <section className="h-[calc(100%-64px)]">{children}</section>
               </div>
 
               {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
