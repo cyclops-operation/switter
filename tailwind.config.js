@@ -6,11 +6,11 @@ module.exports = {
   content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
   theme: {
     container: {
-      center: true,
-      padding: "2rem",
+      padding: "24px",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1200px",
       },
+      center: true,
     },
     extend: {
       colors: {
@@ -69,6 +69,9 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      gridTemplateColumns: {
+        layout: "200px minmax(auto, 1fr)",
       },
     },
   },

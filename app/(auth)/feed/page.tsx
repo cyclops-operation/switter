@@ -1,14 +1,20 @@
 "use client"
 
-import MonsterDialog from "@/components/monster-dialog"
-import PusherDialog from "@/components/pusher-dialog"
-
-export default function FeedPage() {
+export default async function FeedPage() {
   return (
-    <div className="container flex h-full items-center justify-center gap-6 pb-8 pt-6 md:py-10">
-      <PusherDialog />
-
-      <MonsterDialog />
-    </div>
+    <section className="container p-0">
+      <div className="h-[500px]">1</div>
+      <div className="h-[500px]">2</div>
+      <div className="h-[500px]">3</div>
+      <div className="h-[500px]">4</div>
+      <div className="h-[500px]">5</div>
+      <div className="h-[500px]">6</div>
+      <div className="h-[500px]">7</div>
+      <div className="h-[500px]">8</div>
+      <div className="h-[500px]">9</div>
+      <div className="h-[500px]">10</div>
+      <div className="h-[500px]">11</div>
+      <div className="h-[500px]">12</div>
+    </section>
   )
 }
