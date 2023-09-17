@@ -1,5 +1,3 @@
-"use client"
-
 import { ChangeEvent, useState } from "react"
 
 import { MonsterInfo } from "@/interface/monster"
@@ -8,11 +6,11 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import { debounce } from "@/lib/utils"
 
-import MonsterImage from "./common/monster-image"
-import { Button } from "./ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import MonsterImage from "../common/monster-image"
+import { Button } from "../ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 
 /** 1차 데이터 정제를 위한 컴포넌트 */
 export default function MonsterDialog() {
@@ -36,7 +34,7 @@ export default function MonsterDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Monster List(Sample)</Button>
+        <Button className="w-full">Monster List</Button>
       </DialogTrigger>
 
       <DialogContent className="w-[650px]">

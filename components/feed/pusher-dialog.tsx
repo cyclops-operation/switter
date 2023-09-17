@@ -8,8 +8,8 @@ import { apiRoute } from "@/lib/api-route"
 import { formErrorMessage } from "@/lib/error-message"
 import { pusherOptions } from "@/lib/pusher"
 
-import { Button } from "./ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
+import { Button } from "../ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 import {
   Form,
   FormControl,
@@ -18,8 +18,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form"
-import { Input } from "./ui/input"
+} from "../ui/form"
+import { Input } from "../ui/input"
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -47,7 +47,7 @@ export default function PusherDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Pusher Event (Sample)</Button>
+        <Button className="w-full">Pusher Event</Button>
       </DialogTrigger>
 
       <DialogContent>

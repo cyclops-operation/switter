@@ -2,7 +2,7 @@ import "@/styles/globals.css"
 import "@/styles/monster.css"
 import { Metadata } from "next"
 
-import TanstackProviders from "@/providers/query-provider"
+import { TanstackProviders } from "@/providers/query-provider"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <div className="relative flex h-full flex-col">
                 <SiteHeader />
 
-                <section className="h-[calc(100%-64px)]">{children}</section>
+                <main>{children}</main>
               </div>
 
               {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
