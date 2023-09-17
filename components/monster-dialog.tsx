@@ -63,7 +63,9 @@ export default function MonsterDialog() {
             {monsterList?.map((monsterInfo) => {
               if (searchTerm) {
                 const isMatchSearchTerm =
-                  monsterInfo.originName.indexOf(searchTerm) !== -1 ||
+                  monsterInfo.originName
+                    .toLocaleLowerCase()
+                    .indexOf(searchTerm.toLocaleLowerCase()) !== -1 ||
                   monsterInfo.monsterName?.indexOf(searchTerm) !== -1 ||
                   monsterInfo.keyword.some(
                     (word) => word.indexOf(searchTerm) !== -1
