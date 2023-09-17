@@ -44,11 +44,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <TanstackProviders>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="relative flex h-full flex-col">
-                <SiteHeader />
-
-                <main>{children}</main>
-              </div>
+              {children}
 
               {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
               <TailwindIndicator />
