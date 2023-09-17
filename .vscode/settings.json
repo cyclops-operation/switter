@@ -26,7 +26,8 @@
     "shadcn",
     "Tanstack",
     "pandoc",
-    "cpina"
+    "cpina",
+    "commitlint"
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
