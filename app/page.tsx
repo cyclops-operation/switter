@@ -1,14 +1,12 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
+import PageContainer from "@/components/layout/page-container"
 
 export default function IndexPage() {
-  const { push: routerPush } = useRouter()
-
   return (
-    <section className="container flex h-[calc(100vh-65px)] items-center justify-center gap-6 pb-8 pt-6 md:py-10">
+    <PageContainer className="container flex h-[calc(100vh-65px)] items-center justify-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[980px] flex-col items-center justify-center gap-2">
         <span
           className="inline-block h-[45px] w-[52px] bg-[position:-63px_-199px] bg-no-repeat"
@@ -19,10 +17,8 @@ export default function IndexPage() {
           Increase grow your Power
         </h2>
 
-        <Button variant="link" onClick={() => routerPush("/feed")}>
-          Go Main
-        </Button>
+        <Link href="/feed">Go Main</Link>
       </div>
-    </section>
+    </PageContainer>
   )
 }
