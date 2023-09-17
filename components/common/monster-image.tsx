@@ -1,11 +1,11 @@
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, useState } from "react"
 
 import {
   MonsterInfo,
   monsterInfo as monsterInfoSchema,
 } from "@/interface/monster"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import clsx from "clsx"
 import { motion } from "framer-motion"
@@ -27,6 +27,8 @@ export default function MonsterImage({
   className,
   ...rest
 }: MonsterImageProps) {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+
   const { toast } = useToast()
 
   const queryClient = useQueryClient()
@@ -41,6 +43,8 @@ export default function MonsterImage({
   const elementType = form.watch("elementType")
 
   const handleSubmit = async (monsterInfo: MonsterInfo) => {
+    setIsPopoverOpen(false)
+
     await axios
       .patch("/api/monster", monsterInfo)
       .then(() => queryClient.invalidateQueries({ queryKey: ["monster"] }))
@@ -49,7 +53,7 @@ export default function MonsterImage({
 
   return (
     <motion.div layout>
-      <Popover modal>
+      <Popover modal open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
         <PopoverTrigger asChild>
           <span
             className={clsx(
