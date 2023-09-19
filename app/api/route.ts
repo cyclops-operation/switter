@@ -1,9 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+
 import { NextRequest, NextResponse } from "next/server"
 
-import { PrismaClient } from "@prisma/client"
-
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
 
 export async function POST(request: NextRequest) {
   const payload = await request.json()
