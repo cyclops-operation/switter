@@ -1,3 +1,5 @@
+"use client"
+
 import { ChangeEvent, useState } from "react"
 
 import { MonsterInfo } from "@/interface/monster"
@@ -11,9 +13,13 @@ import { Button } from "../ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
+import { MonsterFieldArray } from "./feed-dialog"
 
-/** 1차 데이터 정제를 위한 컴포넌트 */
-export default function MonsterDialog() {
+interface MonsterDialogProps {
+  onSelect: MonsterFieldArray
+}
+
+export default function MonsterDialog({ onSelect }: MonsterDialogProps) {
   const { data: monsterList } = useQuery<MonsterInfo[]>({
     queryKey: ["monster"],
     queryFn: () => fetch("/api/monster").then((res) => res.json()),
@@ -31,10 +37,17 @@ export default function MonsterDialog() {
     debounceSearchTerm(searchTerm)
   }
 
+  const handleMonsterSelect = (monster: MonsterInfo) => {
+    setSearchTerm("")
+    onSelect(monster)
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full">Monster List</Button>
+        <Button className="w-full" variant="outline">
+          몬스터 검색
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="w-[650px]">
@@ -73,12 +86,17 @@ export default function MonsterDialog() {
                   <MonsterImage
                     key={monsterInfo.id}
                     monsterInfo={monsterInfo}
+                    onSelect={handleMonsterSelect}
                   />
                 ) : null
               }
 
               return (
-                <MonsterImage key={monsterInfo.id} monsterInfo={monsterInfo} />
+                <MonsterImage
+                  key={monsterInfo.id}
+                  monsterInfo={monsterInfo}
+                  onSelect={handleMonsterSelect}
+                />
               )
             })}
           </motion.div>

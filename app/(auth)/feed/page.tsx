@@ -1,6 +1,4 @@
-"use client"
-
-export default async function FeedPage() {
+export default function FeedPage() {
   return (
     <section className="container p-0">
       <div className="h-[500px]">1</div>

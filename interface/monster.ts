@@ -5,7 +5,7 @@ const monsterElement = z.enum(["dark", "light", "fire", "water", "wind"])
 type MonsterElement = z.infer<typeof monsterElement>
 
 const monsterInfo = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   originName: z.string(),
   monsterName: z.string().nullable(),
   elementType: z
