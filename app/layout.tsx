@@ -3,14 +3,12 @@ import "@/styles/monster.css"
 import { Metadata } from "next"
 
 import { TanstackProviders } from "@/providers/query-provider"
-import TransitionProvider from "@/providers/transition-provider"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { TailwindIndicator } from "@/components/common/tailwind-indicator"
-import { SiteHeader } from "@/components/layout/site-header"
 import { ThemeProvider } from "@/theme/theme-provider"
 
 export const metadata: Metadata = {
@@ -45,7 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <TanstackProviders>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <TransitionProvider>{children}</TransitionProvider>
+              {children}
 
               {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
               <TailwindIndicator />

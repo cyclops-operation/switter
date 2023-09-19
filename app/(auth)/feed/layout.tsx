@@ -1,5 +1,3 @@
-"use client"
-
 import { ReactNode } from "react"
 
 import FeedAside from "@/components/feed/feed-aisde"
