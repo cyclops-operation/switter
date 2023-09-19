@@ -2,9 +2,8 @@
 import { NextRequest, NextResponse } from "next/server"
 
 import { MonsterInfo } from "@/interface/monster"
-import { PrismaClient } from "@prisma/client"
 
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
 
 export async function GET() {
   const monsterList = await prisma.monster.findMany()
