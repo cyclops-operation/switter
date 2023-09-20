@@ -374,6 +374,11 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@cyclops-operation/icons@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@cyclops-operation/icons/1.1.0/13f8ded1d979498f5159c3bac0a43c945a2a7ae2#13f8ded1d979498f5159c3bac0a43c945a2a7ae2"
+  integrity sha512-bHOtrnHljWGL0YiWFJycRiehfMZpRkHyNGMfJwE2rF21LYR1UhndV3v3mcLJxUsFOHZ6pxZrCffcDDwqD8vKoA==
+
 "@emotion/is-prop-valid@^0.8.2":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"

@@ -23,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "@cyclops-operation/icons": "^1.1.0",
     "@hookform/resolvers": "^3.3.1",
     "@prisma/client": "^5.3.1",
     "@radix-ui/react-checkbox": "^1.0.4",

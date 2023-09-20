@@ -4,7 +4,7 @@ import { CommonRange, commonRange } from "@/interface/common"
 
 import loading from "/public/images/loading-spinner.svg"
 
-interface LoadingProps {
+export interface LoadingProps {
   /**
    * 로딩 컨테이너 넓이 기준.
    */

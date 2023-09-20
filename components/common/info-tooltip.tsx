@@ -17,11 +17,13 @@ const InfoTooltip = ({ triggerText, tooltipText }: InfoTooltipProps) => {
   return (
     <TooltipProvider delayDuration={100}>
       <Tooltip>
-        <TooltipTrigger className="flex cursor-pointer items-center justify-center gap-2 text-sm text-zinc-300">
-          <Icons.info size={16} />
+        <TooltipTrigger className="flex cursor-pointer items-center justify-center gap-2 text-sm text-zinc-600 dark:text-zinc-300">
+          <Icons.info size={14} />
           {triggerText}
         </TooltipTrigger>
-        <TooltipContent sideOffset={8}>{tooltipText}</TooltipContent>
+        <TooltipContent className="whitespace-pre-line" sideOffset={16}>
+          {tooltipText}
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )
