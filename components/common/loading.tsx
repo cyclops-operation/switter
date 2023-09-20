@@ -1,10 +1,29 @@
-export interface LoadingProps {}
+import Image from "next/image"
 
-/**
- * TODO 임시로 활용할 로딩 컴포넌트입니다. 추후 스타일 등이 변경될 수 있습니다.
- */
-const Loading = () => {
-  return <div>Loading</div>
+import { CommonRange, commonRange } from "@/interface/common"
+
+import loading from "/public/images/loading-spinner.svg"
+
+interface LoadingProps {
+  /**
+   * 로딩 컨테이너 넓이 기준.
+   */
+  width?: CommonRange
+  /**
+   * 로딩 컨테이너 높이 기준.
+   */
+  height?: CommonRange
+}
+
+const Loading = ({
+  width = commonRange.Enum.full,
+  height = commonRange.Enum.full,
+}: LoadingProps) => {
+  return (
+    <div className={`w-${width} h-${height} flex justify-center`}>
+      <Image src={loading} alt="로딩 이미지" />
+    </div>
+  )
 }
 
 export default Loading
