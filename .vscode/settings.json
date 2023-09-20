@@ -27,10 +27,13 @@
     "Tanstack",
     "pandoc",
     "cpina",
-    "hookform"
+    "hookform",
     "commitlint"
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
   }
 }
