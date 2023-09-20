@@ -6,6 +6,7 @@ import axios from "axios"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { apiRoute } from "@/lib/api-route"
 import { formErrorMessage } from "@/lib/error-message"
 import { Button } from "@/components/ui/button"
 import {
@@ -47,7 +48,7 @@ const RequestForm = () => {
     {
       onSuccess: () => {
         toast({ title: "성공적으로 계정이 생성되었습니다.", duration: 1000 })
-        queryClient.refetchQueries(["account"])
+        queryClient.refetchQueries([apiRoute.Account])
       },
     }
   )

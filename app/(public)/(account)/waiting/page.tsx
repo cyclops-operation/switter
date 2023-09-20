@@ -3,8 +3,10 @@
 import { useLayoutEffect } from "react"
 import { useRouter } from "next/navigation"
 
+import { accountStatus } from "@/interface/account"
 import { useQuery } from "@tanstack/react-query"
 
+import { apiRoute } from "@/lib/api-route"
 import { useToast } from "@/components/ui/use-toast"
 import Loading from "@/components/common/loading"
 
@@ -17,14 +19,15 @@ const Waiting = () => {
   const { toast } = useToast()
 
   const { data: account, isLoading } = useQuery({
-    queryKey: ["account"],
-    queryFn: async () => await fetch(`/api/account`).then((res) => res.json()),
+    queryKey: [apiRoute.Account],
+    queryFn: async () =>
+      await fetch(apiRoute.Account).then((res) => res.json()),
   })
 
   const status = account?.status
 
-  const isPending = status === "PENDING"
-  const isActive = status === "ACTIVE"
+  const isPending = status === accountStatus.Enum.PENDING
+  const isActive = status === accountStatus.Enum.ACTIVE
 
   const accountHeaderProps: AccountHeaderProps = isPending
     ? {
