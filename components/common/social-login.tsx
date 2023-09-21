@@ -14,7 +14,7 @@ type Platform = {
 const platformInfo: Record<string, Platform> = {
   naver: {
     text: "네이버 로그인",
-    style: "",
+    style: "bg-[#03C75A] font-bold text-white hover:bg-[#03B75A]",
   },
 }
 
@@ -34,7 +34,7 @@ const SocialLogin = () => {
         return (
           <Button
             key={provider}
-            className={`w-full ${style} bg-[#03C75A] font-bold text-white hover:bg-[#03B75A]`}
+            className={`w-full ${style}`}
             onClick={() => signIn(provider)}
           >
             {text}
