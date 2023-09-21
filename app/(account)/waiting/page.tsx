@@ -7,13 +7,14 @@ import { accountStatus } from "@/interface/account"
 import { useQuery } from "@tanstack/react-query"
 
 import { apiRoute } from "@/lib/api-route"
+import { pageRoute } from "@/lib/page-route"
 import { CardContent, CardFooter } from "@/components/ui/card"
 import { useToast } from "@/components/ui/use-toast"
 import InfoTooltip from "@/components/common/info-tooltip"
 import Loading from "@/components/common/loading"
 
 import AccountHeader, { AccountHeaderProps } from "../src/ui/header"
-import RequestForm from "./src/ui/form"
+import CreateRequestForm from "./src/ui/form/create"
 import AccountPending from "./src/ui/pending"
 
 const Waiting = () => {
@@ -43,7 +44,7 @@ const Waiting = () => {
 
   useLayoutEffect(() => {
     if (isActive) {
-      push("/feed")
+      push(pageRoute.Feed)
       toast({ title: "로그인 되었습니다!" })
     }
   }, [isActive, push, toast])
@@ -54,7 +55,7 @@ const Waiting = () => {
     <>
       <AccountHeader {...accountHeaderProps} />
       <CardContent>
-        {isPending ? <AccountPending /> : <RequestForm />}
+        {isPending ? <AccountPending /> : <CreateRequestForm />}
       </CardContent>
       <CardFooter className="flex justify-center">
         <InfoTooltip

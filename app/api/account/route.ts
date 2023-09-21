@@ -42,3 +42,36 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ status: "ok" })
 }
+
+export type PatchAccountPayload = Pick<Account, "guildName" | "name">
+
+export async function PUT(request: NextRequest) {
+  const payload: PostAccountPayload = await request.json()
+  const session = await getServerSession(authOptions)
+
+  if (session?.user?.email) {
+    const userInfo =
+      (
+        await prisma.user.findMany({
+          where: {
+            naverKey: session?.user?.email ?? "",
+          },
+        })
+      )[0] ?? null
+
+    if (userInfo === null) {
+      throw new Error("해당하는 유저가 없습니다.")
+    }
+
+    await prisma.user.update({
+      where: {
+        id: userInfo.id,
+      },
+      data: payload,
+    })
+  } else {
+    throw new Error("세션이 없습니다.")
+  }
+
+  return NextResponse.json({ status: "ok" })
+}

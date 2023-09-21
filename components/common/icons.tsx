@@ -1,5 +1,6 @@
 import {
   AlarmCheck,
+  FileEdit,
   Info,
   LucideProps,
   Moon,
@@ -18,6 +19,7 @@ const Icons = {
   logo: WebhookIcon,
   info: Info,
   alarm: AlarmCheck,
+  fileEdit: FileEdit,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

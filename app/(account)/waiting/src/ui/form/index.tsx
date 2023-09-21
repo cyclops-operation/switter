@@ -1,14 +1,12 @@
 "use client"
 
+import { ReactNode } from "react"
+
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { apiRoute } from "@/lib/api-route"
 import { formErrorMessage } from "@/lib/error-message"
-import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -18,8 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useToast } from "@/components/ui/use-toast"
-import { PostAccountPayload } from "@/app/api/account/route"
 
 const formSchema = z.object({
   guildName: z.string().min(1, {
@@ -30,36 +26,35 @@ const formSchema = z.object({
   }),
 })
 
-const RequestForm = () => {
-  const { toast } = useToast()
+export type WaitingForm = z.infer<typeof formSchema>
 
-  const queryClient = useQueryClient()
+interface RequestFormProps {
+  renderButton: (props: {
+    submit: {
+      className: string
+      type: "submit"
+    }
+  }) => ReactNode
+  onSubmit: (values: WaitingForm) => void
+  defaultValues?: WaitingForm
+}
 
-  const form = useForm<z.infer<typeof formSchema>>({
+const RequestForm = ({
+  renderButton,
+  onSubmit,
+  defaultValues,
+}: RequestFormProps) => {
+  const form = useForm<WaitingForm>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: defaultValues ?? {
       guildName: "",
       name: "",
     },
   })
 
-  const { mutate: postAccountM } = useMutation(
-    async (body: PostAccountPayload) => await axios.post("/api/account", body),
-    {
-      onSuccess: () => {
-        toast({ title: "성공적으로 계정이 생성되었습니다.", duration: 1000 })
-        queryClient.refetchQueries([apiRoute.Account])
-      },
-    }
-  )
-
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    postAccountM(values)
-  }
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
           name="guildName"
@@ -88,9 +83,12 @@ const RequestForm = () => {
           )}
         />
 
-        <Button className="w-full" type="submit">
-          가입 요청하기
-        </Button>
+        {renderButton({
+          submit: {
+            className: "w-full",
+            type: "submit",
+          },
+        })}
       </form>
     </Form>
   )

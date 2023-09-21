@@ -2,6 +2,8 @@ import { NextAuthOptions } from "next-auth"
 import NextAuth from "next-auth/next"
 import NaverProvider from "next-auth/providers/naver"
 
+import { pageRoute } from "@/lib/page-route"
+
 export const authOptions: NextAuthOptions = {
   providers: [
     NaverProvider({
@@ -10,7 +12,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/sign-in",
+    signIn: pageRoute.SignIn,
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
@@ -22,7 +24,7 @@ export const authOptions: NextAuthOptions = {
       return true
     },
     async redirect({ baseUrl }) {
-      return `${baseUrl}/waiting`
+      return `${baseUrl}${pageRoute.Waiting}`
     },
   },
 }
