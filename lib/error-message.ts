@@ -5,7 +5,7 @@ const formErrorMessage = {
   guildName: {
     length: "길드명은 최소 1자리를 입력해주세요.",
   },
-  name: {
+  nickname: {
     length: "닉네임은 최소 1자리를 입력해주세요.",
   },
   monsterList: {

@@ -4,7 +4,6 @@ import { MonsterInfo } from "@/interface/monster"
 import clsx from "clsx"
 
 interface MonsterImageProps extends HTMLAttributes<HTMLSpanElement> {
-  className?: string
   monsterInfo: MonsterInfo
 }
 
