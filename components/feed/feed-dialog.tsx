@@ -67,7 +67,13 @@ export default function FeedDialog() {
   }
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+    <Dialog
+      open={isDialogOpen}
+      onOpenChange={(isDialogOpen) => {
+        form.reset()
+        setIsDialogOpen(isDialogOpen)
+      }}
+    >
       <DialogTrigger asChild>
         <Button className="w-full">Create Feed</Button>
       </DialogTrigger>
