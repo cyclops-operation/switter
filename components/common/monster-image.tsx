@@ -1,29 +1,28 @@
+import { HTMLAttributes, memo } from "react"
+
 import { MonsterInfo } from "@/interface/monster"
 import clsx from "clsx"
 
-interface MonsterImageProps {
+interface MonsterImageProps extends HTMLAttributes<HTMLSpanElement> {
   className?: string
   monsterInfo: MonsterInfo
-  onSelect: any
 }
 
-export default function MonsterImage({
+export default memo(function MonsterImage({
   monsterInfo,
   className,
-  onSelect,
+  ...rest
 }: MonsterImageProps) {
   const { originName, elementType } = monsterInfo
 
   return (
     <span
+      {...rest}
       className={clsx(
-        "sprite relative inline-block rounded-xl",
+        "sprite relative inline-block rounded-xl cursor-pointer",
         className,
         originName
       )}
-      onClick={() => {
-        onSelect(monsterInfo)
-      }}
     >
       <i
         className={clsx(
@@ -33,4 +32,4 @@ export default function MonsterImage({
       />
     </span>
   )
-}
+})
