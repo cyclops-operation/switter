@@ -9,7 +9,6 @@ import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { TailwindIndicator } from "@/components/common/tailwind-indicator"
-import { SiteHeader } from "@/components/layout/site-header"
 import { ThemeProvider } from "@/theme/theme-provider"
 
 export const metadata: Metadata = {

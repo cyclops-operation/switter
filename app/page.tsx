@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 
+import { pageRoute } from "@/lib/page-route"
 import { Button } from "@/components/ui/button"
 
 export default function IndexPage() {
@@ -19,8 +20,12 @@ export default function IndexPage() {
           Increase grow your Power
         </h2>
 
-        <Button variant="link" onClick={() => routerPush("/feed")}>
+        <Button variant="link" onClick={() => routerPush(pageRoute.Feed)}>
           Go Main
+        </Button>
+
+        <Button variant="link" onClick={() => routerPush(pageRoute.SignIn)}>
+          Go Sign In
         </Button>
       </div>
     </section>

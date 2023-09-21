@@ -1,3 +1,5 @@
+import { pageRoute } from "@/lib/page-route"
+
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
@@ -7,13 +9,13 @@ export const siteConfig = {
   mainNav: [
     {
       title: "Home",
-      href: "/",
+      href: pageRoute.Root,
     },
     {
       title: "Feed",
-      href: "/feed",
+      href: pageRoute.Feed,
     },
-    { title: "Docs", href: "/docs" },
+    { title: "Docs", href: pageRoute.Docs },
   ],
 
   links: {
