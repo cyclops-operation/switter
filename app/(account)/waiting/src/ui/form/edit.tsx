@@ -24,7 +24,7 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
 
   const { mutate: patchAccountM, isLoading } = useMutation(
     async (body: PatchAccountPayload) =>
-      await axios.put(apiRoute.Account, body),
+      await axios.patch(apiRoute.Account, body),
     {
       onSuccess: () => {
         toast({ title: "성공적으로 계정이 수정되었습니다.", duration: 1000 })

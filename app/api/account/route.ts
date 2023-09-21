@@ -45,8 +45,8 @@ export async function POST(request: NextRequest) {
 
 export type PatchAccountPayload = Pick<Account, "guildName" | "name">
 
-export async function PUT(request: NextRequest) {
-  const payload: PostAccountPayload = await request.json()
+export async function PATCH(request: NextRequest) {
+  const payload: PatchAccountPayload = await request.json()
   const session = await getServerSession(authOptions)
 
   if (session?.user?.email) {
