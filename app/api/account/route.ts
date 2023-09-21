@@ -11,14 +11,11 @@ const prisma = new PrismaClient()
 export async function GET() {
   const session = await getServerSession(authOptions)
 
-  const userInfo =
-    (
-      await prisma.user.findMany({
-        where: {
-          naverKey: session?.user?.email ?? "",
-        },
-      })
-    )[0] ?? null
+  const userInfo = await prisma.user.findFirstOrThrow({
+    where: {
+      naverKey: session?.user?.email ?? "",
+    },
+  })
 
   return NextResponse.json(userInfo)
 }
@@ -50,18 +47,11 @@ export async function PATCH(request: NextRequest) {
   const session = await getServerSession(authOptions)
 
   if (session?.user?.email) {
-    const userInfo =
-      (
-        await prisma.user.findMany({
-          where: {
-            naverKey: session?.user?.email ?? "",
-          },
-        })
-      )[0] ?? null
-
-    if (userInfo === null) {
-      throw new Error("해당하는 유저가 없습니다.")
-    }
+    const userInfo = await prisma.user.findFirstOrThrow({
+      where: {
+        naverKey: session?.user?.email ?? "",
+      },
+    })
 
     await prisma.user.update({
       where: {
