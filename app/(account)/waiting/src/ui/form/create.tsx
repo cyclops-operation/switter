@@ -15,7 +15,7 @@ const CreateRequestForm = () => {
 
   const queryClient = useQueryClient()
 
-  const { mutate: postAccountM } = useMutation(
+  const { mutate: postAccountM, isLoading } = useMutation(
     async (body: PostAccountPayload) =>
       await axios.post(apiRoute.Account, body),
     {
@@ -32,7 +32,11 @@ const CreateRequestForm = () => {
 
   return (
     <RequestForm
-      renderButton={({ submit }) => <Button {...submit}>가입 요청하기</Button>}
+      renderButton={({ submit }) => (
+        <Button disabled={isLoading} {...submit}>
+          가입 요청하기
+        </Button>
+      )}
       onSubmit={handleSubmit}
     />
   )
