@@ -1,28 +1,21 @@
 import { NextRequest, NextResponse } from "next/server"
 
 import { Account } from "@/interface/account"
-import { PrismaClient } from "@prisma/client"
 import { getServerSession } from "next-auth"
 
+import prisma from "@/lib/prisma"
+
 import { authOptions } from "../auth/[...nextauth]/route"
+import { getSessionAccount } from "./action"
 
-const prisma = new PrismaClient()
-
-export async function GET() {
-  const session = await getServerSession(authOptions)
-
-  const userInfo = await prisma.user.findFirstOrThrow({
-    where: {
-      naverKey: session?.user?.email ?? "",
-    },
-  })
-
-  return NextResponse.json(userInfo)
+async function GET() {
+  const result = await getSessionAccount()
+  return NextResponse.json(result)
 }
 
-export type PostAccountPayload = Pick<Account, "guildName" | "name">
+type PostAccountPayload = Pick<Account, "guildName" | "name">
 
-export async function POST(request: NextRequest) {
+async function POST(request: NextRequest) {
   const payload: PostAccountPayload = await request.json()
   const session = await getServerSession(authOptions)
 
@@ -40,22 +33,16 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ status: "ok" })
 }
 
-export type PatchAccountPayload = Pick<Account, "guildName" | "name">
+type PatchAccountPayload = Pick<Account, "guildName" | "name">
 
-export async function PATCH(request: NextRequest) {
+async function PATCH(request: NextRequest) {
   const payload: PatchAccountPayload = await request.json()
-  const session = await getServerSession(authOptions)
+  const result = await getSessionAccount()
 
-  if (session?.user?.email) {
-    const userInfo = await prisma.user.findFirstOrThrow({
-      where: {
-        naverKey: session?.user?.email ?? "",
-      },
-    })
-
+  if (result) {
     await prisma.user.update({
       where: {
-        id: userInfo.id,
+        id: result.id,
       },
       data: payload,
     })
@@ -65,3 +52,5 @@ export async function PATCH(request: NextRequest) {
 
   return NextResponse.json({ status: "ok" })
 }
+
+export { GET, PATCH, POST, type PatchAccountPayload, type PostAccountPayload }

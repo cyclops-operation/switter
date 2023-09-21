@@ -1,36 +1,17 @@
-"use client"
-
-import { useLayoutEffect } from "react"
-import { useRouter } from "next/navigation"
-
 import { accountStatus } from "@/interface/account"
-import { useQuery } from "@tanstack/react-query"
 
-import { apiRoute } from "@/lib/api-route"
-import { pageRoute } from "@/lib/page-route"
 import { CardContent, CardFooter } from "@/components/ui/card"
-import { useToast } from "@/components/ui/use-toast"
 import InfoTooltip from "@/components/common/info-tooltip"
-import Loading from "@/components/common/loading"
+import { getSessionAccount } from "@/app/api/account/action"
 
 import AccountHeader, { AccountHeaderProps } from "../src/ui/header"
 import CreateRequestForm from "./src/ui/form/create"
 import AccountPending from "./src/ui/pending"
 
-const Waiting = () => {
-  const { push } = useRouter()
-  const { toast } = useToast()
+const Waiting = async () => {
+  const account = await getSessionAccount()
 
-  const { data: account, isLoading } = useQuery({
-    queryKey: [apiRoute.Account],
-    queryFn: async () =>
-      await fetch(apiRoute.Account).then((res) => res.json()),
-  })
-
-  const status = account?.status
-
-  const isPending = status === accountStatus.Enum.PENDING
-  const isActive = status === accountStatus.Enum.ACTIVE
+  const isPending = account?.status === accountStatus.Enum.PENDING
 
   const accountHeaderProps: AccountHeaderProps = isPending
     ? {
@@ -41,15 +22,6 @@ const Waiting = () => {
         title: "가입 승인 요청",
         description: "회원가입 승인 요청을 위한 기본 입력 정보를 작성해주세요",
       }
-
-  useLayoutEffect(() => {
-    if (isActive) {
-      push(pageRoute.Feed)
-      toast({ title: "로그인 되었습니다!" })
-    }
-  }, [isActive, push, toast])
-
-  if (isLoading || isActive) return <Loading />
 
   return (
     <>
