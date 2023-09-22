@@ -14,7 +14,7 @@ import AccountPending from "./src/ui/pending"
 const Waiting = async () => {
   const account = await getSessionAccount()
 
-  const hasNotSession = account === undefined
+  const hasNotSession = account === null
 
   if (hasNotSession) {
     redirect(pageRoute.SignIn)
