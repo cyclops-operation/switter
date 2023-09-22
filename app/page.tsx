@@ -20,10 +20,6 @@ export default function IndexPage() {
           Increase grow your Power
         </h2>
 
-        <Button variant="link" onClick={() => routerPush(pageRoute.Feed)}>
-          Go Main
-        </Button>
-
         <Button variant="link" onClick={() => routerPush(pageRoute.SignIn)}>
           Go Sign In
         </Button>
