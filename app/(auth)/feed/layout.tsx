@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-import FeedAside from "@/components/feed/feed-aisde"
+import FeedAside from "@/app/(auth)/src/ui/feed-aisde"
 
 interface FeedLayoutProps {
   children: ReactNode

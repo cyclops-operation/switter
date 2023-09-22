@@ -1,7 +1,7 @@
 "use client"
 
+import PusherDialog from "../../../../components/feed/pusher-dialog"
 import FeedDialog from "./feed-dialog"
-import PusherDialog from "./pusher-dialog"
 
 export default function FeedAside() {
   return (

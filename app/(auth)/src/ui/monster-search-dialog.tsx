@@ -7,12 +7,11 @@ import { useQuery } from "@tanstack/react-query"
 
 import { apiRoute } from "@/lib/api-route"
 import { debounce } from "@/lib/utils"
-
-import { Button } from "../ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
-import { FormDescription } from "../ui/form"
-import { Input } from "../ui/input"
-import { Label } from "../ui/label"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { FormDescription } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 interface MonsterDialogProps {
   /** 검색한 몬스터 정보를 다양한 UI로 노출시키기 위해 render props 사용 */
