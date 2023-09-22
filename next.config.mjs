@@ -5,6 +5,15 @@ const nextConfig = {
     appDir: true,
     serverActions: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/sign-in",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
