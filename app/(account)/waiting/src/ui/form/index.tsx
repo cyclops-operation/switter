@@ -22,7 +22,7 @@ const formSchema = z.object({
     message: formErrorMessage.guildName.length,
   }),
   name: z.string().min(1, {
-    message: formErrorMessage.name.length,
+    message: formErrorMessage.nickname.length,
   }),
 })
 

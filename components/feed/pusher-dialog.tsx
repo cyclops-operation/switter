@@ -22,7 +22,7 @@ import {
 import { Input } from "../ui/input"
 
 const formSchema = z.object({
-  username: z.string().min(2, {
+  username: z.string().min(1, {
     message: formErrorMessage.id.length,
   }),
 })
