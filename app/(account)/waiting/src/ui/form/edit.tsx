@@ -1,7 +1,7 @@
 "use client"
 
 import { Account } from "@/interface/account"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
@@ -20,7 +20,11 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
 
   const queryClient = useQueryClient()
 
-  const account = queryClient.getQueryData<Account>([apiRoute.Account])
+  const { data: account } = useQuery(
+    [apiRoute.Account],
+    async () =>
+      await axios.get<Account>(apiRoute.Account).then(({ data }) => data)
+  )
 
   const { mutate: patchAccountM, isLoading } = useMutation(
     async (body: PatchAccountPayload) =>
@@ -48,6 +52,7 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
             수정하기
           </Button>
           <Button
+            type="button"
             className="w-full"
             variant="outline"
             disabled={disabled}

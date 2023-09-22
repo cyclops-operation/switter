@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -26,7 +26,10 @@ const formSchema = z.object({
   }),
 })
 
-export type WaitingForm = z.infer<typeof formSchema>
+const formSchemaKey = formSchema.keyof()
+
+type WaitingFormKey = z.infer<typeof formSchemaKey>
+type WaitingForm = z.infer<typeof formSchema>
 
 interface RequestFormProps {
   renderButton: (props: {
@@ -46,11 +49,22 @@ const RequestForm = ({
 }: RequestFormProps) => {
   const form = useForm<WaitingForm>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues ?? {
+    defaultValues: {
       guildName: "",
       name: "",
     },
   })
+
+  useEffect(() => {
+    if (defaultValues !== undefined) {
+      const defaultValueEntries = Object.entries(defaultValues) as [
+        WaitingFormKey,
+        string
+      ][]
+
+      defaultValueEntries.forEach(([key, value]) => form.setValue(key, value))
+    }
+  }, [defaultValues, form, form.handleSubmit])
 
   return (
     <Form {...form}>
@@ -93,5 +107,7 @@ const RequestForm = ({
     </Form>
   )
 }
+
+export { type WaitingForm }
 
 export default RequestForm
