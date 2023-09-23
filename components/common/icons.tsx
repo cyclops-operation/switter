@@ -7,6 +7,7 @@ import {
   Info,
   LucideProps,
   Moon,
+  Search,
   SunMedium,
   Twitter,
   WebhookIcon,
@@ -25,7 +26,25 @@ const Icons = {
   alarm: AlarmCheck,
   bell: Bell,
   bellRing: BellRing,
+  search: Search,
   fileEdit: FileEdit,
+  createFeed: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      width={props.size}
+      height={props.size}
+      {...props}
+    >
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z" />
+    </svg>
+  ),
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

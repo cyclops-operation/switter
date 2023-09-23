@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
+import { Icons } from "@/components/common/icons"
 import MonsterImage from "@/components/common/monster-image"
 
 import MonsterDialog from "./monster-search-dialog"
@@ -82,7 +83,10 @@ export default function FeedDialog() {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="w-full">Create Feed</Button>
+        <Button className="flex items-center gap-2">
+          <Icons.createFeed size={16} />
+          피드 추가
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="max-w-xs max-md:max-w-[calc(100%-48px)]">
@@ -212,8 +216,9 @@ export default function FeedDialog() {
 
             <Separator className="max-md:hidden" />
 
-            <Button className="w-full" type="submit">
-              피드 생성
+            <Button className="flex w-full items-center gap-2" type="submit">
+              <Icons.createFeed size={16} />
+              피드 추가
             </Button>
           </form>
         </Form>
