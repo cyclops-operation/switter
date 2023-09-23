@@ -14,6 +14,8 @@ import {
 } from "@/components/common/content-header"
 import { getPendingUsers } from "@/app/api/user/pending/action"
 
+import AcceptButton from "./src/ui/accept-button"
+
 const Admin = async () => {
   const pendingUsers = await getPendingUsers()
 
@@ -35,10 +37,13 @@ const Admin = async () => {
         </TableHeader>
 
         <TableBody>
-          {pendingUsers?.map(({ guildName, name }) => (
+          {pendingUsers?.map(({ id, guildName, name }) => (
             <TableRow key={name}>
               <TableCell>{guildName}</TableCell>
               <TableCell>{name}</TableCell>
+              <TableCell>
+                <AcceptButton id={id} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
