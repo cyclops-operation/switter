@@ -85,7 +85,7 @@ export default function FeedDialog() {
       <DialogTrigger asChild>
         <Button className="flex items-center gap-2">
           <Icons.createFeed size={16} />
-          피드 추가
+          방어덱 추가
         </Button>
       </DialogTrigger>
 
@@ -218,7 +218,7 @@ export default function FeedDialog() {
 
             <Button className="flex w-full items-center gap-2" type="submit">
               <Icons.createFeed size={16} />
-              피드 추가
+              방어덱 추가
             </Button>
           </form>
         </Form>

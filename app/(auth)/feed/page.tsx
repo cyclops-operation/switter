@@ -5,10 +5,10 @@ import FeedList from "../src/ui/feed-list"
 export default function FeedPage() {
   return (
     <section className="container p-0">
-      <article className="flex flex-col gap-4">
-        <FeedFilter />
-
+      <article className="flex flex-col gap-5">
         <FeedAction />
+
+        <FeedFilter />
 
         <FeedList />
       </article>
