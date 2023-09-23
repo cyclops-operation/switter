@@ -8,6 +8,7 @@ import axios from "axios"
 import { apiRoute } from "@/lib/api-route"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
+import { PatchPendingUserPayload } from "@/app/api/user/pending/route"
 
 interface AcceptButtonProps {
   id: number
@@ -19,7 +20,7 @@ const AcceptButton = ({ id }: AcceptButtonProps) => {
 
   const { mutate: patchPendingUserM } = useMutation(
     async () =>
-      await axios.patch(apiRoute.UserPending, {
+      await axios.patch<PatchPendingUserPayload>(apiRoute.UserPending, {
         id,
       }),
     {
