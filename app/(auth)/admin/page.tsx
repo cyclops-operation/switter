@@ -12,12 +12,12 @@ import {
   ContentSubtitle,
   ContentTitle,
 } from "@/components/common/content-header"
-import { getPendingUsers } from "@/app/api/user/pending/action"
+import { getUsers } from "@/app/api/user/action"
 
-import AcceptButton from "./src/ui/accept-button"
+import RoleSelect from "./src/ui/role-select"
 
 const Admin = async () => {
-  const pendingUsers = await getPendingUsers()
+  const pendingUsers = await getUsers()
 
   return (
     <section className="container">
@@ -33,16 +33,17 @@ const Admin = async () => {
           <TableRow>
             <TableHead className="w-[300px]">길드명</TableHead>
             <TableHead>인게임 닉네임</TableHead>
+            <TableHead className="w-[130px]">상태</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {pendingUsers?.map(({ id, guildName, name }) => (
+          {pendingUsers?.map(({ id, guildName, name, status }) => (
             <TableRow key={name}>
               <TableCell>{guildName}</TableCell>
               <TableCell>{name}</TableCell>
               <TableCell>
-                <AcceptButton id={id} />
+                <RoleSelect id={id} status={status} />
               </TableCell>
             </TableRow>
           ))}

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { Account, accountStatus } from "@/interface/account"
+import { Account } from "@/interface/account"
 
 import prisma from "@/lib/prisma"
 
@@ -11,19 +11,19 @@ async function GET() {
   return NextResponse.json(result)
 }
 
-type PatchPendingUserPayload = Pick<Account, "id">
+type PatchUserPayload = Pick<Account, "id" | "status">
 
 async function PATCH(request: NextRequest) {
-  const { id }: PatchPendingUserPayload = await request.json()
+  const { id, status }: PatchUserPayload = await request.json()
 
   await prisma.user.update({
     where: { id },
     data: {
-      status: accountStatus.Enum.ACTIVE,
+      status,
     },
   })
 
   return NextResponse.json({ status: "ok" })
 }
 
-export { GET, PATCH, type PatchPendingUserPayload }
+export { GET, PATCH, type PatchUserPayload }
