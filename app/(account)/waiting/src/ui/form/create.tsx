@@ -1,6 +1,8 @@
 "use client"
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useRouter } from "next/navigation"
+
+import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
@@ -11,9 +13,8 @@ import { PostAccountPayload } from "@/app/api/account/route"
 import RequestForm, { WaitingForm } from "."
 
 const CreateRequestForm = () => {
+  const { refresh } = useRouter()
   const { toast } = useToast()
-
-  const queryClient = useQueryClient()
 
   const { mutate: postAccountM, isLoading } = useMutation(
     async (body: PostAccountPayload) =>
@@ -21,7 +22,7 @@ const CreateRequestForm = () => {
     {
       onSuccess: () => {
         toast({ title: "성공적으로 계정이 생성되었습니다.", duration: 1000 })
-        queryClient.refetchQueries([apiRoute.Account])
+        refresh()
       },
     }
   )

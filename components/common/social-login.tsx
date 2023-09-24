@@ -35,7 +35,9 @@ const SocialLogin = () => {
           <Button
             key={provider}
             className={`w-full ${style}`}
-            onClick={() => signIn(provider)}
+            onClick={() => {
+              signIn(provider)
+            }}
           >
             {text}
           </Button>

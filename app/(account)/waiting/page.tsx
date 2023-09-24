@@ -1,5 +1,8 @@
+import { redirect } from "next/navigation"
+
 import { accountStatus } from "@/interface/account"
 
+import { pageRoute } from "@/lib/page-route"
 import { CardContent, CardFooter } from "@/components/ui/card"
 import InfoTooltip from "@/components/common/info-tooltip"
 import { getSessionAccount } from "@/app/api/account/action"
@@ -10,6 +13,12 @@ import AccountPending from "./src/ui/pending"
 
 const Waiting = async () => {
   const account = await getSessionAccount()
+
+  const hasNotSession = account === null
+
+  if (hasNotSession) {
+    redirect(pageRoute.SignIn)
+  }
 
   const isPending = account?.status === accountStatus.Enum.PENDING
 

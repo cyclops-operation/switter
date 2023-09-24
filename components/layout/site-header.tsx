@@ -2,18 +2,24 @@
 
 import { useEffect } from "react"
 
+import { signOut } from "next-auth/react"
 import pusherJs from "pusher-js"
 
 import { siteConfig } from "@/config/site"
 import { pusherChannel, pusherEvent, pusherOptions } from "@/lib/pusher"
 import { ThemeToggle } from "@/components/common/theme-toggle"
 
+import { Button } from "../ui/button"
 import { ToastAction } from "../ui/toast"
 import { useToast } from "../ui/use-toast"
 import { MainNav } from "./main-nav"
 
 export function SiteHeader() {
   const { toast } = useToast()
+
+  const clickSignOut = () => {
+    signOut()
+  }
 
   useEffect(() => {
     const pusher = new pusherJs(pusherOptions.key, {
@@ -41,6 +47,10 @@ export function SiteHeader() {
         <MainNav items={siteConfig.mainNav} />
 
         <div className="flex flex-1 items-center justify-end space-x-4">
+          {/* 임시 로그아웃 */}
+          <Button variant="ghost" onClick={clickSignOut}>
+            로그아웃
+          </Button>
           <nav className="flex items-center space-x-1">
             <ThemeToggle />
           </nav>
