@@ -9,6 +9,7 @@ const pageRoute = {
 
   // (auth)
   Feed: "/feed",
+  Admin: "/admin",
 } as const
 
 export { pageRoute }
