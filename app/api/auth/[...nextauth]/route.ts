@@ -38,9 +38,6 @@ export const authOptions: NextAuthOptions = {
 
       if (!sessionUser) return session
 
-      // 기존 세션 타입에 email이 있는데 필요없다면 아래의 개체를 이용해 삭제
-      // Reflect.deleteProperty(session.user, "email")
-
       session.user = { ...session.user, ...sessionUser }
 
       return session
