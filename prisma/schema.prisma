@@ -16,6 +16,8 @@ model User {
   status    Status  @default(PENDING)
   naverKey  String
   alarms    Alarm[]
+  feeds     Feed[]
+  comments  Comment[]
 }
 
 model Monster {

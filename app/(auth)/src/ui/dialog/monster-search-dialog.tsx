@@ -4,6 +4,7 @@ import { ChangeEvent, ReactNode, useMemo, useState } from "react"
 
 import { MonsterInfo } from "@/interface/monster"
 import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
 import { debounce } from "@/lib/utils"
@@ -18,16 +19,17 @@ interface MonsterDialogProps {
   renderSearchedMonster?: (monsterInfo: MonsterInfo[]) => ReactNode
 }
 
-/** 몬스터를 검색하는 Dialog */
 export default function MonsterSearchDialog({
   renderSearchedMonster,
 }: MonsterDialogProps) {
-  const { data: monsterList } = useQuery<MonsterInfo[]>({
-    queryKey: [apiRoute.Monster],
-    queryFn: () => fetch(apiRoute.Monster).then((res) => res.json()),
-  })
-
   const [searchTerm, setSearchTerm] = useState("")
+
+  const { data: monsterList } = useQuery<MonsterInfo[]>(
+    [apiRoute.Monster],
+    async () => {
+      return await axios.get(apiRoute.Monster).then((res) => res.data)
+    }
+  )
 
   const debounceSearchTerm = debounce((searchTerm: string) => {
     setSearchTerm(searchTerm)
@@ -35,7 +37,6 @@ export default function MonsterSearchDialog({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value: searchTerm } = e.target
-
     debounceSearchTerm(searchTerm)
   }
 

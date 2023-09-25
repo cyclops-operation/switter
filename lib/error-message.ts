@@ -14,4 +14,11 @@ const formErrorMessage = {
   },
 } as const
 
-export { formErrorMessage }
+const apiErrorMessage = {
+  BadRequest: "잘못된 요청입니다.",
+  UnAuthorized: "권한이 없습니다.",
+  NotFound: "리소스를 찾을 수 없습니다.",
+  ServerError: "서버요청에 에러가 발생했습니다.",
+} as const
+
+export { apiErrorMessage, formErrorMessage }

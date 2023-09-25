@@ -1,51 +1,70 @@
 "use client"
 
 import { useState } from "react"
+import { useSearchParams } from "next/navigation"
 
-import { monsterList } from "@/interface/monster"
+import { AttackMonster, attackMonster } from "@/interface/comment"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import axios from "axios"
 import { useFieldArray, useForm } from "react-hook-form"
-import z from "zod"
 
+import { apiRoute } from "@/lib/api-route"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import {
   Form,
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/common/icons"
 import MonsterImage from "@/components/common/monster-image"
 
-import MonsterDialog from "./monster-search-dialog"
+import MonsterSearchDialog from "./monster-search-dialog"
 
-const formSchema = z.object({
-  defencseMonsterList: monsterList,
-  attackMonsterList: monsterList,
-})
+export default function CommentDialog() {
+  const searchParams = useSearchParams()
 
-export default function FeedDialog() {
+  const feedId = searchParams.get("feedId")
+
+  const { toast } = useToast()
+
+  const queryClient = useQueryClient()
+
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { mutate: createComment } = useMutation(
+    [apiRoute.Feed],
+    async (comment: AttackMonster) => {
+      return axios.post(apiRoute.Comment, { ...comment, feedId })
+    },
+    {
+      onSuccess: () => {
+        queryClient
+          .invalidateQueries([apiRoute.Comment])
+          .then(() => queryClient.invalidateQueries([apiRoute.Feed]))
+          .then(() =>
+            toast({
+              title: "공격덱을 추가했습니다.",
+            })
+          )
+      },
+    }
+  )
+
+  const form = useForm<AttackMonster>({
+    resolver: zodResolver(attackMonster),
     defaultValues: {
-      defencseMonsterList: [],
+      keyword: "",
       attackMonsterList: [],
     },
-  })
-
-  const {
-    fields: defenseMonsterField,
-    append: handleDefenseMonsterSelect,
-    remove: handleDefenseMonsterRemove,
-  } = useFieldArray({
-    control: form.control,
-    name: "defencseMonsterList",
   })
 
   const {
@@ -57,20 +76,13 @@ export default function FeedDialog() {
     name: "attackMonsterList",
   })
 
-  const { toast } = useToast()
-
   const handleReset = () => {
     form.reset()
     setIsDialogOpen(false)
   }
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
-
-    toast({
-      title: "피드를 생성했습니다.",
-    })
-
+  const handleSubmit = (values: AttackMonster) => {
+    createComment(values)
     handleReset()
   }
 
@@ -83,9 +95,14 @@ export default function FeedDialog() {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="flex items-center gap-2">
-          <Icons.createFeed size={16} />
-          방어덱 추가
+        <Button
+          variant="ghost"
+          size="icon"
+          title="공덱 추가"
+          className="flex items-center gap-2"
+        >
+          <Icons.plusSquare size={20} />
+          <span className="sr-only">공격덱 추가</span>
         </Button>
       </DialogTrigger>
 
@@ -96,65 +113,25 @@ export default function FeedDialog() {
             onSubmit={form.handleSubmit(handleSubmit)}
           >
             <FormField
-              name="defencseMonsterList"
-              render={() => (
+              name="keyword"
+              render={({ field }) => (
                 <FormItem>
-                  <FormLabel
-                    className={
-                      defenseMonsterField.length >= 3
-                        ? "text-gray-500"
-                        : undefined
-                    }
-                  >
-                    {defenseMonsterField.length >= 3
-                      ? "상대방 몬스터 선택완료"
-                      : "상대방 방어덱 몬스터를 선택하세요."}
-                  </FormLabel>
+                  <FormLabel>키워드</FormLabel>
 
-                  {defenseMonsterField.length <= 2 && (
-                    <MonsterDialog
-                      renderSearchedMonster={(monsterList) => (
-                        <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
-                          {monsterList.map((monsterInfo) => (
-                            <MonsterImage
-                              key={monsterInfo.id}
-                              monsterInfo={monsterInfo}
-                              onClick={() =>
-                                handleDefenseMonsterSelect(monsterInfo)
-                              }
-                            />
-                          ))}
-                        </div>
-                      )}
+                  <FormDescription>
+                    키워드를 입력하면 빠르게 검색할 수 있습니다.
+                  </FormDescription>
+
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="ex) 해극해"
+                      autoComplete="off"
                     />
-                  )}
-
-                  <div className="flex flex-wrap gap-4">
-                    {defenseMonsterField.map((monsterInfo) => {
-                      const selectedMonsterIndex =
-                        defenseMonsterField.findIndex(
-                          ({ originName: selectedOriginName }) =>
-                            selectedOriginName === monsterInfo.originName
-                        )
-
-                      return (
-                        <MonsterImage
-                          key={monsterInfo.id}
-                          monsterInfo={monsterInfo}
-                          onClick={() =>
-                            handleDefenseMonsterRemove(selectedMonsterIndex)
-                          }
-                        />
-                      )
-                    })}
-                  </div>
-
-                  <FormMessage />
+                  </FormControl>
                 </FormItem>
               )}
             />
-
-            <Separator />
 
             <FormField
               name="attackMonsterList"
@@ -173,7 +150,7 @@ export default function FeedDialog() {
                   </FormLabel>
 
                   {attackMonsterField.length <= 2 && (
-                    <MonsterDialog
+                    <MonsterSearchDialog
                       renderSearchedMonster={(monsterList) => (
                         <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
                           {monsterList.map((monsterInfo) => (
@@ -217,8 +194,8 @@ export default function FeedDialog() {
             <Separator className="max-md:hidden" />
 
             <Button className="flex w-full items-center gap-2" type="submit">
-              <Icons.createFeed size={16} />
-              방어덱 추가
+              <Icons.plusSquare size={20} />
+              공격덱 추가
             </Button>
           </form>
         </Form>
