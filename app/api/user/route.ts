@@ -4,10 +4,10 @@ import { Account } from "@/interface/account"
 
 import prisma from "@/lib/prisma"
 
-import { getPendingUsers } from "./action"
+import { getUsers } from "./action"
 
 async function GET() {
-  const result = await getPendingUsers()
+  const result = await getUsers()
   return NextResponse.json(result)
 }
 
