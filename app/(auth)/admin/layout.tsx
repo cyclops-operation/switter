@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react"
+import { ReactNode } from "react"
 import { redirect } from "next/navigation"
 
 import { accountRole } from "@/interface/account"
@@ -6,7 +6,11 @@ import { accountRole } from "@/interface/account"
 import { pageRoute } from "@/lib/page-route"
 import { getSessionAccount } from "@/app/api/account/action"
 
-const AdminLayout = async ({ children }: HTMLAttributes<HTMLElement>) => {
+interface AdminLayoutProps {
+  children: ReactNode
+}
+
+export default async function AdminLayout({ children }: AdminLayoutProps) {
   const session = await getSessionAccount()
 
   if (session?.role !== accountRole.Enum.ADMIN) {
@@ -15,5 +19,3 @@ const AdminLayout = async ({ children }: HTMLAttributes<HTMLElement>) => {
 
   return <section>{children}</section>
 }
-
-export default AdminLayout
