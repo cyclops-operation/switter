@@ -4,9 +4,9 @@ import { redirect } from "next/navigation"
 import { accountStatus } from "@/interface/account"
 
 import { pageRoute } from "@/lib/page-route"
+import { getServerAccount } from "@/lib/utils"
 import { Card } from "@/components/ui/card"
 
-import { getSessionAccount } from "../api/account/action"
 import accountImage from "/public/images/account-image-example.jpg"
 
 interface AccountLayoutProps {
@@ -14,9 +14,9 @@ interface AccountLayoutProps {
 }
 
 const AccountLayout = async ({ children }: AccountLayoutProps) => {
-  const account = await getSessionAccount()
+  const session = await getServerAccount()
 
-  const isActive = account?.status === accountStatus.Enum.ACTIVE
+  const isActive = session?.user.status === accountStatus.Enum.ACTIVE
 
   if (isActive) {
     redirect(pageRoute.Feed)

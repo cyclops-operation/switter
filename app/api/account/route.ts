@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 
 import { Account } from "@/interface/account"
-import { getServerSession } from "next-auth"
 
 import prisma from "@/lib/prisma"
-
-import { authOptions } from "../auth/[...nextauth]/route"
-import { getSessionAccount } from "./action"
+import { getServerAccount } from "@/lib/utils"
 
 async function GET() {
-  const result = await getSessionAccount()
+  const result = await getServerAccount()
   return NextResponse.json(result)
 }
 
@@ -17,7 +14,7 @@ type PostAccountPayload = Pick<Account, "guildName" | "name">
 
 async function POST(request: NextRequest) {
   const payload: PostAccountPayload = await request.json()
-  const session = await getServerSession(authOptions)
+  const session = await getServerAccount()
 
   if (session?.user?.email) {
     await prisma.user.create({
@@ -37,12 +34,12 @@ type PatchAccountPayload = Pick<Account, "guildName" | "name">
 
 async function PATCH(request: NextRequest) {
   const payload: PatchAccountPayload = await request.json()
-  const result = await getSessionAccount()
+  const result = await getServerAccount()
 
   if (result) {
     await prisma.user.update({
       where: {
-        id: result.id,
+        id: result.user.id,
       },
       data: payload,
     })
