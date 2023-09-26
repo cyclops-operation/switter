@@ -11,10 +11,9 @@ import { AuthLayoutProps } from "./layout"
 export const AuthLayout = async ({ children }: AuthLayoutProps) => {
   const session = await getServerAccount()
 
-  const isNotAuthorized =
-    session === null || session?.user.status === accountStatus.Enum.PENDING
+  const isAuthorized = session?.user.status !== accountStatus.Enum.PENDING
 
-  if (isNotAuthorized) {
+  if (!isAuthorized) {
     redirect(pageRoute.SignIn)
   }
 

@@ -13,7 +13,9 @@ interface AdminLayoutProps {
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   const session = await getServerAccount()
 
-  if (session?.user.role !== accountRole.Enum.ADMIN) {
+  const isAdmin = session?.user.role === accountRole.Enum.ADMIN
+
+  if (!isAdmin) {
     redirect(pageRoute.Feed)
   }
 
