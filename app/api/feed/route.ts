@@ -10,7 +10,9 @@ import prisma from "@/lib/prisma"
 import { authOptions } from "../auth/[...nextauth]/route"
 
 export async function GET() {
-  const monsterList = await prisma.feed.findMany({ include: { author: true } })
+  const monsterList = await prisma.feed.findMany({
+    include: { author: true, comments: true },
+  })
 
   return NextResponse.json(monsterList)
 }

@@ -1,8 +1,10 @@
+import "@/styles/global-menu.css"
 import "@/styles/globals.css"
 import "@/styles/monster.css"
 import { Metadata } from "next"
 
 import { TanstackProviders } from "@/providers/query-provider"
+import AuthProvider from "@/providers/session-provider"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -42,15 +44,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <TanstackProviders>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              {children}
+            <AuthProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+              >
+                {children}
 
-              {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
-              <TailwindIndicator />
+                {/* 디바이스 사이즈 체크 (화면 좌측하단) */}
+                <TailwindIndicator />
 
-              {/* Toast Container */}
-              <Toaster />
-            </ThemeProvider>
+                {/* Toast Container */}
+                <Toaster />
+              </ThemeProvider>
+            </AuthProvider>
           </TanstackProviders>
         </body>
       </html>

@@ -9,10 +9,10 @@ interface AuthLayoutProps {
   children: React.ReactNode
 }
 
-const AuthLayout = async ({ children }: AuthLayoutProps) => {
-  const account = await getServerAccount()
+export default async function AuthLayout({ children }: AuthLayoutProps) {
+  const session = await getServerAccount()
 
-  const isAuthorized = !!account
+  const isAuthorized = session?.user.status !== accountStatus.Enum.PENDING
 
   if (!isAuthorized) {
     redirect(pageRoute.SignIn)

@@ -10,21 +10,43 @@ import prisma from "@/lib/prisma"
 import { authOptions } from "../auth/[...nextauth]/route"
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url)
+  try {
+    const { searchParams } = new URL(request.url)
 
-  const feedId = searchParams.get("feedId")
+    const feedId = searchParams.get("feedId")
 
-  const monsterList = await prisma.comment.findMany({
-    where: {
-      feedId: Number(feedId),
-    },
-    include: {
-      author: true,
-      feed: true,
-    },
-  })
+    await prisma.feed.update({
+      where: {
+        id: Number(feedId),
+      },
+      data: {
+        viewCount: {
+          increment: 1,
+        },
+      },
+    })
 
-  return NextResponse.json(monsterList)
+    const commentList = await prisma.comment.findMany({
+      where: {
+        feedId: Number(feedId),
+      },
+      include: {
+        author: true,
+        feed: true,
+      },
+    })
+
+    // TODO: comment zod 추상화 다시하기
+    // const commentList = attackMonster.parse(getCommentList)
+
+    return NextResponse.json(commentList)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(error.message, { status: 400 })
+    }
+
+    return new Response(apiErrorMessage.ServerError, { status: 500 })
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -50,6 +72,31 @@ export async function POST(request: NextRequest) {
         monsterList,
         authorId: session.user.id,
         feedId: Number(feedId),
+      },
+    })
+
+    return NextResponse.json({ status: "ok" })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(error.message, { status: 400 })
+    }
+
+    return new Response(apiErrorMessage.ServerError, { status: 500 })
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+
+    const commentId = searchParams.get("commentId")
+
+    if (!commentId)
+      return new Response(apiErrorMessage.BadRequest, { status: 400 })
+
+    await prisma.comment.delete({
+      where: {
+        id: commentId,
       },
     })
 

@@ -12,19 +12,22 @@ export default function useCommentDelete() {
 
   const queryClient = useQueryClient()
 
-  const { mutateAsync: deleteFeed } = useMutation(
-    [apiRoute.Feed],
-    async () => {
-      await axios.delete(`${apiRoute.Feed}?feedId=${feedId}`)
-    },
-    {
-      onSuccess: () => {
-        queryClient
-          .invalidateQueries([apiRoute.Feed])
-          .then(() => queryClient.invalidateQueries([apiRoute.Comment]))
-      },
-    }
-  )
+  const { mutateAsync: deleteComment, isLoading: isDeleteCommentLoading } =
+    useMutation(
+      [apiRoute.Comment],
+      async (commentId: number) => {
+        if (!feedId) return
 
-  return { deleteFeed }
+        await axios.delete(`${apiRoute.Comment}?commentId=${commentId}`)
+      },
+      {
+        onSuccess: () => {
+          queryClient
+            .invalidateQueries([apiRoute.Comment, feedId])
+            .then(() => queryClient.invalidateQueries([apiRoute.Feed]))
+        },
+      }
+    )
+
+  return { deleteComment, isDeleteCommentLoading }
 }

@@ -65,10 +65,37 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        shake: {
+          "0%": {
+            transform: "rotateX(0)",
+          },
+          "20%": {
+            transform: "rotateZ(-8deg)",
+          },
+          "50%": {
+            transform: "rotateZ(8deg)",
+          },
+          "80%": {
+            transform: "rotateZ(-8deg)",
+          },
+          "100%": {
+            transform: "rotateX(0)",
+          },
+        },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: 1 },
+          "70%": { opacity: 1 },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: 0,
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        shake: "shake 0.4s ease-out",
+        "meteor-effect": "meteor 5s linear infinite",
       },
       gridTemplateColumns: {
         layout: "200px minmax(auto, 1fr)",

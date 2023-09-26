@@ -1,17 +1,22 @@
 import {
   AlarmCheck,
+  Award,
+  BatteryCharging,
   Bell,
   BellRing,
   ChevronDownIcon,
+  Eye,
   FileEdit,
   Info,
   LucideProps,
   Moon,
-  PlusSquare,
+  Plus,
   Search,
   SunMedium,
+  Swords,
   Trash2,
   Twitter,
+  Watch,
   WebhookIcon,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -30,8 +35,13 @@ const Icons = {
   bellRing: BellRing,
   search: Search,
   fileEdit: FileEdit,
-  plusSquare: PlusSquare,
   trash: Trash2,
+  eye: Eye,
+  swords: Swords,
+  plus: Plus,
+  watch: Watch,
+  award: Award,
+  batteryCharging: BatteryCharging,
   prev: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

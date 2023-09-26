@@ -18,7 +18,7 @@ export default memo(function MonsterImage({
     <span
       {...rest}
       className={clsx(
-        "sprite relative inline-block rounded-xl cursor-pointer",
+        "sprite relative inline-block rounded-xl cursor-pointer drop-shadow-lg",
         className,
         originName
       )}

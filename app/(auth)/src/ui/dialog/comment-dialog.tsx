@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { ReactNode, useState } from "react"
 import { useSearchParams } from "next/navigation"
 
 import { AttackMonster, attackMonster } from "@/interface/comment"
@@ -29,7 +29,11 @@ import MonsterImage from "@/components/common/monster-image"
 
 import MonsterSearchDialog from "./monster-search-dialog"
 
-export default function CommentDialog() {
+interface CommentDialogProps {
+  children: ReactNode
+}
+
+export default function CommentDialog({ children }: CommentDialogProps) {
   const searchParams = useSearchParams()
 
   const feedId = searchParams.get("feedId")
@@ -91,20 +95,11 @@ export default function CommentDialog() {
       open={isDialogOpen}
       onOpenChange={(isDialogOpen) => {
         form.reset()
+
         setIsDialogOpen(isDialogOpen)
       }}
     >
-      <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          title="공덱 추가"
-          className="flex items-center gap-2"
-        >
-          <Icons.plusSquare size={20} />
-          <span className="sr-only">공격덱 추가</span>
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent className="max-w-xs max-md:max-w-[calc(100%-48px)]">
         <Form {...form}>
@@ -194,7 +189,7 @@ export default function CommentDialog() {
             <Separator className="max-md:hidden" />
 
             <Button className="flex w-full items-center gap-2" type="submit">
-              <Icons.plusSquare size={20} />
+              <Icons.plus size={20} />
               공격덱 추가
             </Button>
           </form>

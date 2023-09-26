@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { ReactNode, useState } from "react"
 
 import { DefenseMonster, defenseMonster } from "@/interface/feed"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -23,12 +23,15 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/common/icons"
 import MonsterImage from "@/components/common/monster-image"
 
 import MonsterSearchDialog from "./monster-search-dialog"
 
-export default function FeedDialog() {
+interface FeedDialogProps {
+  children: ReactNode
+}
+
+export default function FeedDialog({ children }: FeedDialogProps) {
   const { toast } = useToast()
 
   const queryClient = useQueryClient()
@@ -74,6 +77,8 @@ export default function FeedDialog() {
   const handleSubmit = (values: DefenseMonster) => {
     createFeed(values)
 
+    console.log(values)
+
     handleReset()
   }
 
@@ -85,12 +90,7 @@ export default function FeedDialog() {
         setIsDialogOpen(isDialogOpen)
       }}
     >
-      <DialogTrigger asChild>
-        <Button className="flex items-center gap-2">
-          <Icons.plusSquare size={20} />
-          방어덱 추가
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent className="max-w-xs max-md:max-w-[calc(100%-48px)]">
         <Form {...form}>
@@ -181,7 +181,6 @@ export default function FeedDialog() {
             <Separator className="max-md:hidden" />
 
             <Button className="flex w-full items-center gap-2" type="submit">
-              <Icons.plusSquare size={20} />
               방어덱 추가
             </Button>
           </form>
