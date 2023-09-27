@@ -11,7 +11,7 @@ import { pusher, pusherChannel, pusherEvent } from "@/lib/pusher"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/common/icons"
-import { PutAlarmAdminPayload } from "@/app/api/alarm/admin/route"
+import { PostAlarmAdminPayload } from "@/app/api/alarm/admin/route"
 
 import EditRequestForm from "./form/edit"
 
@@ -28,12 +28,12 @@ const AccountPending = () => {
 
   const { mutate: putAlarmM } = useMutation(
     async () => {
-      const body: PutAlarmAdminPayload = {
+      const body: PostAlarmAdminPayload = {
         ...alarmData,
         eventType: pusherEvent.SignIn,
       }
 
-      return await axios.put(apiRoute.AlarmAdmin, body)
+      return await axios.post(apiRoute.AlarmAdmin, body)
     },
     {
       onSuccess: async () => {

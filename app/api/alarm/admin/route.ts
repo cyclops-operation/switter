@@ -6,10 +6,10 @@ import prisma from "@/lib/prisma"
 
 import { SendAlarmParams, sendAlarm } from "../action"
 
-type PutAlarmAdminPayload = Omit<SendAlarmParams, "receiverIds">
+type PostAlarmAdminPayload = Omit<SendAlarmParams, "receiverIds">
 
-async function PUT(request: NextRequest) {
-  const payload: PutAlarmAdminPayload = await request.json()
+async function POST(request: NextRequest) {
+  const payload: PostAlarmAdminPayload = await request.json()
 
   const adminIds = await prisma.user
     .findMany({
@@ -34,4 +34,4 @@ async function PUT(request: NextRequest) {
   return NextResponse.json({ status: "ok" })
 }
 
-export { PUT, type PutAlarmAdminPayload }
+export { POST, type PostAlarmAdminPayload }
