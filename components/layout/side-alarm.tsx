@@ -24,7 +24,7 @@ const SideAlarm = () => {
   )
 
   return (
-    <Card className="fixed right-6 top-20 z-[10000] h-[70vh] w-96 transition-transform">
+    <Card className="h-[85vh] w-96">
       <CardHeader>
         <CardTitle>알림 목록</CardTitle>
         <CardDescription>전달된 알림 목록을 확인해보세요</CardDescription>

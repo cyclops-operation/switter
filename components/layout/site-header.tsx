@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 
+import { AnimatePresence, motion } from "framer-motion"
 import { signOut } from "next-auth/react"
 
 import { siteConfig } from "@/config/site"
@@ -39,7 +40,18 @@ export function SiteHeader() {
           </nav>
         </div>
       </div>
-      {isAlarmOpen ? <SideAlarm /> : null}
+      {isAlarmOpen ? (
+        <AnimatePresence>
+          <motion.div
+            className="fixed right-3 top-20"
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 20, opacity: 0 }}
+          >
+            <SideAlarm />
+          </motion.div>
+        </AnimatePresence>
+      ) : null}
     </header>
   )
 }
