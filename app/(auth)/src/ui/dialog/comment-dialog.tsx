@@ -24,7 +24,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/common/icons"
 import MonsterImage from "@/components/common/monster-image"
 
 import MonsterSearchDialog from "./monster-search-dialog"
@@ -150,6 +149,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
                         <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
                           {monsterList.map((monsterInfo) => (
                             <MonsterImage
+                              className="cursor-pointer"
                               key={monsterInfo.id}
                               monsterInfo={monsterInfo}
                               onClick={() =>
@@ -171,6 +171,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
 
                       return (
                         <MonsterImage
+                          className="cursor-pointer"
                           key={monsterInfo.id}
                           monsterInfo={monsterInfo}
                           onClick={() =>
@@ -189,7 +190,6 @@ export default function CommentDialog({ children }: CommentDialogProps) {
             <Separator className="max-md:hidden" />
 
             <Button className="flex w-full items-center gap-2" type="submit">
-              <Icons.plus size={20} />
               공격덱 추가
             </Button>
           </form>

@@ -22,9 +22,6 @@ export default function useCommentList() {
     },
     {
       enabled: Boolean(feedId),
-      onSuccess: () => {
-        queryClient.invalidateQueries([apiRoute.Feed])
-      },
     }
   )
 
