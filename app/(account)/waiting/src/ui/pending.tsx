@@ -28,19 +28,18 @@ const AccountPending = () => {
 
   const { mutate: putAlarmM } = useMutation(
     async () => {
-      const body: PostAlarmAdminPayload = {
+      const payload: PostAlarmAdminPayload = {
         ...alarmData,
         eventType: pusherEvent.SignIn,
       }
 
-      return await axios.post(apiRoute.AlarmAdmin, body)
+      return await axios.post(apiRoute.AlarmAdmin, payload)
     },
     {
       onSuccess: async () => {
         await pusher.trigger(pusherChannel.Auth, pusherEvent.SignIn, {
           title: "새로운 유저가 가입을 신청했습니다.",
           description: "유저 권한을 확인해주세요.",
-          url: pageRoute.Admin,
         })
 
         toast({ title: "승인 요청 알림이 전송되었습니다." })

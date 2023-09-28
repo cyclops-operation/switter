@@ -7,6 +7,7 @@ import { Account, accountRole } from "@/interface/account"
 import { Alarm } from "@/interface/alarm"
 import { ToastAction } from "@radix-ui/react-toast"
 
+import { pageRoute } from "@/lib/page-route"
 import { clientPusher, pusherChannel, pusherEvent } from "@/lib/pusher"
 
 import { useToast } from "../ui/use-toast"
@@ -20,13 +21,16 @@ const RootPusher = ({ role }: RootPusherProps) => {
   useEffect(() => {
     const channel = clientPusher.subscribe(pusherChannel.Auth)
 
-    channel.bind(pusherEvent.SignIn, ({ title, description, url }: Alarm) => {
+    channel.bind(pusherEvent.SignIn, ({ title, description }: Alarm) => {
       if (role === accountRole.Enum.ADMIN) {
         toast({
           title,
           description,
           action: (
-            <ToastAction altText="유저 리스트" onClick={() => push(url)}>
+            <ToastAction
+              altText="유저 리스트"
+              onClick={() => push(pageRoute.Admin)}
+            >
               유저 리스트 확인
             </ToastAction>
           ),
