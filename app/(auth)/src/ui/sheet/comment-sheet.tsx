@@ -202,10 +202,10 @@ export default function CommentSheet({ children }: CommentSheetProps) {
                       onChange={handleChange}
                     />
                   </div>
+
+                  <Separator />
                 </>
               )}
-
-              <Separator />
 
               <CommentDialog>
                 <div

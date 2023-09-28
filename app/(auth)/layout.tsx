@@ -10,9 +10,9 @@ interface AuthLayoutProps {
 }
 
 export default async function AuthLayout({ children }: AuthLayoutProps) {
-  const session = await getServerAccount()
+  const account = await getServerAccount()
 
-  const isAuthorized = session?.user.status !== accountStatus.Enum.PENDING
+  const isAuthorized = !!account
 
   if (!isAuthorized) {
     redirect(pageRoute.SignIn)
@@ -21,11 +21,10 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="relative flex h-full flex-col">
       <RootPusher role={account.user.role} />
+
       <SiteHeader />
 
-      <main>{children}</main>
+      <main className="h-full">{children}</main>
     </div>
   )
 }
-
-export default AuthLayout
