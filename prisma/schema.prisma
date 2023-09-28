@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,6 +6,61 @@ datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  guildName String
+  name      String
+  role      Role    @default(USER)
+  status    Status  @default(PENDING)
+  naverKey  String
+  alarms    Alarm[]
+}
+
+model Monster {
+  id          Int          @id @default(autoincrement())
+  originName  String
+  monsterName String?      @default("")
+  elementType ElementType?
+  keyword     Json
+}
+
+model Comment {
+  keyword     String?
+  monsterList Json
+  createdAt   DateTime @default(now())
+  authorId    Int
+  feedId      Int
+  id          String   @id
+
+  @@index([authorId])
+  @@index([feedId])
+}
+
+model Feed {
+  id          Int      @id @default(autoincrement())
+  keyword     String?
+  authorId    Int
+  createdAt   DateTime @default(now())
+  monsterList Json
+  viewCount   Int      @default(0)
+
+  @@index([authorId])
+}
+
+model Alarm {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  url         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  isRead      Boolean  @default(false)
+  count       Int?     @default(1) 
+  eventType   String?
+  receiverId  Int
+  receiver    User     @relation(fields: [receiverId], references: [id])
 }
 
 enum Role {
@@ -27,32 +79,4 @@ enum ElementType {
   wind
   light
   dark
-}
-
-model User {
-  id        Int    @id @default(autoincrement())
-  guildName String
-  name      String
-  status    Status @default(PENDING)
-  role      Role   @default(USER)
-  posts     Post[]
-  naverKey  String
-}
-
-model Post {
-  id       Int     @id @default(autoincrement())
-  title    String
-  content  String?
-  author   User    @relation(fields: [authorId], references: [id])
-  authorId Int
-
-  @@index([authorId])
-}
-
-model Monster {
-  id          Int          @id @default(autoincrement())
-  originName  String
-  monsterName String?      @default("")
-  elementType ElementType?
-  keyword     Json         @default("[]")
 }
