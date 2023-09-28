@@ -1,6 +1,23 @@
 import { Alarm } from "@/interface/alarm"
 
 import prisma from "@/lib/prisma"
+import { getServerAccount } from "@/lib/utils"
+
+async function getMyAlarms(where?: Omit<Alarm, "receiverId">) {
+  const session = await getServerAccount()
+
+  const alarms = await prisma.alarm.findMany({
+    where: {
+      receiverId: session?.user.id,
+      ...where,
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
+  })
+
+  return alarms
+}
 
 interface SendAlarmParams
   extends Pick<Alarm, "title" | "description" | "eventType" | "url"> {
@@ -68,4 +85,4 @@ async function sendAlarm(params: SendAlarmParams) {
   }
 }
 
-export { sendAlarm, type SendAlarmParams }
+export { getMyAlarms, sendAlarm, type SendAlarmParams }

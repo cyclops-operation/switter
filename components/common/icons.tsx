@@ -1,8 +1,10 @@
 import {
   AlarmCheck,
+  Bell,
+  BellRing,
+  ChevronDownIcon,
   FileEdit,
   Info,
-  ChevronDownIcon,
   LucideProps,
   Moon,
   SunMedium,
@@ -21,6 +23,8 @@ const Icons = {
   arrowDown: ChevronDownIcon,
   info: Info,
   alarm: AlarmCheck,
+  bell: Bell,
+  bellRing: BellRing,
   fileEdit: FileEdit,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>

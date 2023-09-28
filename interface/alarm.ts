@@ -13,7 +13,6 @@ const alarm = z.object({
   eventType: z.string(),
   receiver: account,
   receiverId: z.number(),
-  senderId: z.number(),
 })
 
 type Alarm = z.infer<typeof alarm>

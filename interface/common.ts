@@ -11,17 +11,15 @@ type CommonRange = z.infer<typeof commonRange> | TailwindSize
 // API
 
 type Params = Record<string, string>
-type Queries = Record<string, string>
 
-type DynamicRouteOptions<P extends Params = {}, Q extends Queries = {}> = {
+type DynamicRouteParams<P extends Params = {}> = {
   params: P
-  query: Q
 }
 
 export {
   commonRange,
   type CommonRange,
-  type DynamicRouteOptions,
+  type DynamicRouteParams,
   type TailwindCustomSize,
   type TailwindSize,
 }

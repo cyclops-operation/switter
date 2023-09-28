@@ -1,20 +1,9 @@
 import { NextResponse } from "next/server"
 
-import prisma from "@/lib/prisma"
-import { getServerAccount } from "@/lib/utils"
+import { getMyAlarms } from "./action"
 
 async function GET() {
-  const session = await getServerAccount()
-
-  const alarms = await prisma.alarm.findMany({
-    where: {
-      receiverId: session?.user.id,
-    },
-    orderBy: {
-      updatedAt: "desc",
-    },
-  })
-
+  const alarms = await getMyAlarms()
   return NextResponse.json(alarms)
 }
 
