@@ -57,10 +57,12 @@ model Alarm {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
   isRead      Boolean  @default(false)
-  count       Int?     @default(1) 
+  count       Int?     @default(1)
   eventType   String?
   receiverId  Int
   receiver    User     @relation(fields: [receiverId], references: [id])
+
+  @@index([receiverId])
 }
 
 enum Role {
