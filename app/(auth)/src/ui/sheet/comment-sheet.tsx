@@ -1,4 +1,6 @@
-import { ChangeEvent, ReactNode, useMemo, useState } from "react"
+"use client"
+
+import { ChangeEvent, useMemo, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 import { accountRole } from "@/interface/account"
@@ -34,9 +36,7 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
-  SheetTrigger,
 } from "@/components/ui/sheet"
 import { Icons } from "@/components/common/icons"
 import Loading from "@/components/common/loading"
@@ -44,7 +44,6 @@ import MonsterImage from "@/components/common/monster-image"
 
 import useCommentDelete from "../../hooks/useCommentDelete"
 import useCommentList from "../../hooks/useCommentList"
-import useFeedDelete from "../../hooks/useFeedDelete"
 import CommentDialog from "../dialog/comment-dialog"
 
 const animations: AnimationProps = {
@@ -54,23 +53,17 @@ const animations: AnimationProps = {
   transition: { type: "Spring", stiffness: 900, damping: 30 },
 }
 
-interface CommentSheetProps {
-  children: ReactNode
-}
-
-export default function CommentSheet({ children }: CommentSheetProps) {
+export default function CommentSheet() {
   const { push: routerPush } = useRouter()
 
   const searchParams = useSearchParams()
 
   const feedId = searchParams.get("feedId")
 
-  const { data } = useSession()
+  const { data: session } = useSession()
 
   const { commentList: originCommentList, isCommentListLoading } =
     useCommentList()
-
-  const { deleteFeed } = useFeedDelete()
 
   const { deleteComment, isDeleteCommentLoading } = useCommentDelete()
 
@@ -80,9 +73,9 @@ export default function CommentSheet({ children }: CommentSheetProps) {
 
   const isLoading = isCommentListLoading || isDeleteCommentLoading
 
-  const userId = data?.user.id
+  const userId = session?.user.id
 
-  const isAdmin = data?.user.role === accountRole.Enum.ADMIN
+  const isAdmin = session?.user.role === accountRole.Enum.ADMIN
 
   const debounceSearchTerm = debounce((searchTerm: string) => {
     setSearchTerm(searchTerm)
@@ -132,12 +125,6 @@ export default function CommentSheet({ children }: CommentSheetProps) {
     deleteComment(commentId)
   }
 
-  const handleFeedDelete = () => {
-    if (!feedId) throw Error(apiErrorMessage.BadRequest)
-
-    deleteFeed(Number(feedId))
-  }
-
   return (
     <Sheet
       modal
@@ -148,8 +135,6 @@ export default function CommentSheet({ children }: CommentSheetProps) {
         routerPush(pageRoute.Feed)
       }}
     >
-      <SheetTrigger asChild>{children}</SheetTrigger>
-
       <SheetContent
         side="left"
         className={clsx("flex flex-col justify-between sm:max-w-3xl", {
@@ -312,7 +297,11 @@ export default function CommentSheet({ children }: CommentSheetProps) {
                                       </AlertDialogCancel>
                                       <AlertDialogAction
                                         disabled={!feedId}
-                                        onClick={() => handleCommentDelete(id)}
+                                        onClick={(e) => {
+                                          e.stopPropagation()
+
+                                          handleCommentDelete(id)
+                                        }}
                                         className={buttonVariants({
                                           variant: "destructive",
                                         })}
@@ -332,47 +321,6 @@ export default function CommentSheet({ children }: CommentSheetProps) {
                 </ul>
               )}
             </div>
-
-            {hasCommentList && (
-              <SheetFooter className="bg-red">
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button
-                      className="hover:bg-transparent"
-                      variant="ghost"
-                      size="menu"
-                    >
-                      <i className="global-menu remove" />
-                    </Button>
-                  </AlertDialogTrigger>
-
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle className="select-none">
-                        방어덱을 삭제하시겠습니까?
-                      </AlertDialogTitle>
-
-                      <AlertDialogDescription className="select-none">
-                        방어덱을 삭제하면 연관된 공격덱도 모두 삭제됩니다.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>취소</AlertDialogCancel>
-                      <AlertDialogAction
-                        disabled={!feedId}
-                        onClick={() => handleFeedDelete()}
-                        className={buttonVariants({
-                          variant: "destructive",
-                        })}
-                      >
-                        삭제
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </SheetFooter>
-            )}
           </>
         )}
       </SheetContent>
