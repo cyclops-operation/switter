@@ -22,9 +22,11 @@ const SocialLogin = () => {
   const { data: providers } = useQuery(["providers"], getProviders)
 
   const isLoading = providers === undefined
+
   const isProviderEmpty = providers === null
 
   if (isLoading) return <Loading height="fit" />
+
   if (isProviderEmpty) return <div>소셜 불러오기에 문제가 생겼습니다.</div>
 
   return (
