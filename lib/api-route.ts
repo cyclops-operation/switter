@@ -9,6 +9,7 @@ const apiRoute = {
   Comment: "/api/comment",
   Alarm: "/api/alarm",
   AlarmAdmin: "/api/alarm/admin",
+  Notifiaction: "/api/notification",
 } as const
 
 export { apiRoute }

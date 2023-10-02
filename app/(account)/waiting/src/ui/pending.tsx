@@ -2,16 +2,15 @@
 
 import { useState } from "react"
 
+import { NotificationType } from "@/interface/notification"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
-import { pageRoute } from "@/lib/page-route"
-import { pusher, pusherChannel, pusherEvent } from "@/lib/pusher"
+import { pusher } from "@/lib/pusher"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/common/icons"
-import { PostAlarmAdminPayload } from "@/app/api/alarm/admin/route"
 
 import EditRequestForm from "./form/edit"
 
@@ -20,28 +19,16 @@ const AccountPending = () => {
 
   const { toast } = useToast()
 
-  const alarmData = {
-    title: "새로운 유저가 가입을 신청했습니다.",
-    description: "유저 권한을 확인해주세요.",
-    url: pageRoute.Admin,
-  }
-
   const { mutate: putAlarmM } = useMutation(
     async () => {
-      const payload: PostAlarmAdminPayload = {
-        ...alarmData,
-        eventType: pusherEvent.SignIn,
+      const payload: NotificationType = {
+        type: "Admin",
       }
 
-      return await axios.post(apiRoute.AlarmAdmin, payload)
+      return await axios.post(apiRoute.Notifiaction, payload)
     },
     {
-      onSuccess: async () => {
-        await pusher.trigger(pusherChannel.Auth, pusherEvent.SignIn, {
-          title: "새로운 유저가 가입을 신청했습니다.",
-          description: "유저 권한을 확인해주세요.",
-        })
-
+      onSuccess: () => {
         toast({ title: "승인 요청 알림이 전송되었습니다." })
       },
     }

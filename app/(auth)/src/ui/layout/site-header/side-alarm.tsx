@@ -3,11 +3,12 @@
 import { useState } from "react"
 import Link from "next/link"
 
-import { Alarm } from "@/interface/alarm"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { Notification } from "@prisma/client"
+import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
+import { pageRoute } from "@/lib/page-route"
 import {
   Sheet,
   SheetContent,
@@ -23,40 +24,21 @@ import Loading from "../../../../../../components/common/loading"
 const SideAlarm = () => {
   const [isAlarmOpen, setIsAlarmOpen] = useState(false)
 
-  const queryClient = useQueryClient()
-
-  const { data: alarms, isLoading } = useQuery(
-    [apiRoute.Alarm],
+  const { data: notification, isLoading } = useQuery(
+    [apiRoute.Notifiaction],
     async () =>
-      await axios.get<Alarm[]>(apiRoute.Alarm).then(({ data }) => data)
+      await axios
+        .get<Notification[]>(apiRoute.Notifiaction)
+        .then(({ data }) => data)
   )
 
-  const isEmpty = alarms?.length === 0
-
-  const { mutate: patchAlarmReadM } = useMutation(
-    async (id: number) =>
-      axios.patch(`${apiRoute.Alarm}/${id}`, {
-        isRead: true,
-      }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([apiRoute.Alarm])
-      },
-    }
-  )
+  const isEmpty = notification?.length === 0
 
   const changeAlarmOpenState = () => {
     setIsAlarmOpen((prev) => !prev)
   }
 
-  const clickAlarm = (isRead: boolean, id: number) => {
-    if (!isRead) {
-      patchAlarmReadM(id)
-    }
-    changeAlarmOpenState()
-  }
-
-  const hasUnreadAlarm = !!alarms?.find(({ isRead }) => !isRead)
+  const hasUnreadAlarm = !!notification?.find(({ isRead }) => !isRead)
 
   return (
     <Sheet modal open={isAlarmOpen} onOpenChange={changeAlarmOpenState}>
@@ -75,12 +57,12 @@ const SideAlarm = () => {
           <div>알림이 없습니다.</div>
         ) : (
           <div className="flex flex-col gap-2 pt-8">
-            {alarms?.map(({ id, title, description, isRead, url }) => (
+            {notification?.map(({ id, title, description, isRead }) => (
               <Link
                 key={id}
                 className="flex justify-between gap-2 transition-transform hover:translate-y-[1px]"
-                href={url}
-                onClick={() => clickAlarm(isRead, id)}
+                href={pageRoute.Admin}
+                onClick={() => {}}
               >
                 <div className="space-y-1">
                   <p className="text-sm">{title}</p>
