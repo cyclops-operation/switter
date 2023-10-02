@@ -177,19 +177,17 @@ export default function CommentSheet({ children }: CommentSheetProps) {
                     </div>
 
                     <SheetDescription>
-                      <div className="select-none">
-                        <em className="font-bold not-italic">
-                          {feedInfo?.author.name}
-                        </em>
-                        &nbsp;사용자가 추가한&nbsp;
-                        <span className="font-bold">
-                          {feedInfo?.feed.monsterList
-                            .map(({ monsterName }) => monsterName)
-                            .join(", ")}
-                          &nbsp;
-                        </span>
-                        방어덱입니다.
-                      </div>
+                      <em className="font-bold not-italic">
+                        {feedInfo?.author.name}
+                      </em>
+                      &nbsp;사용자가 추가한&nbsp;
+                      <span className="font-bold">
+                        {feedInfo?.feed.monsterList
+                          .map(({ monsterName }) => monsterName)
+                          .join(", ")}
+                        &nbsp;
+                      </span>
+                      방어덱입니다.
                     </SheetDescription>
                   </SheetHeader>
 
