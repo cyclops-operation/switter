@@ -9,11 +9,11 @@ import prisma from "@/lib/prisma"
 
 export async function GET() {
   try {
-    const getMonster = await prisma.monster.findMany()
+    const getMonsterList = await prisma.monster.findMany()
 
-    const allMonster = z.array(monsterInfo).parse(getMonster)
+    const monsterList = z.array(monsterInfo).parse(getMonsterList)
 
-    return NextResponse.json(allMonster)
+    return NextResponse.json(monsterList)
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 400 })
