@@ -7,7 +7,7 @@ import { pageRoute } from "@/lib/page-route"
 import { getServerAccount } from "@/lib/utils"
 import { Card } from "@/components/ui/card"
 
-import accountImage from "/public/images/account-image-example.jpg"
+import accountImage from "/public/images/account-image.jpg"
 
 interface AccountLayoutProps {
   children: React.ReactNode
@@ -30,7 +30,7 @@ const AccountLayout = async ({ children }: AccountLayoutProps) => {
         </div>
 
         <Image
-          className="object-cover"
+          className="object-cover grayscale"
           src={accountImage.src}
           alt="account-image"
           width={300}
