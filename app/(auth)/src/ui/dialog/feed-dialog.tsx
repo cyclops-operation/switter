@@ -59,12 +59,12 @@ export default function FeedDialog({ children }: FeedDialogProps) {
     [apiRoute.Feed],
     async (feed: DefenseMonster) => axios.post(apiRoute.Feed, feed),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries([apiRoute.Feed]).then(() =>
-          toast({
-            title: "방어덱을 추가했습니다.",
-          })
-        )
+      onSuccess: async () => {
+        await queryClient.invalidateQueries([apiRoute.Feed])
+
+        toast({
+          title: "방어덱을 추가했습니다.",
+        })
       },
     }
   )
