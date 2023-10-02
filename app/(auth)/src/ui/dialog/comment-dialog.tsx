@@ -49,15 +49,14 @@ export default function CommentDialog({ children }: CommentDialogProps) {
       return axios.post(apiRoute.Comment, { ...comment, feedId })
     },
     {
-      onSuccess: () => {
-        queryClient
-          .invalidateQueries([apiRoute.Comment])
-          .then(() => queryClient.invalidateQueries([apiRoute.Feed]))
-          .then(() =>
-            toast({
-              title: "공격덱을 추가했습니다.",
-            })
-          )
+      onSuccess: async () => {
+        await queryClient.invalidateQueries([apiRoute.Comment])
+
+        await queryClient.invalidateQueries([apiRoute.Feed])
+
+        toast({
+          title: "공격덱을 추가했습니다.",
+        })
       },
     }
   )
