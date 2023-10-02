@@ -11,7 +11,7 @@ const SignOutButton = () => {
 
   return (
     <Button variant="ghost" onClick={clickSignOut}>
-      로그아웃
+      Logout
     </Button>
   )
 }

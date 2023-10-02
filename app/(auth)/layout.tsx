@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation"
 
+import { accountStatus } from "@/interface/account"
+
 import { pageRoute } from "@/lib/page-route"
 import { getServerAccount } from "@/lib/utils"
 import RootPusher from "@/components/layout/root-pusher"
@@ -12,10 +14,10 @@ interface AuthLayoutProps {
 export default async function AuthLayout({ children }: AuthLayoutProps) {
   const account = await getServerAccount()
 
-  const isAuthorized = !!account
+  const isAuthorized = account?.user.status === accountStatus.Enum.ACTIVE
 
   if (!isAuthorized) {
-    redirect(pageRoute.SignIn)
+    redirect(pageRoute.Waiting)
   }
 
   return (

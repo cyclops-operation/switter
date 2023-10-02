@@ -14,7 +14,6 @@ export function SiteHeader() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <SideAlarm />
 
-          {/* 임시 로그아웃 */}
           <SignOutButton />
 
           <nav className="flex items-center space-x-1">

@@ -3,14 +3,16 @@ import Link from "next/link"
 import { NavItem } from "@/interface/nav"
 
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
+import { cn, getServerAccount } from "@/lib/utils"
 import { Icons } from "@/components/common/icons"
 
 interface MainNavProps {
   items?: NavItem[]
 }
 
-export function MainNav({ items }: MainNavProps) {
+export async function MainNav({ items }: MainNavProps) {
+  const account = await getServerAccount()
+
   return (
     <div className="flex gap-6 md:gap-10">
       <h1>
@@ -23,21 +25,24 @@ export function MainNav({ items }: MainNavProps) {
 
       {items?.length ? (
         <nav className="flex gap-6">
-          {items?.map(
-            (item, index) =>
-              item.href && (
+          {items?.map(({ href, disabled, title, role }, index) => {
+            const isCorrespondedRole = !role || role === account?.user.role
+            return (
+              isCorrespondedRole &&
+              href && (
                 <Link
                   key={index}
-                  href={item.href}
+                  href={href}
                   className={cn(
                     "flex items-center text-sm font-medium text-muted-foreground",
-                    item.disabled && "cursor-not-allowed opacity-80"
+                    disabled && "cursor-not-allowed opacity-80"
                   )}
                 >
-                  {item.title}
+                  {title}
                 </Link>
               )
-          )}
+            )
+          })}
         </nav>
       ) : null}
     </div>
