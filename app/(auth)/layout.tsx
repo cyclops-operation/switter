@@ -4,8 +4,8 @@ import { accountStatus } from "@/interface/account"
 
 import { pageRoute } from "@/lib/page-route"
 import { getServerAccount } from "@/lib/utils"
-import RootPusher from "@/components/layout/root-pusher"
-import { SiteHeader } from "@/components/layout/site-header"
+import RootPusher from "@/app/(auth)/src/ui/layout/root-pusher"
+import { SiteHeader } from "@/app/(auth)/src/ui/layout/site-header"
 
 interface AuthLayoutProps {
   children: React.ReactNode

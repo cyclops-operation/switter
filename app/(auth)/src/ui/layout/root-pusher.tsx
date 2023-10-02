@@ -10,7 +10,7 @@ import { ToastAction } from "@radix-ui/react-toast"
 import { pageRoute } from "@/lib/page-route"
 import { clientPusher, pusherChannel, pusherEvent } from "@/lib/pusher"
 
-import { useToast } from "../ui/use-toast"
+import { useToast } from "../../../../../components/ui/use-toast"
 
 type RootPusherProps = Pick<Account, "role">
 

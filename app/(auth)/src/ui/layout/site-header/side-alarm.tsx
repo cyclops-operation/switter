@@ -12,14 +12,14 @@ import { apiRoute } from "@/lib/api-route"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/common/icons"
 
-import Loading from "../../common/loading"
+import Loading from "../../../../../../components/common/loading"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../../ui/card"
+} from "../../../../../../components/ui/card"
 
 const SideAlarm = () => {
   const [isAlarmOpen, setIsAlarmOpen] = useState(false)
@@ -59,7 +59,7 @@ const SideAlarm = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -5, opacity: 0 }}
           >
-            <Card className="h-[50vh] w-96 overflow-y-scroll">
+            <Card className="z-[100000] h-[50vh] w-96 overflow-y-scroll">
               <CardHeader>
                 <CardTitle>알림 목록</CardTitle>
                 <CardDescription>
