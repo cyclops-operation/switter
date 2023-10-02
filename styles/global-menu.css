@@ -1,0 +1,11 @@
+.global-menu {
+  background: url("../public/images/img_gnb_sp.png") no-repeat 0 0;
+  background-size: 256px 512px;
+}
+
+.global-menu.remove {
+  background-repeat: no-repeat;
+  background-position: -8px -324px;
+  width: 52px;
+  height: 53px;
+}

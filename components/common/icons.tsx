@@ -1,14 +1,22 @@
 import {
   AlarmCheck,
+  Award,
+  BatteryCharging,
   Bell,
   BellRing,
   ChevronDownIcon,
+  Eye,
   FileEdit,
   Info,
   LucideProps,
   Moon,
+  Plus,
+  Search,
   SunMedium,
+  Swords,
+  Trash2,
   Twitter,
+  Watch,
   WebhookIcon,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -25,7 +33,49 @@ const Icons = {
   alarm: AlarmCheck,
   bell: Bell,
   bellRing: BellRing,
+  search: Search,
   fileEdit: FileEdit,
+  trash: Trash2,
+  eye: Eye,
+  swords: Swords,
+  plus: Plus,
+  watch: Watch,
+  award: Award,
+  batteryCharging: BatteryCharging,
+  prev: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.size}
+      height={props.size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="m14 16-4-4 4-4" />
+    </svg>
+  ),
+  createFeed: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      width={props.size}
+      height={props.size}
+      {...props}
+    >
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z" />
+    </svg>
+  ),
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

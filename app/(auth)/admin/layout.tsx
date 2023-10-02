@@ -19,5 +19,5 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
     redirect(pageRoute.Feed)
   }
 
-  return <section>{children}</section>
+  return <>{children}</>
 }

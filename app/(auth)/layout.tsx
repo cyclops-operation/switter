@@ -9,7 +9,7 @@ interface AuthLayoutProps {
   children: React.ReactNode
 }
 
-const AuthLayout = async ({ children }: AuthLayoutProps) => {
+export default async function AuthLayout({ children }: AuthLayoutProps) {
   const account = await getServerAccount()
 
   const isAuthorized = !!account
@@ -21,11 +21,10 @@ const AuthLayout = async ({ children }: AuthLayoutProps) => {
   return (
     <div className="relative flex h-full flex-col">
       <RootPusher role={account.user.role} />
+
       <SiteHeader />
 
-      <main>{children}</main>
+      <main className="h-full">{children}</main>
     </div>
   )
 }
-
-export default AuthLayout

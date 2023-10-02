@@ -1,0 +1,199 @@
+"use client"
+
+import { ReactNode, useState } from "react"
+import { useSearchParams } from "next/navigation"
+
+import { AttackMonster, attackMonster } from "@/interface/comment"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import axios from "axios"
+import { useFieldArray, useForm } from "react-hook-form"
+
+import { apiRoute } from "@/lib/api-route"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Separator } from "@/components/ui/separator"
+import { useToast } from "@/components/ui/use-toast"
+import MonsterImage from "@/components/common/monster-image"
+
+import MonsterSearchDialog from "./monster-search-dialog"
+
+interface CommentDialogProps {
+  children: ReactNode
+}
+
+export default function CommentDialog({ children }: CommentDialogProps) {
+  const searchParams = useSearchParams()
+
+  const feedId = searchParams.get("feedId")
+
+  const { toast } = useToast()
+
+  const queryClient = useQueryClient()
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  const { mutate: createComment } = useMutation(
+    [apiRoute.Feed],
+    async (comment: AttackMonster) => {
+      return axios.post(apiRoute.Comment, { ...comment, feedId })
+    },
+    {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries([apiRoute.Comment])
+
+        await queryClient.invalidateQueries([apiRoute.Feed])
+
+        toast({
+          title: "공격덱을 추가했습니다.",
+        })
+      },
+    }
+  )
+
+  const form = useForm<AttackMonster>({
+    resolver: zodResolver(attackMonster),
+    defaultValues: {
+      keyword: "",
+      attackMonsterList: [],
+    },
+  })
+
+  const {
+    fields: attackMonsterField,
+    append: handleAttackMonsterSelect,
+    remove: handleAttackMonsterRemove,
+  } = useFieldArray({
+    control: form.control,
+    name: "attackMonsterList",
+  })
+
+  const handleReset = () => {
+    form.reset()
+    setIsDialogOpen(false)
+  }
+
+  const handleSubmit = (values: AttackMonster) => {
+    createComment(values)
+    handleReset()
+  }
+
+  return (
+    <Dialog
+      open={isDialogOpen}
+      onOpenChange={(isDialogOpen) => {
+        form.reset()
+
+        setIsDialogOpen(isDialogOpen)
+      }}
+    >
+      <DialogTrigger asChild>{children}</DialogTrigger>
+
+      <DialogContent className="max-w-xs max-md:max-w-[calc(100%-48px)]">
+        <Form {...form}>
+          <form
+            className="relative flex h-full max-h-full flex-col gap-4"
+            onSubmit={form.handleSubmit(handleSubmit)}
+          >
+            <FormField
+              name="keyword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>키워드</FormLabel>
+
+                  <FormDescription>
+                    키워드를 입력하면 빠르게 검색할 수 있습니다.
+                  </FormDescription>
+
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="ex) 해극해"
+                      autoComplete="off"
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              name="attackMonsterList"
+              render={() => (
+                <FormItem>
+                  <FormLabel
+                    className={
+                      attackMonsterField.length >= 3
+                        ? "text-gray-500"
+                        : undefined
+                    }
+                  >
+                    {attackMonsterField.length >= 3
+                      ? "공격덱 몬스터 선택완료"
+                      : "공격덱 몬스터를 선택하세요."}
+                  </FormLabel>
+
+                  {attackMonsterField.length <= 2 && (
+                    <MonsterSearchDialog
+                      renderSearchedMonster={(monsterList) => (
+                        <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
+                          {monsterList.map((monsterInfo) => (
+                            <MonsterImage
+                              className="cursor-pointer"
+                              key={monsterInfo.id}
+                              monsterInfo={monsterInfo}
+                              onClick={() =>
+                                handleAttackMonsterSelect(monsterInfo)
+                              }
+                            />
+                          ))}
+                        </div>
+                      )}
+                    />
+                  )}
+
+                  <div className="flex flex-wrap gap-4">
+                    {attackMonsterField.map((monsterInfo) => {
+                      const selectedMonsterIndex = attackMonsterField.findIndex(
+                        ({ originName: selectedOriginName }) =>
+                          selectedOriginName === monsterInfo.originName
+                      )
+
+                      return (
+                        <MonsterImage
+                          className="cursor-pointer"
+                          key={monsterInfo.id}
+                          monsterInfo={monsterInfo}
+                          onClick={() =>
+                            handleAttackMonsterRemove(selectedMonsterIndex)
+                          }
+                        />
+                      )
+                    })}
+                  </div>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Separator className="max-md:hidden" />
+
+            <Button className="flex w-full items-center gap-2" type="submit">
+              공격덱 추가
+            </Button>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
+  )
+}

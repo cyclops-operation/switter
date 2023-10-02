@@ -1,36 +1,48 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextRequest, NextResponse } from "next/server"
 
-import { MonsterInfo } from "@/interface/monster"
+import { monsterInfo } from "@/interface/monster"
+import z from "zod"
 
+import { apiErrorMessage } from "@/lib/error-message"
 import prisma from "@/lib/prisma"
 
 export async function GET() {
-  const monsterList = await prisma.monster.findMany()
+  try {
+    const getMonsterList = await prisma.monster.findMany()
 
-  return NextResponse.json(monsterList)
-}
+    const monsterList = z.array(monsterInfo).parse(getMonsterList)
 
-export async function POST(request: NextRequest) {
-  const payload = await request.json()
+    return NextResponse.json(monsterList)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(error.message, { status: 400 })
+    }
 
-  await prisma.monster.createMany({
-    data: payload,
-  })
-
-  return NextResponse.json({ status: "ok" })
+    return new Response(apiErrorMessage.ServerError, { status: 500 })
+  }
 }
 
 export async function PATCH(request: NextRequest) {
-  const { id, ...payload }: MonsterInfo = await request.json()
+  try {
+    const body = await request.json()
 
-  await prisma.monster.upsert({
-    where: {
-      id,
-    },
-    create: payload,
-    update: payload,
-  })
+    const { id, ...payload } = monsterInfo.parse(body)
 
-  return NextResponse.json({ status: "ok" })
+    await prisma.monster.upsert({
+      where: {
+        id,
+      },
+      create: payload,
+      update: payload,
+    })
+
+    return NextResponse.json({ status: "ok" })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(error.message, { status: 400 })
+    }
+
+    return new Response(apiErrorMessage.ServerError, { status: 500 })
+  }
 }

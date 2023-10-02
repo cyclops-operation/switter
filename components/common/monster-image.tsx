@@ -18,7 +18,7 @@ export default memo(function MonsterImage({
     <span
       {...rest}
       className={clsx(
-        "sprite relative inline-block rounded-xl cursor-pointer",
+        "sprite relative inline-block rounded-xl drop-shadow-lg",
         className,
         originName
       )}
@@ -29,6 +29,7 @@ export default memo(function MonsterImage({
           elementType
         )}
       />
+      <span className="sr-only">{monsterInfo.monsterName} 이미지</span>
     </span>
   )
 })

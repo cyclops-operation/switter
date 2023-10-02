@@ -8,14 +8,9 @@ export const siteConfig = {
 
   mainNav: [
     {
-      title: "Home",
-      href: pageRoute.Root,
-    },
-    {
       title: "Feed",
       href: pageRoute.Feed,
     },
-    { title: "Docs", href: pageRoute.Docs },
     { title: "Admin (임시)", href: pageRoute.Admin },
   ],
 

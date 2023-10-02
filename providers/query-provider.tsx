@@ -24,7 +24,11 @@ function TanstackProviders({ children }: React.PropsWithChildren) {
   return (
     <QueryClientProvider client={client}>
       <ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools
+        position="bottom-right"
+        panelPosition="right"
+        initialIsOpen={false}
+      />
     </QueryClientProvider>
   )
 }

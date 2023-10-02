@@ -9,13 +9,46 @@ datasource db {
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   guildName String
   name      String
-  role      Role    @default(USER)
-  status    Status  @default(PENDING)
+  role      Role      @default(USER)
+  status    Status    @default(PENDING)
   naverKey  String
+  feeds     Feed[]
+  comments  Comment[]
   alarms    Alarm[]
+}
+
+model Feed {
+  id          Int      @id @default(autoincrement())
+  keyword     String?
+  monsterList Json
+  createdAt   DateTime @default(now())
+  viewCount   Int      @default(0)
+
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId Int
+
+  comments Comment[]
+
+  @@index([authorId])
+}
+
+model Comment {
+  id          String   @id @default(cuid())
+  keyword     String?
+  monsterList Json
+  createdAt   DateTime @default(now())
+
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId Int
+
+  feed   Feed @relation(fields: [feedId], references: [id], onDelete: Cascade)
+  feedId Int
+
+  @@index([feedId])
+  @@index([authorId])
 }
 
 model Monster {
@@ -26,29 +59,6 @@ model Monster {
   keyword     Json
 }
 
-model Comment {
-  keyword     String?
-  monsterList Json
-  createdAt   DateTime @default(now())
-  authorId    Int
-  feedId      Int
-  id          String   @id
-
-  @@index([authorId])
-  @@index([feedId])
-}
-
-model Feed {
-  id          Int      @id @default(autoincrement())
-  keyword     String?
-  authorId    Int
-  createdAt   DateTime @default(now())
-  monsterList Json
-  viewCount   Int      @default(0)
-
-  @@index([authorId])
-}
-
 model Alarm {
   id          Int      @id @default(autoincrement())
   title       String
@@ -57,9 +67,9 @@ model Alarm {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
   isRead      Boolean  @default(false)
+  receiverId  Int
   count       Int?     @default(1)
   eventType   String?
-  receiverId  Int
   receiver    User     @relation(fields: [receiverId], references: [id])
 
   @@index([receiverId])

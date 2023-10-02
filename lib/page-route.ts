@@ -9,6 +9,7 @@ const pageRoute = {
 
   // (auth)
   Feed: "/feed",
+  FeedDetail: (id: string | null) => `${pageRoute.Feed}?feedId=${id}`,
   Admin: "/admin",
 } as const
 
