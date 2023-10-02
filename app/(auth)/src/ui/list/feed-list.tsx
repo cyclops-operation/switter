@@ -66,6 +66,7 @@ export default function FeedList() {
                 return (
                   <CommentSheet key={id}>
                     <motion.li
+                      className="relative z-0"
                       layout
                       style={
                         isPresent
