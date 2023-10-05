@@ -7,6 +7,8 @@ import { getServerAccount } from "@/lib/utils"
 import RootPusher from "@/app/(auth)/src/ui/layout/root-pusher"
 import { SiteHeader } from "@/app/(auth)/src/ui/layout/site-header"
 
+import RequestDialog from "./src/ui/layout/request-dialog"
+
 interface AuthLayoutProps {
   children: React.ReactNode
 }
@@ -23,8 +25,8 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="relative flex h-full flex-col">
       <RootPusher role={account.user.role} />
-
       <SiteHeader />
+      <RequestDialog />
 
       <main className="h-full">{children}</main>
     </div>
