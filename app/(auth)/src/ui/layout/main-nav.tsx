@@ -10,7 +10,7 @@ interface MainNavProps {
   items?: NavItem[]
 }
 
-const MainNav = async ({ items }: MainNavProps) => {
+export default async function MainNav({ items }: MainNavProps) {
   const account = await getServerAccount()
 
   return (
@@ -48,5 +48,3 @@ const MainNav = async ({ items }: MainNavProps) => {
     </div>
   )
 }
-
-export default MainNav

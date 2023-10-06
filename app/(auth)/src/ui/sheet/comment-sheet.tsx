@@ -50,7 +50,7 @@ const animations: AnimationProps = {
   initial: { scale: 0, opacity: 0 },
   animate: { scale: 1, opacity: 1 },
   exit: { scale: 0, opacity: 0 },
-  transition: { type: "Spring", stiffness: 900, damping: 30 },
+  transition: { type: "Spring", stiffness: 900, damping: 30, delay: 0.25 },
 }
 
 export default function CommentSheet() {
@@ -137,9 +137,12 @@ export default function CommentSheet() {
     >
       <SheetContent
         side="left"
-        className={clsx("flex flex-col justify-between sm:max-w-3xl", {
-          "sm:max-w-sm": !hasCommentList,
-        })}
+        className={clsx(
+          "flex flex-col transition-all justify-between sm:max-w-3xl",
+          {
+            "sm:max-w-sm": !hasCommentList,
+          }
+        )}
       >
         {isLoading ? (
           <Loading className="absolute inset-0 z-50 h-full w-full" />

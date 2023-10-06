@@ -25,7 +25,9 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="relative flex h-full flex-col">
       <RootPusher role={account.user.role} />
+
       <SiteHeader />
+
       <RequestDialog />
 
       <main className="h-full">{children}</main>

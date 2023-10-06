@@ -17,7 +17,6 @@ model User {
   naverKey  String
   feeds     Feed[]
   comments  Comment[]
-  alarms    Alarm[]
 }
 
 model Feed {
@@ -57,22 +56,6 @@ model Monster {
   monsterName String?      @default("")
   elementType ElementType?
   keyword     Json
-}
-
-model Alarm {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  url         String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
-  isRead      Boolean  @default(false)
-  receiverId  Int
-  count       Int?     @default(1)
-  eventType   String?
-  receiver    User     @relation(fields: [receiverId], references: [id])
-
-  @@index([receiverId])
 }
 
 enum Role {
