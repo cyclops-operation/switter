@@ -47,7 +47,7 @@ const RequestDialog = () => {
 
   const { mutate: createRequestRow, isLoading } = useMutation(
     [apiRoute.Sheet],
-    async (rowForm: RequestRowForm) => axios.post(apiRoute.Sheet, rowForm),
+    async (payload: RequestRowForm) => axios.post(apiRoute.Sheet, payload),
     {
       onSuccess: async () => {
         toast({

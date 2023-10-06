@@ -10,9 +10,9 @@ import { loadSpreadsheets } from "./action"
 
 async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const payload = await request.json()
 
-    const { title, description } = requestRowForm.parse(body)
+    const { title, description } = requestRowForm.parse(payload)
 
     const sheets = await loadSpreadsheets()
 
