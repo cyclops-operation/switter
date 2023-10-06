@@ -2,7 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: true,
+    serverActions: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/sign-in",
+        permanent: true,
+      },
+    ]
   },
 }
 

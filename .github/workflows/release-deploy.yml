@@ -3,7 +3,11 @@ name: Deploy Releases
 on:
   push:
     branches:
-      - releases/**
+      - release/**
+    paths:
+      - "**/*.tsx"
+      - "**/*.ts"
+      - "**/*.css"
 
 jobs:
   build:

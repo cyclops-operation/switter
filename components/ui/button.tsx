@@ -25,6 +25,8 @@ const buttonVariants = cva(
         sm: "h-9 px-3 rounded-md",
         lg: "h-11 px-8 rounded-md",
         icon: "h-10 w-10",
+        "icon-sm": "w-auto h-auto p-1",
+        menu: "h-[52px] w-[52px]",
       },
     },
     defaultVariants: {

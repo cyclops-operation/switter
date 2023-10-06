@@ -55,8 +55,7 @@
   }
 
   html,
-  body,
-  #__next {
+  body {
     height: 100%;
   }
 

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,6 +6,56 @@ datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  guildName String
+  name      String
+  role      Role      @default(USER)
+  status    Status    @default(PENDING)
+  naverKey  String
+  feeds     Feed[]
+  comments  Comment[]
+}
+
+model Feed {
+  id          Int      @id @default(autoincrement())
+  keyword     String?
+  monsterList Json
+  createdAt   DateTime @default(now())
+  viewCount   Int      @default(0)
+
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId Int
+
+  comments Comment[]
+
+  @@index([authorId])
+}
+
+model Comment {
+  id          String   @id @default(cuid())
+  keyword     String?
+  monsterList Json
+  createdAt   DateTime @default(now())
+
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId Int
+
+  feed   Feed @relation(fields: [feedId], references: [id], onDelete: Cascade)
+  feedId Int
+
+  @@index([feedId])
+  @@index([authorId])
+}
+
+model Monster {
+  id          Int          @id @default(autoincrement())
+  originName  String
+  monsterName String?      @default("")
+  elementType ElementType?
+  keyword     Json
 }
 
 enum Role {
@@ -21,21 +68,10 @@ enum Status {
   ACTIVE
 }
 
-model User {
-  id        Int    @id @default(autoincrement())
-  guildName String
-  name      String
-  status    Status @default(PENDING)
-  role      Role   @default(USER)
-  posts     Post[]
-}
-
-model Post {
-  id       Int     @id @default(autoincrement())
-  title    String
-  content  String?
-  author   User    @relation(fields: [authorId], references: [id])
-  authorId Int
-
-  @@index([authorId])
+enum ElementType {
+  fire
+  water
+  wind
+  light
+  dark
 }

@@ -1,3 +1,7 @@
+import { accountRole } from "@/interface/account"
+
+import { pageRoute } from "@/lib/page-route"
+
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
@@ -6,9 +10,10 @@ export const siteConfig = {
 
   mainNav: [
     {
-      title: "Home",
-      href: "/",
+      title: "Feed",
+      href: pageRoute.Feed,
     },
+    { title: "Admin", href: pageRoute.Admin, role: accountRole.Enum.ADMIN },
   ],
 
   links: {

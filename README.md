@@ -11,10 +11,10 @@
 - [x] Icons from <sup>[Lucide](https://lucide.dev)</sup>
 - [x] Dark mode <sup>[next-themes](https://github.com/pacocoursey/next-themes#readme)</sup>
 - [x] Pre-Commit <sup>[Husky](https://typicode.github.io/husky)</sup>
-- [ ] Schema validation with type inference <sup>[Zod](https://zod.dev)</sup>
-- [ ] State management <sup>[Jotai](https://jotai.org)</sup>
-- [ ] Asynchronous Management <sup>[Tanstack](https://tanstack.com/query/latest)</sup>
-- [ ] Form <sup>[react-hook-form](https://www.react-hook-form.com)</sup>
+- [x] Schema validation with type inference <sup>[Zod](https://zod.dev)</sup>
+- [x] State management <sup>[Jotai](https://jotai.org)</sup>
+- [x] Asynchronous Management <sup>[Tanstack](https://tanstack.com/query/latest)</sup>
+- [x] Form <sup>[react-hook-form](https://www.react-hook-form.com)</sup>
 
 ## License
 
