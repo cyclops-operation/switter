@@ -9,6 +9,7 @@ import {
   FileEdit,
   Info,
   LucideProps,
+  Mail,
   Moon,
   Plus,
   Search,
@@ -41,6 +42,7 @@ const Icons = {
   plus: Plus,
   watch: Watch,
   award: Award,
+  mail: Mail,
   batteryCharging: BatteryCharging,
   prev: (props: LucideProps) => (
     <svg
