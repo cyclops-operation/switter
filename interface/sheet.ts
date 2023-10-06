@@ -2,7 +2,12 @@ import z from "zod"
 
 import { formErrorMessage } from "@/lib/error-message"
 
+const requestRowType = z.enum(["FEATURE", "BUG"])
+
+type RequestRowType = z.infer<typeof requestRowType>
+
 const requestRowForm = z.object({
+  type: requestRowType,
   title: z.string().min(1, {
     message: formErrorMessage.requestRow.title.length,
   }),
@@ -13,4 +18,9 @@ const requestRowForm = z.object({
 
 type RequestRowForm = z.infer<typeof requestRowForm>
 
-export { requestRowForm, type RequestRowForm }
+export {
+  requestRowForm,
+  requestRowType,
+  type RequestRowForm,
+  type RequestRowType,
+}

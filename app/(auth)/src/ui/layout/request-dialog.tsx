@@ -2,7 +2,11 @@
 
 import { useState } from "react"
 
-import { RequestRowForm, requestRowForm } from "@/interface/sheet"
+import {
+  RequestRowForm,
+  requestRowForm,
+  requestRowType,
+} from "@/interface/sheet"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
@@ -28,9 +32,27 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/common/icons"
+
+const selectOptions = [
+  {
+    label: "신규 기능",
+    value: requestRowType.Enum.FEATURE,
+  },
+  {
+    label: "버그 제보",
+    value: requestRowType.Enum.BUG,
+  },
+]
 
 const RequestDialog = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -40,6 +62,7 @@ const RequestDialog = () => {
   const form = useForm<RequestRowForm>({
     resolver: zodResolver(requestRowForm),
     defaultValues: {
+      type: requestRowType.Enum.FEATURE,
       title: "",
       description: "",
     },
@@ -87,6 +110,39 @@ const RequestDialog = () => {
             className="relative flex h-full max-h-full flex-col gap-4"
             onSubmit={form.handleSubmit(handleSubmit)}
           >
+            <FormField
+              name="type"
+              render={({ field }) => {
+                const selectedTypeLabel = selectOptions.find(
+                  ({ value }) => value === field.value
+                )?.label
+
+                return (
+                  <FormItem>
+                    <FormLabel>타입</FormLabel>
+
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue>{selectedTypeLabel}</SelectValue>
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {selectOptions.map(({ label, value }) => (
+                          <SelectItem key={value} value={value}>
+                            {label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )
+              }}
+            />
+
             <FormField
               name="title"
               render={({ field }) => (

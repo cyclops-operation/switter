@@ -12,7 +12,7 @@ async function POST(request: NextRequest) {
   try {
     const payload = await request.json()
 
-    const { title, description } = requestRowForm.parse(payload)
+    const { type, title, description } = requestRowForm.parse(payload)
 
     const sheets = await loadSpreadsheets()
 
@@ -28,8 +28,10 @@ async function POST(request: NextRequest) {
 
     await sheet.addRow({
       requesterId: account?.user.id,
+      nickname: account?.user.name,
+      type,
       title,
-      description: description ?? "",
+      description,
     })
 
     return NextResponse.json({ status: "ok" })
