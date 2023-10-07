@@ -144,6 +144,41 @@ export default function CommentDialog({ children }: CommentDialogProps) {
 
                   {attackMonsterField.length <= 2 && (
                     <MonsterSearchDialog
+                      selectedMonster={
+                        attackMonsterField.length ? (
+                          <div className="flex w-full flex-col gap-4">
+                            <Separator />
+
+                            <span className="select-none text-sm font-bold">
+                              선택한 몬스터
+                            </span>
+
+                            <div className="flex gap-4">
+                              {attackMonsterField.map((monsterInfo) => {
+                                const selectedMonsterIndex =
+                                  attackMonsterField.findIndex(
+                                    ({ originName: selectedOriginName }) =>
+                                      selectedOriginName ===
+                                      monsterInfo.originName
+                                  )
+
+                                return (
+                                  <MonsterImage
+                                    className="cursor-pointer"
+                                    key={monsterInfo.id}
+                                    monsterInfo={monsterInfo}
+                                    onClick={() =>
+                                      handleAttackMonsterRemove(
+                                        selectedMonsterIndex
+                                      )
+                                    }
+                                  />
+                                )
+                              })}
+                            </div>
+                          </div>
+                        ) : undefined
+                      }
                       renderSearchedMonster={(monsterList) => (
                         <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
                           {monsterList.map((monsterInfo) => (
