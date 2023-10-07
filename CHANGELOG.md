@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/cyclops-operation/switter/compare/v1.0.0...v1.0.1) (2023-10-07)
+
+
+### Others
+
+* Release as 1.0.1 ([#40](https://github.com/cyclops-operation/switter/issues/40)) ([7c3e71c](https://github.com/cyclops-operation/switter/commit/7c3e71cfccf1e5f22d163119a9608f89b9026db9))
+
 ## 1.0.0 (2023-10-06)
 
 
