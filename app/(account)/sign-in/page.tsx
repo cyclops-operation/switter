@@ -1,24 +1,28 @@
+import Link from "next/link"
+
+import { pageRoute } from "@/lib/page-route"
 import { CardContent, CardFooter } from "@/components/ui/card"
-import InfoTooltip from "@/components/common/info-tooltip"
-import SocialLogin from "@/components/common/social-login"
 
 import AccountHeader from "../src/ui/header"
+import SignInForm from "./src/ui/sign-in-form"
 
 const SignIn = () => {
   return (
     <>
       <AccountHeader
         title="반갑습니다!"
-        description="로그인 할 소셜 플랫폼을 선택해주세요!"
+        description="서비스를 이용하기 위해 로그인을 진행해주세요"
       />
       <CardContent>
-        <SocialLogin />
+        <SignInForm />
       </CardContent>
       <CardFooter className="flex justify-center">
-        <InfoTooltip
-          triggerText="소셜 로그인 안내"
-          tooltipText="현재 네이버만을 지원하고 있으며, 추후 요청에 의해 추가될 예정입니다."
-        />
+        <Link
+          className="text-sm text-zinc-600 hover:underline dark:text-zinc-300"
+          href={pageRoute.SignUp}
+        >
+          회원가입
+        </Link>
       </CardFooter>
     </>
   )

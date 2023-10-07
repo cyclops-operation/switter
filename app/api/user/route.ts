@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { Account } from "@/interface/account"
+import { User } from "@/interface/user"
+import { hash } from "bcryptjs"
 
 import prisma from "@/lib/prisma"
 
@@ -11,19 +12,20 @@ async function GET() {
   return NextResponse.json(result)
 }
 
-type PatchUserPayload = Pick<Account, "id" | "status">
+type PostUserPayload = Omit<User, "id" | "token"> & {
+  password: string
+}
 
-async function PATCH(request: NextRequest) {
-  const { id, status }: PatchUserPayload = await request.json()
+async function POST(request: NextRequest) {
+  const { password, ...rest }: PostUserPayload = await request.json()
 
-  await prisma.user.update({
-    where: { id },
-    data: {
-      status,
-    },
+  const token = await hash(password, 10)
+
+  await prisma.user.create({
+    data: { token, ...rest },
   })
 
   return NextResponse.json({ status: "ok" })
 }
 
-export { GET, PATCH, type PatchUserPayload }
+export { GET, POST, type PostUserPayload }

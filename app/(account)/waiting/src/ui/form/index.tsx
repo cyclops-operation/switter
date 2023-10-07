@@ -21,7 +21,7 @@ const formSchema = z.object({
   guildName: z.string().min(1, {
     message: formErrorMessage.guildName.length,
   }),
-  name: z.string().min(1, {
+  nickname: z.string().min(1, {
     message: formErrorMessage.nickname.length,
   }),
 })
@@ -51,9 +51,11 @@ const RequestForm = ({
     resolver: zodResolver(formSchema),
     defaultValues: {
       guildName: "",
-      name: "",
+      nickname: "",
     },
   })
+
+  console.log(defaultValues)
 
   useEffect(() => {
     if (defaultValues !== undefined) {
@@ -85,7 +87,7 @@ const RequestForm = ({
 
         <FormField
           control={form.control}
-          name="name"
+          name="nickname"
           render={({ field }) => (
             <FormItem>
               <FormLabel>인게임 닉네임</FormLabel>

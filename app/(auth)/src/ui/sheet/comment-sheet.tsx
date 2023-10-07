@@ -3,8 +3,8 @@
 import { ChangeEvent, useMemo, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
-import { accountRole } from "@/interface/account"
 import { MonsterList, monsterList } from "@/interface/monster"
+import { userRole } from "@/interface/user"
 import clsx from "clsx"
 import {
   AnimatePresence,
@@ -75,7 +75,7 @@ export default function CommentSheet() {
 
   const userId = session?.user.id
 
-  const isAdmin = session?.user.role === accountRole.Enum.ADMIN
+  const isAdmin = session?.user.role === userRole.Enum.ADMIN
 
   const debounceSearchTerm = debounce((searchTerm: string) => {
     setSearchTerm(searchTerm)
@@ -166,7 +166,7 @@ export default function CommentSheet() {
 
                     <SheetDescription>
                       <em className="font-bold not-italic">
-                        {feedInfo?.author.name}
+                        {feedInfo?.author.nickname}
                       </em>
                       &nbsp;사용자가 추가한&nbsp;
                       <span className="font-bold">
@@ -241,7 +241,7 @@ export default function CommentSheet() {
                                       {author.guildName}
                                     </em>
                                     <em className="text-sm font-semibold not-italic text-foreground">
-                                      {author.name}
+                                      {author.nickname}
                                     </em>
                                   </span>
 

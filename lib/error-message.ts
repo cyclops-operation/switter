@@ -1,6 +1,9 @@
 const formErrorMessage = {
-  id: {
-    length: "아이디는 최소 2자리를 입력해주세요.",
+  email: {
+    length: "이메일은 최소 2자리를 입력해주세요.",
+  },
+  password: {
+    length: "비밀번호는 최소 2자리를 입력해주세요.",
   },
   guildName: {
     length: "길드명은 최소 1자리를 입력해주세요.",

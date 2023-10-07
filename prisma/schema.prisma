@@ -10,11 +10,12 @@ datasource db {
 
 model User {
   id        Int       @id @default(autoincrement())
+  email     String    @unique
+  token     String
   guildName String
-  name      String
+  nickname  String
   role      Role      @default(USER)
   status    Status    @default(PENDING)
-  naverKey  String
   feeds     Feed[]
   comments  Comment[]
 }

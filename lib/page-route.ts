@@ -5,6 +5,7 @@ const pageRoute = {
 
   // (account)
   SignIn: "/sign-in",
+  SignUp: "/sign-up",
   Waiting: "/waiting",
 
   // (auth)
