@@ -77,8 +77,6 @@ export default function FeedDialog({ children }: FeedDialogProps) {
   const handleSubmit = (values: DefenseMonster) => {
     createFeed(values)
 
-    console.log(values)
-
     handleReset()
   }
 

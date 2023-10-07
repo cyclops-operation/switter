@@ -1,7 +1,7 @@
 import { useSearchParams } from "next/navigation"
 
 import { CommentList } from "@/interface/comment"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
@@ -10,8 +10,6 @@ export default function useCommentList() {
   const searchParams = useSearchParams()
 
   const feedId = searchParams.get("feedId")
-
-  const queryClient = useQueryClient()
 
   const { data: commentList, isLoading: isCommentListLoading } = useQuery(
     [apiRoute.Comment, feedId],

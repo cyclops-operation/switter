@@ -1,3 +1,5 @@
+import { useSearchParams } from "next/navigation"
+
 import { FeedList } from "@/interface/feed"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
@@ -5,10 +7,20 @@ import axios from "axios"
 import { apiRoute } from "@/lib/api-route"
 
 export default function useFeedList() {
+  const searchParams = useSearchParams()
+
+  const searchTerm = searchParams.get("searchTerm")
+
   const { data: feedList = [], isLoading: isFeedListLoading } = useQuery(
-    [apiRoute.Feed],
+    [apiRoute.Feed, searchTerm],
     async () => {
-      return await axios.get<FeedList[]>(apiRoute.Feed).then((res) => res.data)
+      const hasSearchTerm = Boolean(searchTerm)
+
+      const url = hasSearchTerm
+        ? `${apiRoute.Feed}?searchTerm=${searchTerm}`
+        : apiRoute.Feed
+
+      return await axios.get<FeedList[]>(url).then((res) => res.data)
     }
   )
 
