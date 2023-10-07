@@ -54,6 +54,7 @@ const selectOptions = [
   },
 ]
 
+// TODO: google sheet key에 문제가 있음. 현재 배포 버전에서 작동하지 않음
 export default function RequestDialog() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
@@ -68,7 +69,7 @@ export default function RequestDialog() {
     },
   })
 
-  const { mutate: createRequestRow, isLoading } = useMutation(
+  const { mutateAsync: createRequestRow, isLoading } = useMutation(
     [apiRoute.Sheet],
     async (payload: RequestRowForm) => axios.post(apiRoute.Sheet, payload),
     {
@@ -81,7 +82,7 @@ export default function RequestDialog() {
   )
 
   const handleSubmit = (values: RequestRowForm) => {
-    createRequestRow(values)
+    createRequestRow(values).then(() => setIsDialogOpen(false))
   }
 
   return (
@@ -103,6 +104,7 @@ export default function RequestDialog() {
 
       <DialogContent className="w-96">
         <DialogTitle>요청사항 작성</DialogTitle>
+
         <DialogDescription className="whitespace-pre-line">{`서비스를 사용하시면서 발생한 요청사항에 대해 작성해주세요!\n새로운 기능부터 버그라고 생각되는 부분까지 전부 작성 가능합니다.`}</DialogDescription>
 
         <Form {...form}>
