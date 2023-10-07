@@ -1,13 +1,13 @@
 "use client"
 
-import { Account } from "@/interface/account"
+import { User } from "@/interface/user"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
-import { PatchAccountPayload } from "@/app/api/account/route"
+import { PatchMePayload } from "@/app/api/me/route"
 
 import RequestForm, { WaitingForm } from "."
 
@@ -15,30 +15,26 @@ interface EditRequestFormProps {
   onCancel: () => void
 }
 
-const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
+export default function EditRequestForm({ onCancel }: EditRequestFormProps) {
   const { toast } = useToast()
 
   const queryClient = useQueryClient()
 
   const { data: account } = useQuery(
-    [apiRoute.Account],
-    async () =>
-      await axios.get<Account>(apiRoute.Account).then(({ data }) => data)
+    [apiRoute.Me],
+    async () => await axios.get<User>(apiRoute.Me).then(({ data }) => data)
   )
 
   const { mutate: patchAccountM, isLoading } = useMutation(
-    async (body: PatchAccountPayload) =>
-      await axios.patch(apiRoute.Account, body),
+    async (body: PatchMePayload) => await axios.patch(apiRoute.Me, body),
     {
       onSuccess: () => {
-        toast({ title: "성공적으로 계정이 수정되었습니다.", duration: 1000 })
-        queryClient.refetchQueries([apiRoute.Account])
+        toast({ title: "성공적으로 계정이 수정되었습니다." })
+        queryClient.refetchQueries([apiRoute.Me])
         onCancel()
       },
     }
   )
-
-  const disabled = isLoading
 
   const handleSubmit = async (values: WaitingForm) => {
     patchAccountM(values)
@@ -48,14 +44,15 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
     <RequestForm
       renderButton={({ submit }) => (
         <div className="flex gap-2">
-          <Button {...submit} disabled={disabled}>
+          <Button {...submit} disabled={isLoading}>
             수정하기
           </Button>
+
           <Button
             type="button"
             className="w-full"
             variant="outline"
-            disabled={disabled}
+            disabled={isLoading}
             onClick={onCancel}
           >
             취소
@@ -67,5 +64,3 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
     />
   )
 }
-
-export default EditRequestForm

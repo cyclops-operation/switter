@@ -1,13 +1,13 @@
 import { redirect } from "next/navigation"
 
-import { accountStatus } from "@/interface/account"
+import { userStatus } from "@/interface/user"
 
 import { pageRoute } from "@/lib/page-route"
 import { getServerAccount } from "@/lib/utils"
 import RootPusher from "@/app/(auth)/src/ui/layout/root-pusher"
-import { SiteHeader } from "@/app/(auth)/src/ui/layout/site-header"
 
 import RequestDialog from "./src/ui/layout/request-dialog"
+import SiteHeader from "./src/ui/layout/site-header"
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -16,7 +16,7 @@ interface AuthLayoutProps {
 export default async function AuthLayout({ children }: AuthLayoutProps) {
   const account = await getServerAccount()
 
-  const isAuthorized = account?.user.status === accountStatus.Enum.ACTIVE
+  const isAuthorized = account?.user.status === userStatus.Enum.ACTIVE
 
   if (!isAuthorized) {
     redirect(pageRoute.Waiting)

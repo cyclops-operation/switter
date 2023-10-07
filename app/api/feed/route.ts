@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { defenseMonster } from "@/interface/feed"
+import { defenseMonster, defenseMonsterSearch } from "@/interface/feed"
 import { getServerSession } from "next-auth"
 import z from "zod"
 
@@ -9,7 +9,44 @@ import prisma from "@/lib/prisma"
 
 import { authOptions } from "../auth/[...nextauth]/route"
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url)
+
+  const searchTerm = searchParams.get("searchTerm") || ""
+
+  const { success: hasSearchTerm } = defenseMonsterSearch.safeParse({
+    searchTerm,
+  })
+
+  if (hasSearchTerm) {
+    const monsterList = await prisma.feed.findMany({
+      where: {
+        OR: [
+          {
+            monsterList: {
+              path: "$[*].keyword",
+              array_contains: searchTerm,
+            },
+          },
+          {
+            monsterList: {
+              path: "$[*].monsterName",
+              array_contains: searchTerm,
+            },
+          },
+          {
+            keyword: {
+              contains: searchTerm,
+            },
+          },
+        ],
+      },
+      include: { author: true, comments: true },
+    })
+
+    return NextResponse.json(monsterList)
+  }
+
   const monsterList = await prisma.feed.findMany({
     include: { author: true, comments: true },
   })
@@ -19,10 +56,10 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const payload = await request.json()
 
     const { keyword, defencseMonsterList: monsterList } =
-      defenseMonster.parse(body)
+      defenseMonster.parse(payload)
 
     const session = await getServerSession(authOptions)
 

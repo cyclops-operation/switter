@@ -1,15 +1,45 @@
+import { compare } from "bcryptjs"
 import { NextAuthOptions } from "next-auth"
 import NextAuth from "next-auth/next"
-import NaverProvider from "next-auth/providers/naver"
+import CredentialsProvider from "next-auth/providers/credentials"
 
 import { pageRoute } from "@/lib/page-route"
 import prisma from "@/lib/prisma"
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    NaverProvider({
-      clientId: process.env.NAVER_CLIENT_ID || "",
-      clientSecret: process.env.NAVER_CLIENT_SECRET || "",
+    CredentialsProvider({
+      id: "credentials",
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "이메일",
+          type: "text",
+        },
+        password: {
+          label: "패스워드",
+          type: "password",
+        },
+      },
+      async authorize(credentials) {
+        if (!credentials) throw new Error("오류가 발생했습니다.")
+
+        const { email, password } = credentials
+
+        const user = await prisma.user.findFirst({
+          where: {
+            email,
+          },
+        })
+
+        if (!user) throw new Error("존재하지 않는 아이디입니다.")
+
+        const result = await compare(password, user.token)
+
+        if (!result) throw new Error("패스워드가 일치하지 않습니다.")
+
+        return user as any
+      },
     }),
   ],
   pages: {
@@ -30,18 +60,13 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ session }) {
-      const sessionUser = await prisma.user.findFirst({
+      const user = await prisma.user.findFirst({
         where: {
-          naverKey: session?.user?.email as string,
+          email: session.user.email,
         },
       })
 
-      if (!sessionUser) return session
-
-      // 기존 세션 타입에 email이 있는데 필요없다면 아래의 개체를 이용해 삭제
-      // Reflect.deleteProperty(session.user, "email")
-
-      session.user = { ...session.user, ...sessionUser }
+      session.user = { ...session.user, ...user }
 
       return session
     },

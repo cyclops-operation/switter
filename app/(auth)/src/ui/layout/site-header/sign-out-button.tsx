@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react"
 
 import { Button } from "@/components/ui/button"
 
-const SignOutButton = () => {
+export default function SignOutButton() {
   const clickSignOut = () => {
     signOut()
   }
@@ -15,5 +15,3 @@ const SignOutButton = () => {
     </Button>
   )
 }
-
-export default SignOutButton
