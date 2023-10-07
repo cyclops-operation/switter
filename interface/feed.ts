@@ -8,8 +8,20 @@ const defenseMonster = z.object({
   defencseMonsterList: monsterList,
 })
 
+const defenseMonsterSearch = z.object({
+  searchTerm: z.string().optional(),
+})
+
 type DefenseMonster = z.infer<typeof defenseMonster>
+
+type DefenseMonsterSearch = z.infer<typeof defenseMonsterSearch>
 
 type FeedList = { author: User; comments: Comment[] } & Feed
 
-export { defenseMonster, type DefenseMonster, type FeedList }
+export {
+  defenseMonster,
+  defenseMonsterSearch,
+  type DefenseMonster,
+  type DefenseMonsterSearch,
+  type FeedList,
+}

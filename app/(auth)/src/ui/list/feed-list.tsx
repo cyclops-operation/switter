@@ -72,7 +72,7 @@ export default function FeedList() {
   const isAdmin = session?.user.role === accountRole.Enum.ADMIN
 
   return (
-    <div className="h-full py-4">
+    <div className="pb-4">
       {isFeedListLoading ? (
         <Loading className="h-full w-full" />
       ) : (

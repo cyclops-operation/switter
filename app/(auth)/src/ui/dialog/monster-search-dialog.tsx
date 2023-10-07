@@ -15,11 +15,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 interface MonsterDialogProps {
+  selectedMonster: ReactNode
   /** 검색한 몬스터 정보를 다양한 UI로 노출시키기 위해 render props 사용 */
   renderSearchedMonster?: (monsterInfo: MonsterInfo[]) => ReactNode
 }
 
 export default function MonsterSearchDialog({
+  selectedMonster,
   renderSearchedMonster,
 }: MonsterDialogProps) {
   const [searchTerm, setSearchTerm] = useState("")
@@ -87,9 +89,13 @@ export default function MonsterSearchDialog({
         </div>
 
         {isVisibleSearchedMonster ? (
-          <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
-            {renderSearchedMonster(searchedMonsterList)}
-          </div>
+          <>
+            <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
+              {renderSearchedMonster(searchedMonsterList)}
+            </div>
+
+            {selectedMonster}
+          </>
         ) : (
           <>
             {searchTerm && (

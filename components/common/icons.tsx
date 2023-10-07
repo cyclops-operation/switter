@@ -12,6 +12,7 @@ import {
   Mail,
   Moon,
   Plus,
+  RotateCcw,
   Search,
   SunMedium,
   Swords,
@@ -44,6 +45,7 @@ const Icons = {
   award: Award,
   mail: Mail,
   batteryCharging: BatteryCharging,
+  reset: RotateCcw,
   prev: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
