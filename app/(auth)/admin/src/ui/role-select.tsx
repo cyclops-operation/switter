@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation"
 
-import { AccountStatus, accountStatus } from "@/interface/account"
+import { User, UserStatus, userStatus } from "@/interface/user"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 
@@ -16,25 +16,28 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
-import { PatchUserPayload } from "@/app/api/user/route"
 
-const statusOptions = Object.values(accountStatus.Enum)
+const statusOptions = Object.values(userStatus.Enum)
 
-type RoleSelectProps = PatchUserPayload
+interface RoleSelectProps {
+  id: User["id"]
+  status: User["status"]
+}
 
 const RoleSelect = ({ id, status }: RoleSelectProps) => {
   const { refresh } = useRouter()
+
   const { toast } = useToast()
 
   const { mutate: patchUserM, isLoading } = useMutation(
-    async (status: AccountStatus) =>
-      await axios.patch<PatchUserPayload>(apiRoute.User, {
+    async (status: UserStatus) =>
+      await axios.patch(apiRoute.User, {
         id,
         status,
       }),
     {
       onSuccess: () => {
-        toast({ title: "유저 상태가 변경되었습니다!" })
+        toast({ title: "유저 상태가 변경되었습니다." })
         refresh()
       },
     }
@@ -43,11 +46,12 @@ const RoleSelect = ({ id, status }: RoleSelectProps) => {
   return (
     <Select
       disabled={isLoading}
-      onValueChange={(status) => patchUserM(status as AccountStatus)}
+      onValueChange={(status) => patchUserM(status as UserStatus)}
     >
       <SelectTrigger className="w-[130px]">
         <SelectValue placeholder={status} />
       </SelectTrigger>
+
       <SelectContent>
         <SelectGroup>
           {statusOptions.map((status) => (

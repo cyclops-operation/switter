@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation"
 
-import { accountRole } from "@/interface/account"
 import { MonsterList } from "@/interface/monster"
+import { userRole } from "@/interface/user"
 import { Comment } from "@prisma/client"
 import clsx from "clsx"
 import {
@@ -69,7 +69,7 @@ export default function FeedList() {
 
   const userId = session?.user.id
 
-  const isAdmin = session?.user.role === accountRole.Enum.ADMIN
+  const isAdmin = session?.user.role === userRole.Enum.ADMIN
 
   return (
     <div className="pb-4">
@@ -115,18 +115,23 @@ export default function FeedList() {
                         <div className="flex gap-2">
                           <Avatar>
                             <AvatarImage src="https://github.com/shadcn.png" />
-                            <AvatarFallback>{author.name}</AvatarFallback>
+                            <AvatarFallback>{author.nickname}</AvatarFallback>
                           </Avatar>
 
                           <div className="flex flex-col gap-1">
                             <span className="flex select-none items-center gap-1">
                               <em className="flex items-center text-xs font-semibold not-italic text-gray-400">
-                                <Icons.award size={14} />
+                                {author.role === userRole.Enum.ADMIN ? (
+                                  <Icons.crown className="mr-0.5" size={14} />
+                                ) : (
+                                  <Icons.award size={14} />
+                                )}
+
                                 {author.guildName}
                               </em>
 
                               <em className="max-w-[120px] truncate text-sm font-semibold not-italic text-foreground">
-                                {author.name}
+                                {author.nickname}
                               </em>
                             </span>
 

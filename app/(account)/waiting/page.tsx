@@ -1,17 +1,14 @@
 import { redirect } from "next/navigation"
 
-import { accountStatus } from "@/interface/account"
-
 import { pageRoute } from "@/lib/page-route"
 import { getServerAccount } from "@/lib/utils"
 import { CardContent, CardFooter } from "@/components/ui/card"
 import InfoTooltip from "@/components/common/info-tooltip"
 
-import AccountHeader, { AccountHeaderProps } from "../src/ui/header"
-import CreateRequestForm from "./src/ui/form/create"
+import AccountHeader from "../src/ui/header"
 import AccountPending from "./src/ui/pending"
 
-const Waiting = async () => {
+export default async function Waiting() {
   const session = await getServerAccount()
 
   const hasSession = session !== null
@@ -20,24 +17,18 @@ const Waiting = async () => {
     redirect(pageRoute.SignIn)
   }
 
-  const isPending = session?.user.status === accountStatus.Enum.PENDING
-
-  const accountHeaderProps: AccountHeaderProps = isPending
-    ? {
-        title: "가입 승인 대기중",
-        description: `길드 관리자가 가입 요청을 수락하면, 정상적으로 서비스를 이용하실 수 있습니다.`,
-      }
-    : {
-        title: "가입 승인 요청",
-        description: "회원가입 승인 요청을 위한 기본 입력 정보를 작성해주세요",
-      }
-
   return (
     <>
-      <AccountHeader {...accountHeaderProps} />
-      <CardContent>
-        {isPending ? <AccountPending /> : <CreateRequestForm />}
+      <AccountHeader
+        title="가입 승인 대기중"
+        description="길드 관리자가 가입 요청을 수락하면, 정상적으로 서비스를 이용하실 수 있습니다."
+      />
+
+      <CardContent className="flex-1">
+        {/* @ts-expect-error Async Server Component */}
+        <AccountPending />
       </CardContent>
+
       <CardFooter className="flex justify-center">
         <InfoTooltip
           triggerText="가입된 계정인데 다시 가입 신청을 하는 경우"
@@ -47,5 +38,3 @@ const Waiting = async () => {
     </>
   )
 }
-
-export default Waiting

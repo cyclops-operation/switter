@@ -5,7 +5,9 @@ import {
   Bell,
   BellRing,
   ChevronDownIcon,
+  Crown,
   Eye,
+  EyeOff,
   FileEdit,
   Info,
   LucideProps,
@@ -39,6 +41,7 @@ const Icons = {
   fileEdit: FileEdit,
   trash: Trash2,
   eye: Eye,
+  eyeOff: EyeOff,
   swords: Swords,
   plus: Plus,
   watch: Watch,
@@ -46,6 +49,7 @@ const Icons = {
   mail: Mail,
   batteryCharging: BatteryCharging,
   reset: RotateCcw,
+  crown: Crown,
   prev: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -3,15 +3,15 @@
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 
-import { Account, accountRole } from "@/interface/account"
 import { NotificationType } from "@/interface/notification"
+import { User, userRole } from "@/interface/user"
 import { ToastAction } from "@radix-ui/react-toast"
 
 import { clientPusher, pusherChannel, pusherEvent } from "@/lib/pusher"
 
 import { useToast } from "../../../../../components/ui/use-toast"
 
-type RootPusherProps = Pick<Account, "role">
+type RootPusherProps = Pick<User, "role">
 
 const RootPusher = ({ role }: RootPusherProps) => {
   const { push } = useRouter()
@@ -24,7 +24,7 @@ const RootPusher = ({ role }: RootPusherProps) => {
     channel.bind(
       pusherEvent.SignIn,
       ({ title, description, url }: NotificationType) => {
-        if (role === accountRole.Enum.ADMIN) {
+        if (role === userRole.Enum.ADMIN) {
           toast({
             title,
             description,

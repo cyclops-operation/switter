@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { Account } from "@/interface/account"
+import { User } from "@/interface/user"
+import { hash } from "bcryptjs"
 
+import { apiErrorMessage } from "@/lib/error-message"
 import prisma from "@/lib/prisma"
 
 import { getUsers } from "./action"
@@ -11,13 +13,38 @@ async function GET() {
   return NextResponse.json(result)
 }
 
-type PatchUserPayload = Pick<Account, "id" | "status">
+type PostUserPayload = Omit<User, "id" | "token"> & {
+  password: string
+}
+
+async function POST(request: NextRequest) {
+  const { password, ...rest }: PostUserPayload = await request.json()
+
+  const token = await hash(password, 10)
+
+  if (!password || !token) {
+    return new Response(apiErrorMessage.BadRequest, { status: 400 })
+  }
+
+  await prisma.user.create({
+    data: { token, ...rest },
+  })
+
+  return NextResponse.json({ status: "ok" })
+}
 
 async function PATCH(request: NextRequest) {
-  const { id, status }: PatchUserPayload = await request.json()
+  const { id, status }: { id: User["id"]; status: User["status"] } =
+    await request.json()
+
+  if (!id || !status) {
+    return new Response(apiErrorMessage.BadRequest, { status: 400 })
+  }
 
   await prisma.user.update({
-    where: { id },
+    where: {
+      id,
+    },
     data: {
       status,
     },
@@ -26,4 +53,4 @@ async function PATCH(request: NextRequest) {
   return NextResponse.json({ status: "ok" })
 }
 
-export { GET, PATCH, type PatchUserPayload }
+export { GET, PATCH, POST, type PostUserPayload }

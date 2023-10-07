@@ -1,4 +1,4 @@
-import { accountRole } from "@/interface/account"
+import { userRole } from "@/interface/user"
 
 import { pageRoute } from "@/lib/page-route"
 
@@ -13,7 +13,7 @@ export const siteConfig = {
       title: "Feed",
       href: pageRoute.Feed,
     },
-    { title: "Admin", href: pageRoute.Admin, role: accountRole.Enum.ADMIN },
+    { title: "Admin", href: pageRoute.Admin, role: userRole.Enum.ADMIN },
   ],
 
   links: {
