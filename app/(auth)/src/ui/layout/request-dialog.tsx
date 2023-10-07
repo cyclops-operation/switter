@@ -54,7 +54,7 @@ const selectOptions = [
   },
 ]
 
-const RequestDialog = () => {
+export default function RequestDialog() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const { toast } = useToast()
@@ -196,5 +196,3 @@ const RequestDialog = () => {
     </Dialog>
   )
 }
-
-export default RequestDialog

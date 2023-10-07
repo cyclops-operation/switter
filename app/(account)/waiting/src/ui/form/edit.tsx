@@ -15,7 +15,7 @@ interface EditRequestFormProps {
   onCancel: () => void
 }
 
-const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
+export default function EditRequestForm({ onCancel }: EditRequestFormProps) {
   const { toast } = useToast()
 
   const queryClient = useQueryClient()
@@ -36,8 +36,6 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
     }
   )
 
-  const disabled = isLoading
-
   const handleSubmit = async (values: WaitingForm) => {
     patchAccountM(values)
   }
@@ -46,14 +44,15 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
     <RequestForm
       renderButton={({ submit }) => (
         <div className="flex gap-2">
-          <Button {...submit} disabled={disabled}>
+          <Button {...submit} disabled={isLoading}>
             수정하기
           </Button>
+
           <Button
             type="button"
             className="w-full"
             variant="outline"
-            disabled={disabled}
+            disabled={isLoading}
             onClick={onCancel}
           >
             취소
@@ -65,5 +64,3 @@ const EditRequestForm = ({ onCancel }: EditRequestFormProps) => {
     />
   )
 }
-
-export default EditRequestForm

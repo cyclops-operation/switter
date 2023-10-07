@@ -121,7 +121,12 @@ export default function FeedList() {
                           <div className="flex flex-col gap-1">
                             <span className="flex select-none items-center gap-1">
                               <em className="flex items-center text-xs font-semibold not-italic text-gray-400">
-                                <Icons.award size={14} />
+                                {author.role === userRole.Enum.ADMIN ? (
+                                  <Icons.crown className="mr-0.5" size={14} />
+                                ) : (
+                                  <Icons.award size={14} />
+                                )}
+
                                 {author.guildName}
                               </em>
 

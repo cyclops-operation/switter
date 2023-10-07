@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { User } from "@/interface/user"
 import { hash } from "bcryptjs"
 
+import { apiErrorMessage } from "@/lib/error-message"
 import prisma from "@/lib/prisma"
 
 import { getUsers } from "./action"
@@ -21,6 +22,10 @@ async function POST(request: NextRequest) {
 
   const token = await hash(password, 10)
 
+  if (!password || !token) {
+    return new Response(apiErrorMessage.BadRequest, { status: 400 })
+  }
+
   await prisma.user.create({
     data: { token, ...rest },
   })
@@ -28,4 +33,24 @@ async function POST(request: NextRequest) {
   return NextResponse.json({ status: "ok" })
 }
 
-export { GET, POST, type PostUserPayload }
+async function PATCH(request: NextRequest) {
+  const { id, status }: { id: User["id"]; status: User["status"] } =
+    await request.json()
+
+  if (!id || !status) {
+    return new Response(apiErrorMessage.BadRequest, { status: 400 })
+  }
+
+  await prisma.user.update({
+    where: {
+      id,
+    },
+    data: {
+      status,
+    },
+  })
+
+  return NextResponse.json({ status: "ok" })
+}
+
+export { GET, PATCH, POST, type PostUserPayload }

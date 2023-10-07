@@ -237,7 +237,14 @@ export default function CommentSheet() {
                                 <div className="flex flex-col gap-1">
                                   <span className="flex select-none flex-col">
                                     <em className="flex items-center text-xs font-semibold not-italic text-gray-400">
-                                      <Icons.award size={14} />
+                                      {author.role === userRole.Enum.ADMIN ? (
+                                        <Icons.crown
+                                          className="mr-0.5"
+                                          size={14}
+                                        />
+                                      ) : (
+                                        <Icons.award size={14} />
+                                      )}
                                       {author.guildName}
                                     </em>
                                     <em className="text-sm font-semibold not-italic text-foreground">

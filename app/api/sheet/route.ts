@@ -28,7 +28,7 @@ async function POST(request: NextRequest) {
 
     await sheet.addRow({
       requesterId: account?.user.id,
-      nickname: account?.user.name,
+      nickname: account?.user.nickname,
       type,
       title,
       description,

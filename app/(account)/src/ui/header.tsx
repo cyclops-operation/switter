@@ -5,10 +5,14 @@ export interface AccountHeaderProps {
   description?: React.ReactNode
 }
 
-const AccountHeader = ({ title, description }: AccountHeaderProps) => {
+export default function AccountHeader({
+  title,
+  description,
+}: AccountHeaderProps) {
   return (
     <CardHeader>
       <CardTitle>{title}</CardTitle>
+
       {description ? (
         <CardDescription className="whitespace-pre-line break-keep">
           {description}
@@ -17,5 +21,3 @@ const AccountHeader = ({ title, description }: AccountHeaderProps) => {
     </CardHeader>
   )
 }
-
-export default AccountHeader

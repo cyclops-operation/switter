@@ -5,9 +5,9 @@ import { userStatus } from "@/interface/user"
 import { pageRoute } from "@/lib/page-route"
 import { getServerAccount } from "@/lib/utils"
 import RootPusher from "@/app/(auth)/src/ui/layout/root-pusher"
-import { SiteHeader } from "@/app/(auth)/src/ui/layout/site-header"
 
 import RequestDialog from "./src/ui/layout/request-dialog"
+import SiteHeader from "./src/ui/layout/site-header"
 
 interface AuthLayoutProps {
   children: React.ReactNode

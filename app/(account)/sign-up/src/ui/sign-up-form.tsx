@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -18,20 +19,35 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
+import { Icons } from "@/components/common/icons"
 
 const formSchema = z.object({
-  email: z.string().min(2, {
-    message: formErrorMessage.email.length,
-  }),
+  email: z
+    .string()
+    .min(2, {
+      message: formErrorMessage.email.length,
+    })
+    .email(formErrorMessage.email.invalid),
   password: z.string().min(2, {
     message: formErrorMessage.password.length,
   }),
-  guildName: z.string().min(2, {
-    message: formErrorMessage.guildName.length,
-  }),
+  guildName: z
+    .string()
+    .min(2, {
+      message: formErrorMessage.guildName.length,
+    })
+    .refine(
+      (guildName) => {
+        return guildName !== "개발자"
+      },
+      {
+        message: formErrorMessage.guildName.invalidName,
+      }
+    ),
   nickname: z.string().min(2, {
     message: formErrorMessage.nickname.length,
   }),
@@ -41,7 +57,10 @@ type FormSchema = z.infer<typeof formSchema>
 
 const SignUpForm = () => {
   const { push } = useRouter()
+
   const { toast } = useToast()
+
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false)
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -53,7 +72,7 @@ const SignUpForm = () => {
     },
   })
 
-  const { mutate, isLoading } = useMutation(
+  const { mutate: createUser, isLoading } = useMutation(
     async (payload: FormSchema) => await axios.post(apiRoute.User, payload),
     {
       onSuccess: () => {
@@ -63,26 +82,34 @@ const SignUpForm = () => {
     }
   )
 
-  const onSubmit = (value: FormSchema) => {
-    mutate(value)
+  const handleSubmit = (accountValues: FormSchema) => {
+    createUser(accountValues)
+  }
+
+  const handleVisiblePasswordToggle = () => {
+    setIsVisiblePassword((prev) => !prev)
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-2">
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>이메일</FormLabel>
+
               <FormControl>
                 <Input
                   {...field}
                   type="email"
-                  placeholder="이메일를 입력해주세요"
+                  placeholder="이메일를 입력해주세요."
+                  autoComplete="off"
                 />
               </FormControl>
+
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -93,13 +120,46 @@ const SignUpForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>패스워드</FormLabel>
+
               <FormControl>
-                <Input
-                  {...field}
-                  type="password"
-                  placeholder="패스워드를 입력해주세요"
-                />
+                <div className="relative">
+                  <Input
+                    {...field}
+                    className="pr-9"
+                    type={isVisiblePassword ? "text" : "password"}
+                    placeholder="패스워드를 입력해주세요."
+                    autoComplete="off"
+                  />
+
+                  {isVisiblePassword ? (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-sm"
+                      className="absolute right-2 top-2"
+                      onClick={handleVisiblePasswordToggle}
+                    >
+                      <span className="sr-only">비밀번호 숨기기</span>
+
+                      <Icons.eyeOff size={16} />
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-sm"
+                      className="absolute right-2 top-2"
+                      onClick={handleVisiblePasswordToggle}
+                    >
+                      <span className="sr-only">비밀번호 보기</span>
+
+                      <Icons.eye size={16} />
+                    </Button>
+                  )}
+                </div>
               </FormControl>
+
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -110,9 +170,16 @@ const SignUpForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>길드명</FormLabel>
+
               <FormControl>
-                <Input {...field} placeholder="길드명을 입력해주세요" />
+                <Input
+                  {...field}
+                  placeholder="길드명을 입력해주세요."
+                  autoComplete="off"
+                />
               </FormControl>
+
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -123,9 +190,16 @@ const SignUpForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>인게임 닉네임</FormLabel>
+
               <FormControl>
-                <Input {...field} placeholder="인게임 닉네임을 입력해주세요" />
+                <Input
+                  {...field}
+                  placeholder="인게임 닉네임을 입력해주세요."
+                  autoComplete="off"
+                />
               </FormControl>
+
+              <FormMessage />
             </FormItem>
           )}
         />

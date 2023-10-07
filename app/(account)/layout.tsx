@@ -13,7 +13,7 @@ interface AccountLayoutProps {
   children: React.ReactNode
 }
 
-const AccountLayout = async ({ children }: AccountLayoutProps) => {
+export default async function AccountLayout({ children }: AccountLayoutProps) {
   const session = await getServerAccount()
 
   const isActive = session?.user.status === userStatus.Enum.ACTIVE
@@ -24,21 +24,17 @@ const AccountLayout = async ({ children }: AccountLayoutProps) => {
 
   return (
     <main className="flex-co relative flex h-screen items-center justify-center bg-zinc-100 dark:bg-zinc-950">
-      <Card className="mx-10 my-52 flex h-[500px] overflow-hidden">
-        <div className="flex w-[400px] flex-col justify-between">
-          {children}
-        </div>
+      <Card className="mx-10 my-52 flex h-[598px] overflow-hidden">
+        <div className="flex w-[400px] flex-col">{children}</div>
 
         <Image
           className="object-cover grayscale"
           src={accountImage.src}
           alt="account-image"
-          width={300}
+          width={400}
           height={350}
         />
       </Card>
     </main>
   )
 }
-
-export default AccountLayout

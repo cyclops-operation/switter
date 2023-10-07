@@ -16,7 +16,7 @@ import { getUsers } from "@/app/api/user/action"
 
 import RoleSelect from "./src/ui/role-select"
 
-const Admin = async () => {
+export default async function Admin() {
   const pendingUsers = await getUsers()
 
   return (
@@ -38,10 +38,12 @@ const Admin = async () => {
         </TableHeader>
 
         <TableBody>
-          {pendingUsers?.map(({ id, guildName, name, status }) => (
-            <TableRow key={name}>
+          {pendingUsers?.map(({ id, guildName, nickname, status }) => (
+            <TableRow key={id}>
               <TableCell>{guildName}</TableCell>
-              <TableCell>{name}</TableCell>
+
+              <TableCell>{nickname}</TableCell>
+
               <TableCell>
                 <RoleSelect id={id} status={status} />
               </TableCell>
@@ -56,5 +58,3 @@ const Admin = async () => {
     </section>
   )
 }
-
-export default Admin

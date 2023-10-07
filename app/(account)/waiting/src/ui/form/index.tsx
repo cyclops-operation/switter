@@ -18,9 +18,19 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-  guildName: z.string().min(1, {
-    message: formErrorMessage.guildName.length,
-  }),
+  guildName: z
+    .string()
+    .min(1, {
+      message: formErrorMessage.guildName.length,
+    })
+    .refine(
+      (guildName) => {
+        return guildName !== "개발자"
+      },
+      {
+        message: formErrorMessage.guildName.invalidName,
+      }
+    ),
   nickname: z.string().min(1, {
     message: formErrorMessage.nickname.length,
   }),
@@ -42,11 +52,13 @@ interface RequestFormProps {
   defaultValues?: WaitingForm
 }
 
-const RequestForm = ({
+export { type WaitingForm }
+
+export default function RequestForm({
   renderButton,
   onSubmit,
   defaultValues,
-}: RequestFormProps) => {
+}: RequestFormProps) {
   const form = useForm<WaitingForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,8 +66,6 @@ const RequestForm = ({
       nickname: "",
     },
   })
-
-  console.log(defaultValues)
 
   useEffect(() => {
     if (defaultValues !== undefined) {
@@ -77,9 +87,11 @@ const RequestForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>길드명</FormLabel>
+
               <FormControl>
-                <Input {...field} />
+                <Input {...field} autoComplete="off" />
               </FormControl>
+
               <FormMessage />
             </FormItem>
           )}
@@ -91,9 +103,11 @@ const RequestForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>인게임 닉네임</FormLabel>
+
               <FormControl>
                 <Input {...field} />
               </FormControl>
+
               <FormMessage />
             </FormItem>
           )}
@@ -109,7 +123,3 @@ const RequestForm = ({
     </Form>
   )
 }
-
-export { type WaitingForm }
-
-export default RequestForm

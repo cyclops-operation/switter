@@ -5,7 +5,6 @@ import { useState } from "react"
 import { NotificationType } from "@/interface/notification"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
-import { useSession } from "next-auth/react"
 
 import { apiRoute } from "@/lib/api-route"
 import { pageRoute } from "@/lib/page-route"
@@ -16,10 +15,8 @@ import { Icons } from "@/components/common/icons"
 
 import EditRequestForm from "./form/edit"
 
-const AccountPending = () => {
+export default async function AccountPending() {
   const [isEdit, setIsEdit] = useState(false)
-
-  const session = useSession()
 
   const { toast } = useToast()
 
@@ -57,11 +54,10 @@ const AccountPending = () => {
       <Button className="w-full gap-2" onClick={changeEditState}>
         <Icons.fileEdit size={16} /> 입력 정보 수정하기
       </Button>
+
       <Button className="w-full gap-2" onClick={sendAlarm}>
         <Icons.alarm size={16} /> 승인 요청 알림 재전송
       </Button>
     </div>
   )
 }
-
-export default AccountPending

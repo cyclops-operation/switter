@@ -1,11 +1,13 @@
 const formErrorMessage = {
   email: {
+    invalid: "이메일 형식을 확인해주세요.",
     length: "이메일은 최소 2자리를 입력해주세요.",
   },
   password: {
     length: "비밀번호는 최소 2자리를 입력해주세요.",
   },
   guildName: {
+    invalidName: "해당 길드명은 사용할 수 없습니다.",
     length: "길드명은 최소 1자리를 입력해주세요.",
   },
   nickname: {
