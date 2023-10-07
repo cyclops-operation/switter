@@ -54,6 +54,11 @@ export default function SignInForm() {
     setIsLoading(true)
 
     try {
+      const { success: isValid } = formSchema.safeParse(accountValues)
+
+      if (!isValid)
+        return new Response(apiErrorMessage.BadRequest, { status: 400 })
+
       await signIn("credentials", {
         ...accountValues,
         redirect: true,
