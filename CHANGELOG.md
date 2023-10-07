@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/cyclops-operation/switter/compare/v1.0.1...v1.0.2) (2023-10-07)
+
+
+### Bug Fixes
+
+* **auth:** [hotfix] 로그인 로직 로딩조건 추가  ([#42](https://github.com/cyclops-operation/switter/issues/42)) ([2c7f49d](https://github.com/cyclops-operation/switter/commit/2c7f49d7d365173f8822eaa52c7d47e4736f5125))
+
 ## [1.0.1](https://github.com/cyclops-operation/switter/compare/v1.0.0...v1.0.1) (2023-10-07)
 
 
