@@ -33,7 +33,7 @@ const formErrorMessage = {
 
 const apiErrorMessage = {
   BadRequest: "잘못된 요청입니다.",
-  Conflict: "잘못된 요청입니다.",
+  Conflict: "중복된 요청입니다.",
   UnAuthorized: "권한이 없습니다.",
   NotFound: "리소스를 찾을 수 없습니다.",
   ServerError: "서버요청에 에러가 발생했습니다.",
