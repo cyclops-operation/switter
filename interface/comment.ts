@@ -5,7 +5,6 @@ import { monsterList } from "./monster"
 
 const attackMonster = z.object({
   feedId: z.string().optional(),
-  keyword: z.string().optional(),
   attackMonsterList: monsterList,
 })
 

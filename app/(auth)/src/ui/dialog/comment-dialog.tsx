@@ -14,14 +14,11 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import {
   Form,
-  FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
 import MonsterImage from "@/components/common/monster-image"
@@ -64,7 +61,6 @@ export default function CommentDialog({ children }: CommentDialogProps) {
   const form = useForm<AttackMonster>({
     resolver: zodResolver(attackMonster),
     defaultValues: {
-      keyword: "",
       attackMonsterList: [],
     },
   })
@@ -105,27 +101,6 @@ export default function CommentDialog({ children }: CommentDialogProps) {
             className="relative flex h-full max-h-full flex-col gap-4"
             onSubmit={form.handleSubmit(handleSubmit)}
           >
-            <FormField
-              name="keyword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>키워드</FormLabel>
-
-                  <FormDescription>
-                    키워드를 입력하면 빠르게 검색할 수 있습니다.
-                  </FormDescription>
-
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="ex) 해극해"
-                      autoComplete="off"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-
             <FormField
               name="attackMonsterList"
               render={() => (

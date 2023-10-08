@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, useMemo, useState } from "react"
+import { useMemo } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 import { MonsterList, monsterList } from "@/interface/monster"
@@ -17,7 +17,6 @@ import { useSession } from "next-auth/react"
 import { dateDistanceToNow } from "@/lib/date"
 import { apiErrorMessage } from "@/lib/error-message"
 import { pageRoute } from "@/lib/page-route"
-import { debounce } from "@/lib/utils"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,8 +29,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
 import {
   Sheet,
   SheetContent,
@@ -62,48 +59,17 @@ export default function CommentSheet() {
 
   const { data: session } = useSession()
 
-  const { commentList: originCommentList, isCommentListLoading } =
-    useCommentList()
+  const { commentList, isCommentListLoading } = useCommentList()
 
   const { deleteComment, isDeleteCommentLoading } = useCommentDelete()
 
   const isPresent = useIsPresent()
-
-  const [searchTerm, setSearchTerm] = useState("")
 
   const isLoading = isCommentListLoading || isDeleteCommentLoading
 
   const userId = session?.user.id
 
   const isAdmin = session?.user.role === userRole.Enum.ADMIN
-
-  const debounceSearchTerm = debounce((searchTerm: string) => {
-    setSearchTerm(searchTerm)
-  }, 500)
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value: searchTerm } = e.target
-    debounceSearchTerm(searchTerm)
-  }
-
-  const commentList = useMemo(() => {
-    if (!searchTerm) return originCommentList
-
-    return originCommentList?.filter(({ monsterList, keyword }) => {
-      const attackMonsterList = monsterList as MonsterList
-
-      return (
-        keyword?.indexOf(searchTerm) !== -1 ||
-        attackMonsterList.some(
-          (monsterInfo) =>
-            monsterInfo.originName
-              .toLocaleLowerCase()
-              .indexOf(searchTerm.toLocaleLowerCase()) !== -1 ||
-            monsterInfo.monsterName?.indexOf(searchTerm) !== -1
-        )
-      )
-    })
-  }, [originCommentList, searchTerm])
 
   const hasCommentList = Boolean(commentList?.length)
 
@@ -178,18 +144,6 @@ export default function CommentSheet() {
                       방어덱입니다.
                     </SheetDescription>
                   </SheetHeader>
-
-                  <div className="flex items-center gap-4">
-                    <Input
-                      className="flex-1"
-                      id="search"
-                      placeholder="검색어를 입력해주세요."
-                      autoComplete="off"
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <Separator />
                 </>
               )}
 
