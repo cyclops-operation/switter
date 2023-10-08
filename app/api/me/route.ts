@@ -14,6 +14,7 @@ type PatchMePayload = Partial<Omit<User, "id">>
 
 async function PATCH(request: NextRequest) {
   const payload: PatchMePayload = await request.json()
+
   const account = await getServerAccount()
 
   if (!account) throw new Error("로그인 된 유저가 없습니다.")

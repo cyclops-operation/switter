@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 
 import { defenseMonster, defenseMonsterSearch } from "@/interface/feed"
+import { MonsterList } from "@/interface/monster"
 import { getServerSession } from "next-auth"
 import z from "zod"
 
-import { apiErrorMessage } from "@/lib/error-message"
 import prisma from "@/lib/prisma"
 
+import { createApiErrorResponse } from "../action"
 import { authOptions } from "../auth/[...nextauth]/route"
 
 export async function GET(request: NextRequest) {
@@ -63,8 +64,33 @@ export async function POST(request: NextRequest) {
 
     const session = await getServerSession(authOptions)
 
-    if (!session)
-      return new Response(apiErrorMessage.UnAuthorized, { status: 401 })
+    if (!session) return createApiErrorResponse("UnAuthorized")
+
+    /** 등록된 전체 피드의 방덱 몬스터 리스트 */
+    const allFeedMonsterList = (await prisma.feed.findMany({
+      select: {
+        monsterList: true,
+      },
+    })) as { monsterList: MonsterList }[]
+
+    /** 등록된 전체 피드의 방덱 몬스터 아이디 배열 */
+    const allFeedMonsterListByIdList = allFeedMonsterList.map(
+      ({ monsterList }) => monsterList.map(({ id }) => id).sort()
+    )
+
+    /** 현재 등록하는 피드의 방덱 몬스터 아이디 배열 */
+    const payloadMonsterListByIdList = monsterList.map(({ id }) => id).sort()
+
+    /** 등록된 전체 피드의 방덱 몬스터 아이디 리스트중 현재 등록하는 피드의 몬스터가 정확히 일치하는지 여부 (중복) */
+    const isDuplicated = allFeedMonsterListByIdList.some((savedMonsterIdList) =>
+      savedMonsterIdList.every((monsterId) =>
+        payloadMonsterListByIdList.includes(monsterId)
+      )
+    )
+
+    if (isDuplicated) {
+      return createApiErrorResponse("Conflict")
+    }
 
     await prisma.feed.create({
       data: {
@@ -79,10 +105,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ status: "ok" })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(error.message, { status: 400 })
+      return createApiErrorResponse("BadRequest", error.message)
     }
 
-    return new Response(apiErrorMessage.ServerError, { status: 500 })
+    return createApiErrorResponse("ServerError")
   }
 }
 
@@ -92,8 +118,7 @@ export async function DELETE(request: NextRequest) {
 
     const feedId = searchParams.get("feedId")
 
-    if (!feedId)
-      return new Response(apiErrorMessage.BadRequest, { status: 400 })
+    if (!feedId) return createApiErrorResponse("BadRequest")
 
     await prisma.feed.delete({
       where: {
@@ -104,9 +129,9 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ status: "ok" })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(error.message, { status: 400 })
+      return createApiErrorResponse("BadRequest", error.message)
     }
 
-    return new Response(apiErrorMessage.ServerError, { status: 500 })
+    return createApiErrorResponse("ServerError")
   }
 }

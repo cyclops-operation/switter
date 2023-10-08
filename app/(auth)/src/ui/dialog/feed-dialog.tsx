@@ -66,6 +66,7 @@ export default function FeedDialog({ children }: FeedDialogProps) {
           title: "방어덱을 추가했습니다.",
         })
       },
+      useErrorBoundary: true,
     }
   )
 
@@ -103,7 +104,7 @@ export default function FeedDialog({ children }: FeedDialogProps) {
                   <FormLabel>키워드</FormLabel>
 
                   <FormDescription>
-                    키워드를 입력하면 빠르게 검색할 수 있습니다.
+                    키워드를 저장해야 검색이 가능합니다.
                   </FormDescription>
 
                   <FormControl>
@@ -113,6 +114,8 @@ export default function FeedDialog({ children }: FeedDialogProps) {
                       autoComplete="off"
                     />
                   </FormControl>
+
+                  <FormMessage />
                 </FormItem>
               )}
             />

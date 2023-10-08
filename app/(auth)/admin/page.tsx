@@ -15,6 +15,7 @@ import {
 import { getUsers } from "@/app/api/user/action"
 
 import RoleSelect from "./src/ui/role-select"
+import StatusSelect from "./src/ui/status-select"
 
 export default async function Admin() {
   const pendingUsers = await getUsers()
@@ -33,19 +34,24 @@ export default async function Admin() {
           <TableRow>
             <TableHead className="w-[300px]">길드명</TableHead>
             <TableHead>인게임 닉네임</TableHead>
+            <TableHead className="w-[130px]">역할</TableHead>
             <TableHead className="w-[130px]">상태</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {pendingUsers?.map(({ id, guildName, nickname, status }) => (
+          {pendingUsers?.map(({ id, guildName, nickname, status, role }) => (
             <TableRow key={id}>
               <TableCell>{guildName}</TableCell>
 
               <TableCell>{nickname}</TableCell>
 
               <TableCell>
-                <RoleSelect id={id} status={status} />
+                <RoleSelect id={id} role={role} />
+              </TableCell>
+
+              <TableCell>
+                <StatusSelect id={id} status={status} />
               </TableCell>
             </TableRow>
           ))}
