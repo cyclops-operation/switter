@@ -53,11 +53,8 @@ export async function POST(request: NextRequest) {
   try {
     const payload = await request.json()
 
-    const {
-      keyword,
-      attackMonsterList: monsterList,
-      feedId,
-    } = attackMonster.parse(payload)
+    const { attackMonsterList: monsterList, feedId } =
+      attackMonster.parse(payload)
 
     const session = await getServerSession(authOptions)
 
@@ -68,7 +65,6 @@ export async function POST(request: NextRequest) {
 
     await prisma.comment.create({
       data: {
-        keyword,
         monsterList,
         authorId: session.user.id,
         feedId: Number(feedId),

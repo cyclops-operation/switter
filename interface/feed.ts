@@ -1,10 +1,15 @@
 import { Comment, Feed, User } from "@prisma/client"
 import z from "zod"
 
+import { formErrorMessage } from "@/lib/error-message"
+
 import { monsterList } from "./monster"
 
 const defenseMonster = z.object({
-  keyword: z.string().optional(),
+  keyword: z
+    .string()
+    .min(3, { message: formErrorMessage.keyword.minLength })
+    .max(3, { message: formErrorMessage.keyword.maxLength }),
   defencseMonsterList: monsterList,
 })
 
