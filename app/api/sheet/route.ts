@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server"
 import { requestRowForm } from "@/interface/sheet"
 import z from "zod"
 
-import { apiErrorMessage } from "@/lib/error-message"
 import { getServerAccount } from "@/lib/utils"
 
+import { createApiErrorResponse } from "../action"
 import { loadSpreadsheets } from "./action"
 
 async function POST(request: NextRequest) {
@@ -16,15 +16,13 @@ async function POST(request: NextRequest) {
 
     const sheets = await loadSpreadsheets()
 
-    if (!sheets)
-      return new Response(apiErrorMessage.ServerError, { status: 500 })
+    if (!sheets) return createApiErrorResponse("ServerError")
 
     const sheet = sheets?.sheetsById[0]
 
     const account = await getServerAccount()
 
-    if (!account?.user.id)
-      return new Response(apiErrorMessage.ServerError, { status: 500 })
+    if (!account?.user.id) return createApiErrorResponse("ServerError")
 
     await sheet.addRow({
       requesterId: account?.user.id,
@@ -37,10 +35,10 @@ async function POST(request: NextRequest) {
     return NextResponse.json({ status: "ok" })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(error.message, { status: 400 })
+      return createApiErrorResponse("BadRequest", error.message)
     }
 
-    return new Response(apiErrorMessage.ServerError, { status: 500 })
+    return createApiErrorResponse("ServerError")
   }
 }
 

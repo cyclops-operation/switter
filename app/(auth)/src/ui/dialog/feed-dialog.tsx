@@ -66,6 +66,7 @@ export default function FeedDialog({ children }: FeedDialogProps) {
           title: "방어덱을 추가했습니다.",
         })
       },
+      useErrorBoundary: true,
     }
   )
 

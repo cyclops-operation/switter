@@ -55,6 +55,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
           title: "공격덱을 추가했습니다.",
         })
       },
+      useErrorBoundary: true,
     }
   )
 

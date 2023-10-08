@@ -4,8 +4,9 @@ import { NextRequest, NextResponse } from "next/server"
 import { monsterInfo } from "@/interface/monster"
 import z from "zod"
 
-import { apiErrorMessage } from "@/lib/error-message"
 import prisma from "@/lib/prisma"
+
+import { createApiErrorResponse } from "../action"
 
 export async function GET() {
   try {
@@ -16,10 +17,10 @@ export async function GET() {
     return NextResponse.json(monsterList)
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(error.message, { status: 400 })
+      return createApiErrorResponse("BadRequest", error.message)
     }
 
-    return new Response(apiErrorMessage.ServerError, { status: 500 })
+    return createApiErrorResponse("ServerError")
   }
 }
 
@@ -40,9 +41,9 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ status: "ok" })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(error.message, { status: 400 })
+      return createApiErrorResponse("BadRequest", error.message)
     }
 
-    return new Response(apiErrorMessage.ServerError, { status: 500 })
+    return createApiErrorResponse("ServerError")
   }
 }
