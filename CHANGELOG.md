@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.3](https://github.com/cyclops-operation/switter/compare/v1.0.2...v1.0.3) (2023-10-08)
+
+
+### Others
+
+* Release as 1.0.3 ([#50](https://github.com/cyclops-operation/switter/issues/50)) ([ce1e7ae](https://github.com/cyclops-operation/switter/commit/ce1e7ae209f4dded3411d6026db5be97aa586b0f))
+
+
+### Bug Fixes
+
+* **admin:** 사용자관리 &gt; 역할 변경기능 추가 ([ce1e7ae](https://github.com/cyclops-operation/switter/commit/ce1e7ae209f4dded3411d6026db5be97aa586b0f))
+* **create:** 피드, 코멘트 생성시 중복체크 및 에러핸들러 추가 ([ce1e7ae](https://github.com/cyclops-operation/switter/commit/ce1e7ae209f4dded3411d6026db5be97aa586b0f))
+* **feed:** 피드, 코맨트 키워드 입력조건 수정 ([ce1e7ae](https://github.com/cyclops-operation/switter/commit/ce1e7ae209f4dded3411d6026db5be97aa586b0f))
+
 ## [1.0.2](https://github.com/cyclops-operation/switter/compare/v1.0.1...v1.0.2) (2023-10-07)
 
 
