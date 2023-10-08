@@ -34,10 +34,14 @@ async function POST(request: NextRequest) {
 }
 
 async function PATCH(request: NextRequest) {
-  const { id, status }: { id: User["id"]; status: User["status"] } =
+  const {
+    id,
+    status,
+    role,
+  }: { id: User["id"]; status?: User["status"]; role?: User["role"] } =
     await request.json()
 
-  if (!id || !status) {
+  if (!id) {
     return new Response(apiErrorMessage.BadRequest, { status: 400 })
   }
 
@@ -47,6 +51,7 @@ async function PATCH(request: NextRequest) {
     },
     data: {
       status,
+      role,
     },
   })
 
