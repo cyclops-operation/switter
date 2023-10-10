@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.4](https://github.com/cyclops-operation/switter/compare/v1.0.3...v1.0.4) (2023-10-10)
+
+
+### Bug Fixes
+
+* **hotfix:** google sheet auth key  수정 ([4596f23](https://github.com/cyclops-operation/switter/commit/4596f23a09f47a276648a8966e9a5084280a94be))
+* **hotfix:** request-dialog 스타일 수정 ([eb73ad7](https://github.com/cyclops-operation/switter/commit/eb73ad7ce5167c108c99b637f4fed7087d2f039b))
+* **hotfix:** 몬스터 이미지 스타일 수정 ([af0e92e](https://github.com/cyclops-operation/switter/commit/af0e92e63df270d1b7686c4b22853b22a72de996))
+
 ## [1.0.3](https://github.com/cyclops-operation/switter/compare/v1.0.2...v1.0.3) (2023-10-08)
 
 
