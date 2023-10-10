@@ -1,15 +1,24 @@
-import { JWT } from "google-auth-library"
+import { GoogleAuth } from "google-auth-library"
 import { GoogleSpreadsheet } from "google-spreadsheet"
+
+const scopes = ["https://www.googleapis.com/auth/spreadsheets"]
 
 async function loadSpreadsheets() {
   try {
-    const formattedKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n")
+    const { privateKey } = JSON.parse(
+      process.env.GOOGLE_PRIVATE_KEY || "{ privateKey: null }"
+    )
 
-    const serviceAccountAuth = new JWT({
-      key: formattedKey,
-      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    const auth = new GoogleAuth({
+      scopes,
+      projectId: process.env.GOOGLE_PROJECT_ID,
+      credentials: {
+        private_key: privateKey,
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      },
     })
+
+    const serviceAccountAuth = await auth.getClient()
 
     const doc = new GoogleSpreadsheet(
       process.env.GOOGLE_DOCUMENT_ID || "",

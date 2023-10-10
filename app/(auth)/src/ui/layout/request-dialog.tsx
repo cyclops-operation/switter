@@ -93,13 +93,13 @@ export default function RequestDialog() {
         setIsDialogOpen(isDialogOpen)
       }}
     >
-      <DialogTrigger className="fixed bottom-10 right-10">
-        <motion.div
-          className="rounded-full bg-zinc-900 p-[12px] dark:bg-zinc-300"
+      <DialogTrigger className="fixed bottom-10 right-10 z-[9999]">
+        <motion.span
+          className="block rounded-full bg-zinc-900 p-[12px] dark:bg-zinc-300"
           whileHover={{ scale: 1.1 }}
         >
           <Icons.mail className="text-zinc-200 dark:text-zinc-700" size={20} />
-        </motion.div>
+        </motion.span>
       </DialogTrigger>
 
       <DialogContent className="w-96">
