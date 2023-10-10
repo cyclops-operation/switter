@@ -19,10 +19,11 @@ export default function useFeedDelete() {
       )
     },
     {
-      onSuccess: () => {
-        queryClient
-          .invalidateQueries([apiRoute.Feed])
-          .then(() => queryClient.invalidateQueries([apiRoute.Comment]))
+      onSuccess: async () => {
+        await Promise.all([
+          queryClient.invalidateQueries([apiRoute.Feed]),
+          queryClient.invalidateQueries([apiRoute.Comment]),
+        ])
       },
     }
   )
