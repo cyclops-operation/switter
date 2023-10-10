@@ -9,11 +9,13 @@ async function loadSpreadsheets() {
       process.env.GOOGLE_PRIVATE_KEY || "{ privateKey: null }"
     )
 
+    const private_key = privateKey.replace(/\\n/g, "\n")
+
     const auth = new GoogleAuth({
       scopes,
       projectId: process.env.GOOGLE_PROJECT_ID,
       credentials: {
-        private_key: privateKey,
+        private_key,
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
       },
     })
