@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
+import { getDynamicRoute } from "@/lib/utils"
 
 export default function useFeedList() {
   const searchParams = useSearchParams()
@@ -14,11 +15,11 @@ export default function useFeedList() {
   const { data: feedList = [], isLoading: isFeedListLoading } = useQuery(
     [apiRoute.Feed, searchTerm],
     async () => {
-      const hasSearchTerm = Boolean(searchTerm)
-
-      const url = hasSearchTerm
-        ? `${apiRoute.Feed}?searchTerm=${searchTerm}`
-        : apiRoute.Feed
+      const url = getDynamicRoute(apiRoute.Feed, {
+        query: {
+          searchTerm,
+        },
+      })
 
       return await axios.get<FeedList[]>(url).then((res) => res.data)
     }

@@ -17,6 +17,7 @@ import { useSession } from "next-auth/react"
 import { dateDistanceToNow } from "@/lib/date"
 import { apiErrorMessage } from "@/lib/error-message"
 import { pageRoute } from "@/lib/page-route"
+import { getDynamicRoute } from "@/lib/utils"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -62,7 +63,11 @@ export default function FeedList() {
   }
 
   const handleFeedClick = (feedId: number) => {
-    routerPush(pageRoute.FeedDetail(String(feedId)))
+    routerPush(
+      getDynamicRoute(pageRoute.Feed, {
+        query: { feedId },
+      })
+    )
   }
 
   const isPresent = useIsPresent()

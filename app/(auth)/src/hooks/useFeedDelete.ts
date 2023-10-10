@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
+import { getDynamicRoute } from "@/lib/utils"
 
 export default function useFeedDelete() {
   const queryClient = useQueryClient()
@@ -9,7 +10,13 @@ export default function useFeedDelete() {
   const { mutateAsync: deleteFeed } = useMutation(
     [apiRoute.Feed],
     async (feedId: number) => {
-      await axios.delete(`${apiRoute.Feed}?feedId=${feedId}`)
+      await axios.delete(
+        getDynamicRoute(apiRoute.Feed, {
+          query: {
+            feedId,
+          },
+        })
+      )
     },
     {
       onSuccess: () => {
