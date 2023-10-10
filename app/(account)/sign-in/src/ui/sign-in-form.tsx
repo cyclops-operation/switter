@@ -65,13 +65,13 @@ export default function SignInForm() {
         callbackUrl: pageRoute.Waiting,
       })
     } catch (error) {
+      setIsLoading(false)
+
       if (error instanceof z.ZodError) {
         return new Response(error.message, { status: 400 })
       }
 
       return new Response(apiErrorMessage.ServerError, { status: 500 })
-    } finally {
-      setIsLoading(false)
     }
   }
 
