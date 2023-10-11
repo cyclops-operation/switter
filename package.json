@@ -57,7 +57,6 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
-    "dayjs": "^1.11.10",
     "framer-motion": "^10.16.4",
     "lucide-react": "0.105.0-alpha.4",
     "next": "^13.5.2",

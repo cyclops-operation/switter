@@ -2,7 +2,7 @@ import { env } from "process"
 import { NextRequest, NextResponse } from "next/server"
 
 import { requestRowForm } from "@/interface/sheet"
-import dayjs from "dayjs"
+import { format } from "date-fns"
 import z from "zod"
 
 import { getServerAccount } from "@/lib/utils"
@@ -27,7 +27,7 @@ async function POST(request: NextRequest) {
           설명: description,
           요청자: account?.user.nickname,
           타입: type,
-          요청일자: dayjs().format("YYYY-MM-DD"),
+          요청일자: format(new Date(), "yyyy.MM.dd"),
         },
       },
     ])
