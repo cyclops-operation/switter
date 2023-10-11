@@ -47,9 +47,10 @@ export default function CommentDialog({ children }: CommentDialogProps) {
     },
     {
       onSuccess: async () => {
-        await queryClient.invalidateQueries([apiRoute.Comment])
-
-        await queryClient.invalidateQueries([apiRoute.Feed])
+        await Promise.all([
+          queryClient.invalidateQueries([apiRoute.Comment]),
+          queryClient.invalidateQueries([apiRoute.Feed]),
+        ])
 
         toast({
           title: "공격덱을 추가했습니다.",

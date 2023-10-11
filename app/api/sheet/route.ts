@@ -1,12 +1,14 @@
+import { env } from "process"
 import { NextRequest, NextResponse } from "next/server"
 
 import { requestRowForm } from "@/interface/sheet"
+import { format } from "date-fns"
 import z from "zod"
 
 import { getServerAccount } from "@/lib/utils"
 
 import { createApiErrorResponse } from "../action"
-import { loadSpreadsheets } from "./action"
+import { addRecord } from "./action"
 
 async function POST(request: NextRequest) {
   try {
@@ -14,23 +16,21 @@ async function POST(request: NextRequest) {
 
     const { type, title, description } = requestRowForm.parse(payload)
 
-    const sheets = await loadSpreadsheets()
-
-    if (!sheets) return createApiErrorResponse("ServerError")
-
-    const sheet = sheets?.sheetsById[0]
-
     const account = await getServerAccount()
 
     if (!account?.user.id) return createApiErrorResponse("ServerError")
 
-    await sheet.addRow({
-      requesterId: account?.user.id,
-      nickname: account?.user.nickname,
-      type,
-      title,
-      description,
-    })
+    await addRecord(env.AIRTABLE_CS_TABLE_TITLE ?? "", [
+      {
+        fields: {
+          제목: title,
+          설명: description,
+          요청자: account?.user.nickname,
+          타입: type,
+          요청일자: format(new Date(), "yyyy.MM.dd"),
+        },
+      },
+    ])
 
     return NextResponse.json({ status: "ok" })
   } catch (error) {

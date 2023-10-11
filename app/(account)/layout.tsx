@@ -23,7 +23,7 @@ export default async function AccountLayout({ children }: AccountLayoutProps) {
   }
 
   return (
-    <main className="flex-co relative flex h-screen items-center justify-center bg-zinc-100 dark:bg-zinc-950">
+    <main className="flex h-screen items-center justify-center bg-zinc-100 dark:bg-zinc-950">
       <Card className="mx-10 my-52 flex h-[598px] overflow-hidden">
         <div className="flex w-[400px] flex-col">{children}</div>
 
