@@ -38,7 +38,7 @@ async function POST(request: NextRequest) {
       return createApiErrorResponse("BadRequest", error.message)
     }
 
-    return createApiErrorResponse("ServerError")
+    return createApiErrorResponse("ServerError", String(error))
   }
 }
 
