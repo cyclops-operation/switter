@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.5](https://github.com/cyclops-operation/switter/compare/v1.0.4...v1.0.5) (2023-10-12)
+
+
+### Others
+
+* **release:** 1.0.5 배포 🎉 ([#56](https://github.com/cyclops-operation/switter/issues/56)) ([ed1d491](https://github.com/cyclops-operation/switter/commit/ed1d49177adcd71fad91e5a01ea69ee367bf4e67))
+
+
+### Bug Fixes
+
+* MVP 배포 이후 자체 QA ([#55](https://github.com/cyclops-operation/switter/issues/55)) ([ed1d491](https://github.com/cyclops-operation/switter/commit/ed1d49177adcd71fad91e5a01ea69ee367bf4e67))
+
 ## [1.0.4](https://github.com/cyclops-operation/switter/compare/v1.0.3...v1.0.4) (2023-10-10)
 
 
