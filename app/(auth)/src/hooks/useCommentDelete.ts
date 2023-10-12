@@ -21,10 +21,11 @@ export default function useCommentDelete() {
         await axios.delete(`${apiRoute.Comment}?commentId=${commentId}`)
       },
       {
-        onSuccess: () => {
-          queryClient
-            .invalidateQueries([apiRoute.Comment, feedId])
-            .then(() => queryClient.invalidateQueries([apiRoute.Feed]))
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries([apiRoute.Comment, feedId]),
+            queryClient.invalidateQueries([apiRoute.Feed]),
+          ])
         },
       }
     )

@@ -17,6 +17,7 @@ import { useSession } from "next-auth/react"
 import { dateDistanceToNow } from "@/lib/date"
 import { apiErrorMessage } from "@/lib/error-message"
 import { pageRoute } from "@/lib/page-route"
+import { getDynamicRoute } from "@/lib/utils"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -62,7 +63,11 @@ export default function FeedList() {
   }
 
   const handleFeedClick = (feedId: number) => {
-    routerPush(pageRoute.FeedDetail(String(feedId)))
+    routerPush(
+      getDynamicRoute(pageRoute.Feed, {
+        query: { feedId },
+      })
+    )
   }
 
   const isPresent = useIsPresent()
@@ -72,9 +77,9 @@ export default function FeedList() {
   const isAdmin = session?.user.role === userRole.Enum.ADMIN
 
   return (
-    <div className="pb-4">
+    <div className="h-full pb-4">
       {isFeedListLoading ? (
-        <Loading className="h-full w-full" />
+        <Loading className="pt-56" height="fit" />
       ) : (
         <ul className="grid grid-cols-4 gap-[16px_8px] max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
           <FeedDialog>

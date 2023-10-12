@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     container: pandoc/latex
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install mustache (to update the date)
         run: apk add ruby && gem install mustache
       - name: creates output

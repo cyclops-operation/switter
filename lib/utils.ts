@@ -31,4 +31,33 @@ async function getServerAccount() {
   return session
 }
 
-export { cn, debounce, getServerAccount }
+interface DynamicRouteParams {
+  path?: Record<string, unknown>
+  query?: Record<string, unknown>
+}
+
+function getDynamicRoute(baseRoute: string, params?: DynamicRouteParams) {
+  if (!params) return baseRoute
+
+  const { path, query } = params
+
+  const pathString = path
+    ? Object.entries(path).reduce(
+        (acc, [key, value]) => acc + `/${value ?? `[${key}]`}`,
+        ""
+      )
+    : ""
+
+  const queryString = query
+    ? Object.entries(query).reduce(
+        (acc, [key, value]) => acc + (value ? `${key}=${value}` : ""),
+        "?"
+      )
+    : ""
+
+  const result = baseRoute + pathString + queryString
+
+  return result
+}
+
+export { cn, debounce, getDynamicRoute, getServerAccount }

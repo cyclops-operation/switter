@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/common/icons"
-import Loading from "@/components/common/loading"
+import FullPageLoading from "@/components/common/loading/full-page"
 
 import { Button } from "../../../../../components/ui/button"
 
@@ -65,13 +65,13 @@ export default function SignInForm() {
         callbackUrl: pageRoute.Waiting,
       })
     } catch (error) {
+      setIsLoading(false)
+
       if (error instanceof z.ZodError) {
         return new Response(error.message, { status: 400 })
       }
 
       return new Response(apiErrorMessage.ServerError, { status: 500 })
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -164,7 +164,7 @@ export default function SignInForm() {
         </form>
       </Form>
 
-      {isLoading && <Loading className="fixed inset-0 bg-foreground/30" />}
+      {isLoading && <FullPageLoading />}
     </>
   )
 }
