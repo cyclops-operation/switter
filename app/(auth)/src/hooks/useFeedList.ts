@@ -1,6 +1,6 @@
 import { useSearchParams } from "next/navigation"
 
-import { FeedList } from "@/interface/feed"
+import { FeedItem } from "@/interface/feed"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
@@ -21,7 +21,7 @@ export default function useFeedList() {
         },
       })
 
-      return await axios.get<FeedList[]>(url).then((res) => res.data)
+      return await axios.get<FeedItem[]>(url).then((res) => res.data)
     }
   )
 

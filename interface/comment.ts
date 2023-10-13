@@ -10,6 +10,6 @@ const attackMonster = z.object({
 
 type AttackMonster = z.infer<typeof attackMonster>
 
-type CommentList = { author: User; id: number } & { feed: Feed } & Comment
+type CommentItem = { author: User; id: number } & { feed: Feed } & Comment
 
-export { attackMonster, type AttackMonster, type CommentList }
+export { attackMonster, type AttackMonster, type CommentItem }

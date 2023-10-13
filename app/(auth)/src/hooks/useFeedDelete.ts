@@ -1,6 +1,6 @@
 import { useSearchParams } from "next/navigation"
 
-import { FeedList } from "@/interface/feed"
+import { FeedItem } from "@/interface/feed"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 
@@ -20,7 +20,7 @@ export default function useFeedDelete() {
   const { mutateAsync: deleteFeed, isLoading } = useMutation(
     [apiRoute.Feed],
     async (feedId: number) => {
-      queryClient.setQueryData<FeedList[]>(
+      queryClient.setQueryData<FeedItem[]>(
         [apiRoute.Feed, searchTerm],
         (list) => list?.filter(({ id }) => id !== feedId)
       )

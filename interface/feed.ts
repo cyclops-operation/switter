@@ -21,12 +21,12 @@ type DefenseMonster = z.infer<typeof defenseMonster>
 
 type DefenseMonsterSearch = z.infer<typeof defenseMonsterSearch>
 
-type FeedList = { author: User; comments: Comment[] } & Feed
+type FeedItem = { author: User; comments: Comment[] } & Feed
 
 export {
   defenseMonster,
   defenseMonsterSearch,
   type DefenseMonster,
   type DefenseMonsterSearch,
-  type FeedList,
+  type FeedItem,
 }
