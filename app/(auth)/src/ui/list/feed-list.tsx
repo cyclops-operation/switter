@@ -33,6 +33,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/common/icons"
 import Loading from "@/components/common/loading"
+import FullPageLoading from "@/components/common/loading/full-page"
 import { Meteors } from "@/components/common/meteor-effect"
 import MonsterImage from "@/components/common/monster-image"
 
@@ -54,7 +55,7 @@ export default function FeedList() {
 
   const { feedList, isFeedListLoading } = useFeedList()
 
-  const { deleteFeed } = useFeedDelete()
+  const { deleteFeed, isLoading } = useFeedDelete()
 
   const handleFeedDelete = (feedId: number) => {
     if (!feedId) throw Error(apiErrorMessage.BadRequest)
@@ -75,6 +76,8 @@ export default function FeedList() {
   const userId = session?.user.id
 
   const isAdmin = session?.user.role === userRole.Enum.ADMIN
+
+  if (isLoading) return <FullPageLoading />
 
   return (
     <div className="h-full pb-4">
