@@ -1,6 +1,6 @@
 import { useSearchParams } from "next/navigation"
 
-import { CommentList } from "@/interface/comment"
+import { CommentItem } from "@/interface/comment"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
@@ -15,7 +15,7 @@ export default function useCommentList() {
     [apiRoute.Comment, feedId],
     async () => {
       return await axios
-        .get<CommentList[]>(`${apiRoute.Comment}?feedId=${feedId}`)
+        .get<CommentItem[]>(`${apiRoute.Comment}?feedId=${feedId}`)
         .then((res) => res.data)
     },
     {
