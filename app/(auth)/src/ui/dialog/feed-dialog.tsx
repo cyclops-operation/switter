@@ -23,6 +23,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
+import FullPageLoading from "@/components/common/loading/full-page"
 import MonsterImage from "@/components/common/monster-image"
 
 import MonsterSearchDialog from "./monster-search-dialog"
@@ -55,7 +56,7 @@ export default function FeedDialog({ children }: FeedDialogProps) {
     name: "defencseMonsterList",
   })
 
-  const { mutate: createFeed } = useMutation(
+  const { mutate: createFeed, isLoading } = useMutation(
     [apiRoute.Feed],
     async (feed: DefenseMonster) => axios.post(apiRoute.Feed, feed),
     {
@@ -80,6 +81,8 @@ export default function FeedDialog({ children }: FeedDialogProps) {
 
     handleReset()
   }
+
+  if (isLoading) return <FullPageLoading />
 
   return (
     <Dialog

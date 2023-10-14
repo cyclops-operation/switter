@@ -39,7 +39,7 @@ export default function RoleSelect({ id, role }: RoleSelectProps) {
       }),
     {
       onSuccess: () => {
-        toast({ title: "유저 상태가 변경되었습니다." })
+        toast({ title: "유저 역할이 변경되었습니다." })
         refresh()
       },
     }
