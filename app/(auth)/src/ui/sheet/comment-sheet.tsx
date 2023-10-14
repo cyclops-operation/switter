@@ -61,7 +61,8 @@ export default function CommentSheet() {
 
   const { commentList, isCommentListLoading } = useCommentList()
 
-  const { deleteComment, isDeleteCommentLoading } = useCommentDelete()
+  const { deleteComment, isLoading: isDeleteCommentLoading } =
+    useCommentDelete()
 
   const isPresent = useIsPresent()
 
