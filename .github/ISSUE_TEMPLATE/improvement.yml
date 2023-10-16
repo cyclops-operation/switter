@@ -1,0 +1,16 @@
+name: 기능 개선
+title: "[Improvement]: "
+labels: ["➕ Improvement"]
+description: 기능 개선을 위한 이슈 템플릿입니다.
+body:
+  - type: textarea
+    attributes:
+      label: 필요성
+      description: "개선이 필요하다고 생각한 부분과 이유를 작성해주세요."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 개선 사항
+      description: "개선할 내용을 작성해주세요. 개선 결과를 보여줄 수 있는 레퍼런스 등을 첨부할 수 있습니다."

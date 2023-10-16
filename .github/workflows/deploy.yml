@@ -3,6 +3,8 @@ name: Deploy Production
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - ".github/**/*.tsx"
 
 jobs:
   build:
