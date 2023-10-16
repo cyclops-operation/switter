@@ -8,7 +8,7 @@ import prisma from "@/lib/prisma"
 
 import { createApiErrorResponse } from "../action"
 
-export async function GET() {
+async function GET() {
   try {
     const getMonsterList = await prisma.monster.findMany()
 
@@ -24,7 +24,27 @@ export async function GET() {
   }
 }
 
-export async function PATCH(request: NextRequest) {
+async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+
+    const payload = monsterInfo.parse(body)
+
+    await prisma.monster.create({
+      data: payload,
+    })
+
+    return NextResponse.json({ status: "ok" })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return createApiErrorResponse("BadRequest", error.message)
+    }
+
+    return createApiErrorResponse("ServerError")
+  }
+}
+
+async function PATCH(request: NextRequest) {
   try {
     const body = await request.json()
 
@@ -47,3 +67,5 @@ export async function PATCH(request: NextRequest) {
     return createApiErrorResponse("ServerError")
   }
 }
+
+export { GET, PATCH, POST }

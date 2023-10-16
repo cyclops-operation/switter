@@ -14,18 +14,18 @@ import {
 } from "@/components/common/content-header"
 import { getUsers } from "@/app/api/user/action"
 
-import RoleSelect from "./src/ui/role-select"
-import StatusSelect from "./src/ui/status-select"
+import RoleSelect from "../src/ui/role-select"
+import StatusSelect from "../src/ui/status-select"
 
 export default async function Admin() {
   const pendingUsers = await getUsers()
 
   return (
-    <section className="container">
+    <>
       <ContentHeader>
-        <ContentTitle>관리자 페이지</ContentTitle>
+        <ContentTitle>가입 승인 관리</ContentTitle>
         <ContentSubtitle>
-          관리자 페이지에선 가입 요청을 한 유저의 승인을 할 수 있습니다.
+          가입 요청을 한 유저를 승인하거나 유저 역할을 변경할 수 있습니다.
         </ContentSubtitle>
       </ContentHeader>
 
@@ -61,6 +61,6 @@ export default async function Admin() {
           가입을 승인하면 해당 유저는 모든 서비스를 이용할 수 있습니다
         </TableCaption>
       </Table>
-    </section>
+    </>
   )
 }
