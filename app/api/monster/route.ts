@@ -8,7 +8,7 @@ import prisma from "@/lib/prisma"
 
 import { createApiErrorResponse } from "../action"
 
-async function GET() {
+async function GET(request: NextRequest) {
   try {
     const getMonsterList = await prisma.monster.findMany()
 

@@ -1,6 +1,7 @@
 import {
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -24,14 +25,21 @@ const AdminMonster = () => (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[300px]">길드명</TableHead>
-          <TableHead>인게임 닉네임</TableHead>
-          <TableHead className="w-[130px]">역할</TableHead>
-          <TableHead className="w-[130px]">상태</TableHead>
+          <TableHead className="w-[250px]">원어명</TableHead>
+          <TableHead className="w-[250px]">한글명</TableHead>
+          <TableHead className="w-[200px]">속성</TableHead>
+          <TableHead>키워드</TableHead>
         </TableRow>
       </TableHeader>
 
-      <TableBody></TableBody>
+      <TableBody>
+        <TableRow>
+          <TableCell>dfs</TableCell>
+          <TableCell>dfs</TableCell>
+          <TableCell>dfs</TableCell>
+          <TableCell>dfs</TableCell>
+        </TableRow>
+      </TableBody>
     </Table>
   </>
 )
