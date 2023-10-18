@@ -56,10 +56,9 @@ function getDynamicRoute(baseRoute: string, params?: DynamicRouteParams) {
     : ""
 
   const queryString = query
-    ? Object.entries(query).reduce(
-        (acc, [key, value]) => acc + (value ? `${key}=${value}` : ""),
-        "?"
-      )
+    ? `?${Object.entries(query)
+        .map(([key, value]) => (value ? `${key}=${value}` : ""))
+        .join("&")}`
     : ""
 
   const result = baseRoute + pathString + queryString

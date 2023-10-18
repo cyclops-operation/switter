@@ -1,18 +1,19 @@
 "use client"
 
-import { ChangeEvent, ReactNode, useMemo, useState } from "react"
+import { ChangeEvent, ReactNode, useState } from "react"
 
 import { MonsterInfo } from "@/interface/monster"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
-import { debounce } from "@/lib/utils"
+import { debounce, getDynamicRoute } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { FormDescription } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Loading from "@/components/common/loading"
 
 interface MonsterDialogProps {
   selectedMonster: ReactNode
@@ -26,10 +27,20 @@ export default function MonsterSearchDialog({
 }: MonsterDialogProps) {
   const [searchTerm, setSearchTerm] = useState("")
 
-  const { data: monsterList } = useQuery<MonsterInfo[]>(
-    [apiRoute.Monster],
+  const { isLoading, data: monsterList } = useQuery<MonsterInfo[]>(
+    [apiRoute.Monster, searchTerm],
     async () => {
-      return await axios.get(apiRoute.Monster).then((res) => res.data)
+      return await axios
+        .get(
+          getDynamicRoute(apiRoute.Monster, {
+            query: {
+              searchTerm,
+              page: 1,
+              limit: 18,
+            },
+          })
+        )
+        .then((res) => res.data)
     }
   )
 
@@ -42,23 +53,8 @@ export default function MonsterSearchDialog({
     debounceSearchTerm(searchTerm)
   }
 
-  const searchedMonsterList = useMemo(() => {
-    if (!searchTerm || !monsterList?.length) return []
-
-    return monsterList?.filter((monsterInfo) => {
-      return (
-        monsterInfo.originName
-          .toLocaleLowerCase()
-          .indexOf(searchTerm.toLocaleLowerCase()) !== -1 ||
-        monsterInfo.monsterName?.indexOf(searchTerm) !== -1 ||
-        monsterInfo.keyword.some((word) => word.indexOf(searchTerm) !== -1)
-      )
-    })
-  }, [monsterList, searchTerm])
-
   const isVisibleSearchedMonster =
-    Boolean(searchedMonsterList.length) &&
-    typeof renderSearchedMonster === "function"
+    Boolean(monsterList?.length) && typeof renderSearchedMonster === "function"
 
   return (
     <Dialog
@@ -88,18 +84,23 @@ export default function MonsterSearchDialog({
           />
         </div>
 
-        {isVisibleSearchedMonster ? (
-          <>
-            <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
-              {renderSearchedMonster(searchedMonsterList)}
-            </div>
-
-            {selectedMonster}
-          </>
+        {isLoading ? (
+          <Loading className="h-[212px]" />
         ) : (
           <>
-            {searchTerm && (
-              <FormDescription>검색 결과가 없습니다.</FormDescription>
+            {isVisibleSearchedMonster ? (
+              <>
+                <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
+                  {renderSearchedMonster(monsterList ?? [])}
+                </div>
+                {selectedMonster}
+              </>
+            ) : (
+              <>
+                {searchTerm && (
+                  <FormDescription>검색 결과가 없습니다.</FormDescription>
+                )}
+              </>
             )}
           </>
         )}

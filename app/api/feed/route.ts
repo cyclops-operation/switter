@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 
 import { defenseMonster, defenseMonsterSearch } from "@/interface/feed"
-import { MonsterList } from "@/interface/monster"
+import { DeckMonsterList } from "@/interface/monster"
 import { getServerSession } from "next-auth"
 import z from "zod"
 
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
       select: {
         monsterList: true,
       },
-    })) as { monsterList: MonsterList }[]
+    })) as { monsterList: DeckMonsterList }[]
 
     /** 등록된 전체 피드의 방덱 몬스터 아이디 배열 */
     const allFeedMonsterListByIdList = allFeedMonsterList.map(

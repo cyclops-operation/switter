@@ -1,11 +1,11 @@
 import { Comment, Feed, User } from "@prisma/client"
 import z from "zod"
 
-import { monsterList } from "./monster"
+import { deckMonsterList } from "./monster"
 
 const attackMonster = z.object({
   feedId: z.string().optional(),
-  attackMonsterList: monsterList,
+  attackMonsterList: deckMonsterList,
 })
 
 type AttackMonster = z.infer<typeof attackMonster>

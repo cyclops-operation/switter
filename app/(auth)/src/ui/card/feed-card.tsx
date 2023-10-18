@@ -1,7 +1,7 @@
 "use client"
 
 import { FeedItem } from "@/interface/feed"
-import { MonsterList } from "@/interface/monster"
+import { DeckMonsterList } from "@/interface/monster"
 import { userRole } from "@/interface/user"
 import { Comment } from "@prisma/client"
 import clsx from "clsx"
@@ -28,7 +28,7 @@ const FeedCard = ({
   comments,
   onDelete,
 }: FeedCardProps) => {
-  const defenseMonsterList = monsterList as MonsterList
+  const defenseMonsterList = monsterList as DeckMonsterList
   const attackMonsterList = comments as Comment[]
 
   return (

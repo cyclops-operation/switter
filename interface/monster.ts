@@ -22,15 +22,23 @@ const monsterInfo = z.object({
   keyword: z.array(z.string()),
 })
 
+const monsterSearch = z.object({
+  searchTerm: z.string().optional(),
+  page: z.number().optional(),
+  limit: z.number().optional(),
+})
+
 type MonsterInfo = z.infer<typeof monsterInfo>
 
-const monsterList = z
+type MonsterSearch = z.infer<typeof monsterSearch>
+
+const deckMonsterList = z
   .array(monsterInfo)
   .min(3, {
-    message: formErrorMessage.monsterList.length,
+    message: formErrorMessage.deckMonsterList.length,
   })
   .max(3, {
-    message: formErrorMessage.monsterList.length,
+    message: formErrorMessage.deckMonsterList.length,
   })
   .refine(
     (monster) => {
@@ -44,17 +52,19 @@ const monsterList = z
       return monsterMap.size === monster.length
     },
     {
-      message: formErrorMessage.monsterList.duplicated,
+      message: formErrorMessage.deckMonsterList.duplicated,
     }
   )
 
-type MonsterList = z.infer<typeof monsterList>
+type DeckMonsterList = z.infer<typeof deckMonsterList>
 
 export {
+  deckMonsterList,
   monsterElement,
   monsterInfo,
-  monsterList,
+  monsterSearch,
+  type DeckMonsterList,
   type MonsterElement,
   type MonsterInfo,
-  type MonsterList,
+  type MonsterSearch,
 }

@@ -3,7 +3,7 @@
 import { useMemo } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
-import { MonsterList } from "@/interface/monster"
+import { DeckMonsterList } from "@/interface/monster"
 import { userRole } from "@/interface/user"
 import clsx from "clsx"
 import {
@@ -67,7 +67,7 @@ export default function CommentSheet() {
 
     const feed = commentList[0].feed
 
-    const feedMonsterList = feed.monsterList as MonsterList
+    const feedMonsterList = feed.monsterList as DeckMonsterList
 
     const author = commentList[0].author
 

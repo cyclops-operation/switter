@@ -3,14 +3,14 @@ import z from "zod"
 
 import { formErrorMessage } from "@/lib/error-message"
 
-import { monsterList } from "./monster"
+import { deckMonsterList } from "./monster"
 
 const defenseMonster = z.object({
   keyword: z
     .string()
     .min(3, { message: formErrorMessage.keyword.minLength })
     .max(3, { message: formErrorMessage.keyword.maxLength }),
-  defencseMonsterList: monsterList,
+  defencseMonsterList: deckMonsterList,
 })
 
 const defenseMonsterSearch = z.object({

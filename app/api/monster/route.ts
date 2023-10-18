@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextRequest, NextResponse } from "next/server"
 
-import { monsterInfo } from "@/interface/monster"
+import { monsterInfo, monsterSearch } from "@/interface/monster"
 import z from "zod"
 
 import prisma from "@/lib/prisma"
@@ -10,11 +10,50 @@ import { createApiErrorResponse } from "../action"
 
 async function GET(request: NextRequest) {
   try {
-    const getMonsterList = await prisma.monster.findMany()
+    const { searchParams } = new URL(request.url)
 
-    const monsterList = z.array(monsterInfo).parse(getMonsterList)
+    const searchTerm = searchParams.get("searchTerm") || ""
+    const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1
+    const limit = searchParams.get("limit")
+      ? Number(searchParams.get("limit"))
+      : 10
 
-    return NextResponse.json(monsterList)
+    const { success: hasSearchTerm } = monsterSearch.safeParse({
+      searchTerm,
+    })
+
+    let monsterList = []
+
+    const commonArgs = {
+      take: limit,
+      skip: limit * (page - 1),
+    }
+
+    if (hasSearchTerm) {
+      monsterList = await prisma.monster.findMany({
+        where: {
+          OR: [
+            {
+              monsterName: {
+                contains: searchTerm,
+              },
+            },
+            {
+              originName: {
+                contains: searchTerm,
+              },
+            },
+          ],
+        },
+        ...commonArgs,
+      })
+    } else {
+      monsterList = await prisma.monster.findMany(commonArgs)
+    }
+
+    const parsedMonsterList = z.array(monsterInfo).parse(monsterList)
+
+    return NextResponse.json(parsedMonsterList)
   } catch (error) {
     if (error instanceof z.ZodError) {
       return createApiErrorResponse("BadRequest", error.message)
