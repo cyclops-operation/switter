@@ -1,19 +1,18 @@
 "use client"
 
-import { ChangeEvent, ReactNode, useState } from "react"
+import { ChangeEvent, ReactNode } from "react"
 
+import useDebounceState from "@/hook/useDebounceState"
 import { MonsterInfo } from "@/interface/monster"
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
 
-import { apiRoute } from "@/lib/api-route"
-import { debounce, getDynamicRoute } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { FormDescription } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Loading from "@/components/common/loading"
+
+import useMonsterList from "../../hooks/useMonsterList"
 
 interface MonsterDialogProps {
   selectedMonster: ReactNode
@@ -25,32 +24,17 @@ export default function MonsterSearchDialog({
   selectedMonster,
   renderSearchedMonster,
 }: MonsterDialogProps) {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useDebounceState("")
 
-  const { isLoading, data: monsterList } = useQuery<MonsterInfo[]>(
-    [apiRoute.Monster, searchTerm],
-    async () => {
-      return await axios
-        .get(
-          getDynamicRoute(apiRoute.Monster, {
-            query: {
-              searchTerm,
-              page: 1,
-              limit: 18,
-            },
-          })
-        )
-        .then((res) => res.data)
-    }
-  )
-
-  const debounceSearchTerm = debounce((searchTerm: string) => {
-    setSearchTerm(searchTerm)
-  }, 500)
+  const { isLoading, data: monsterList } = useMonsterList({
+    searchTerm,
+    page: 1,
+    limit: 18,
+  })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value: searchTerm } = e.target
-    debounceSearchTerm(searchTerm)
+    setSearchTerm(searchTerm)
   }
 
   const isVisibleSearchedMonster =

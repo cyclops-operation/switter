@@ -1,16 +1,10 @@
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import {
   ContentHeader,
   ContentSubtitle,
   ContentTitle,
 } from "@/components/common/content-header"
+
+import MonsterTable from "./src/ui/monster-table"
 
 const AdminMonster = () => (
   <>
@@ -22,25 +16,7 @@ const AdminMonster = () => (
       </ContentSubtitle>
     </ContentHeader>
 
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[250px]">원어명</TableHead>
-          <TableHead className="w-[250px]">한글명</TableHead>
-          <TableHead className="w-[200px]">속성</TableHead>
-          <TableHead>키워드</TableHead>
-        </TableRow>
-      </TableHeader>
-
-      <TableBody>
-        <TableRow>
-          <TableCell>dfs</TableCell>
-          <TableCell>dfs</TableCell>
-          <TableCell>dfs</TableCell>
-          <TableCell>dfs</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <MonsterTable />
   </>
 )
 

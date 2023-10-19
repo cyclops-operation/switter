@@ -6,9 +6,11 @@ import {
   BellRing,
   ChevronDownIcon,
   Crown,
+  Droplet,
   Eye,
   EyeOff,
   FileEdit,
+  Flame,
   Info,
   LucideProps,
   Mail,
@@ -22,6 +24,7 @@ import {
   Twitter,
   Watch,
   WebhookIcon,
+  Wind,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -50,6 +53,9 @@ const Icons = {
   batteryCharging: BatteryCharging,
   reset: RotateCcw,
   crown: Crown,
+  droplet: Droplet,
+  wind: Wind,
+  flame: Flame,
   prev: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
