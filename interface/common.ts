@@ -26,4 +26,14 @@ type UseQueryParams<P = unknown, R = unknown> = (
   context?: Record<string, unknown>
 }
 
-export { commonRange, type CommonRange, type UseQueryParams }
+type ListWithCount<L> = {
+  list: L
+  total: number
+}
+
+export {
+  commonRange,
+  type CommonRange,
+  type ListWithCount,
+  type UseQueryParams,
+}

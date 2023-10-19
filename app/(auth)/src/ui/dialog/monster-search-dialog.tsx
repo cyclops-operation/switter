@@ -38,7 +38,7 @@ export default function MonsterSearchDialog({
   }
 
   const isVisibleSearchedMonster =
-    Boolean(monsterList?.length) && typeof renderSearchedMonster === "function"
+    Boolean(monsterList?.total) && typeof renderSearchedMonster === "function"
 
   return (
     <Dialog
@@ -75,7 +75,7 @@ export default function MonsterSearchDialog({
             {isVisibleSearchedMonster ? (
               <>
                 <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
-                  {renderSearchedMonster(monsterList ?? [])}
+                  {renderSearchedMonster(monsterList?.list ?? [])}
                 </div>
                 {selectedMonster}
               </>

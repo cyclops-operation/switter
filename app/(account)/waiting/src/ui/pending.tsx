@@ -25,7 +25,7 @@ export default async function AccountPending() {
       const payload: NotificationType = {
         title: "새로운 유저가 가입을 신청했습니다.",
         description: "유저 권한을 확인해주세요.",
-        url: pageRoute.Admin,
+        url: pageRoute.Admin.Request,
       }
 
       return await axios.post(apiRoute.Notification, payload)

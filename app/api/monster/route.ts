@@ -22,7 +22,8 @@ async function GET(request: NextRequest) {
       searchTerm,
     })
 
-    let monsterList = []
+    let list = []
+    let total
 
     const commonArgs = {
       take: limit,
@@ -30,7 +31,7 @@ async function GET(request: NextRequest) {
     }
 
     if (hasSearchTerm) {
-      monsterList = await prisma.monster.findMany({
+      const keywordArgs = {
         where: {
           OR: [
             {
@@ -45,15 +46,28 @@ async function GET(request: NextRequest) {
             },
           ],
         },
-        ...commonArgs,
-      })
+      }
+
+      const [monsters, count] = await prisma.$transaction([
+        prisma.monster.findMany({ ...keywordArgs, ...commonArgs }),
+        prisma.monster.count(keywordArgs),
+      ])
+
+      list = monsters
+      total = count
     } else {
-      monsterList = await prisma.monster.findMany(commonArgs)
+      const [monsters, count] = await prisma.$transaction([
+        prisma.monster.findMany(commonArgs),
+        prisma.monster.count(),
+      ])
+
+      list = monsters
+      total = count
     }
 
-    const parsedMonsterList = z.array(monsterInfo).parse(monsterList)
+    const parsedMonsterList = z.array(monsterInfo).parse(list)
 
-    return NextResponse.json(parsedMonsterList)
+    return NextResponse.json({ list: parsedMonsterList, total })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return createApiErrorResponse("BadRequest", error.message)
@@ -107,4 +121,28 @@ async function PATCH(request: NextRequest) {
   }
 }
 
-export { GET, PATCH, POST }
+async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+
+    const id = searchParams.get("id") && Number(searchParams.get("id"))
+
+    if (id) {
+      await prisma.monster.delete({
+        where: {
+          id,
+        },
+      })
+    }
+
+    return NextResponse.json({ status: "ok" })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return createApiErrorResponse("BadRequest", error.message)
+    }
+
+    return createApiErrorResponse("ServerError")
+  }
+}
+
+export { DELETE, GET, PATCH, POST }

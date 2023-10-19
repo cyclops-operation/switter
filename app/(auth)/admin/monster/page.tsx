@@ -4,6 +4,7 @@ import {
   ContentTitle,
 } from "@/components/common/content-header"
 
+import AddMonsterDialog from "./src/ui/add-monster-dialog"
 import MonsterTable from "./src/ui/monster-table"
 
 const AdminMonster = () => (
@@ -16,6 +17,7 @@ const AdminMonster = () => (
       </ContentSubtitle>
     </ContentHeader>
 
+    <AddMonsterDialog />
     <MonsterTable />
   </>
 )
