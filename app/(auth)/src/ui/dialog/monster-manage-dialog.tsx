@@ -155,9 +155,13 @@ const MonsterManageDialog = ({
 
                   <Select onValueChange={field.onChange}>
                     <SelectTrigger>
-                      <SelectValue placeholder="속성 없음">
-                        {field.value ? elementTypeLabel[field.value] : null}
-                      </SelectValue>
+                      <SelectValue
+                        placeholder={
+                          field.value
+                            ? elementTypeLabel[field.value]
+                            : "속성 없음"
+                        }
+                      />
                     </SelectTrigger>
 
                     <SelectContent>

@@ -44,6 +44,11 @@ async function GET(request: NextRequest) {
                 contains: searchTerm,
               },
             },
+            {
+              keyword: {
+                array_contains: searchTerm,
+              },
+            },
           ],
         },
       }

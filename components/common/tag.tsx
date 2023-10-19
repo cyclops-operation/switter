@@ -9,8 +9,7 @@ const tagVariants = cva(
   {
     variants: {
       selected: {
-        true: "",
-        false: "",
+        true: "bg-zinc-600 text-white",
       },
       size: {
         default: "h-8 px-3",
@@ -19,12 +18,12 @@ const tagVariants = cva(
       },
       clickable: {
         true: "cursor-pointer hover:bg-primary/90",
-        false: "",
       },
     },
     defaultVariants: {
       selected: false,
       size: "default",
+      clickable: false,
     },
   }
 )
