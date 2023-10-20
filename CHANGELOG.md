@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6-hotfix1](https://github.com/cyclops-operation/switter/compare/v1.0.6...v1.0.6-hotfix1) (2023-10-20)
+
+
+### Others
+
+* 1.0.6 hotfix1 배포 🔥 ([#70](https://github.com/cyclops-operation/switter/issues/70)) ([6af855a](https://github.com/cyclops-operation/switter/commit/6af855a6fd75cc54e8087d7e7ccd3f92031e56f1))
+
 ## [1.0.6](https://github.com/cyclops-operation/switter/compare/v1.0.5...v1.0.6) (2023-10-20)
 
 
