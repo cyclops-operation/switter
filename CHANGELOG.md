@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.6](https://github.com/cyclops-operation/switter/compare/v1.0.5...v1.0.6) (2023-10-20)
+
+
+### Others
+
+* **release:** 1.1.0 버전 배포 🎉 ([#66](https://github.com/cyclops-operation/switter/issues/66)) ([6b8aa4b](https://github.com/cyclops-operation/switter/commit/6b8aa4b413b6db42a8d725a82c1d0cdbc3048323))
+
+
+### Docs
+
+* **github:** 라이브 배포 워크플로우 수정 및 기능 개선 이슈 템플릿 추가 ([928c0dc](https://github.com/cyclops-operation/switter/commit/928c0dc760cd5e63a8a0e04cccb7781e5a62c9b6))
+
 ## [1.0.5](https://github.com/cyclops-operation/switter/compare/v1.0.4...v1.0.5) (2023-10-12)
 
 
