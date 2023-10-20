@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/components/ui/use-toast"
+import FullPageLoading from "@/components/common/loading/full-page"
 import MonsterImage from "@/components/common/monster-image"
 
 import MonsterSearchDialog from "./monster-search-dialog"
@@ -40,7 +41,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
 
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const { mutate: createComment } = useMutation(
+  const { mutate: createComment, isLoading } = useMutation(
     [apiRoute.Feed],
     async (comment: AttackMonster) => {
       return axios.post(apiRoute.Comment, { ...comment, feedId })
@@ -85,6 +86,8 @@ export default function CommentDialog({ children }: CommentDialogProps) {
     createComment(values)
     handleReset()
   }
+
+  if (isLoading) return <FullPageLoading />
 
   return (
     <Dialog

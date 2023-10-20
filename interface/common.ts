@@ -1,25 +1,39 @@
+import {
+  QueryKey,
+  UseQueryOptions,
+  UseQueryResult,
+} from "@tanstack/react-query"
+import { AxiosResponse } from "axios"
 import z from "zod"
 
-// Base
-
-type TailwindCustomSize = `[${number}${string}]`
-type TailwindSize = number | TailwindCustomSize
-
 const commonRange = z.enum(["full", "fit"])
-type CommonRange = z.infer<typeof commonRange> | TailwindSize
+type CommonRange = z.infer<typeof commonRange>
 
-// API
+type UseQueryParams<P = unknown, R = unknown> = (
+  params: P,
+  options?:
+    | Omit<
+        UseQueryOptions<
+          AxiosResponse<R>["data"],
+          unknown,
+          AxiosResponse<R>["data"],
+          QueryKey
+        >,
+        "queryKey" | "queryFn"
+      >
+    | undefined
+) => UseQueryResult<R> & {
+  context?: Record<string, unknown>
+}
 
-type Params = Record<string, string>
-
-type DynamicRouteParams<P extends Params = {}> = {
-  params: P
+type ListWithCount<L> = {
+  list: L
+  total: number
 }
 
 export {
   commonRange,
   type CommonRange,
-  type DynamicRouteParams,
-  type TailwindCustomSize,
-  type TailwindSize,
+  type ListWithCount,
+  type UseQueryParams,
 }

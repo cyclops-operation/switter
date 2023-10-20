@@ -31,8 +31,13 @@ async function getServerAccount() {
   return session
 }
 
+interface Path {
+  key: string
+  value: string
+}
+
 interface DynamicRouteParams {
-  path?: Record<string, unknown>
+  path?: (string | Path)[]
   query?: Record<string, unknown>
 }
 
@@ -42,17 +47,18 @@ function getDynamicRoute(baseRoute: string, params?: DynamicRouteParams) {
   const { path, query } = params
 
   const pathString = path
-    ? Object.entries(path).reduce(
-        (acc, [key, value]) => acc + `/${value ?? `[${key}]`}`,
-        ""
-      )
+    ? path.reduce((acc, cur) => {
+        const isPathStatic = typeof cur === "string"
+        return (
+          acc + (isPathStatic ? `/${cur}` : `/${cur.value ?? `[${cur.key}]`}`)
+        )
+      }, "")
     : ""
 
   const queryString = query
-    ? Object.entries(query).reduce(
-        (acc, [key, value]) => acc + (value ? `${key}=${value}` : ""),
-        "?"
-      )
+    ? `?${Object.entries(query)
+        .map(([key, value]) => (value ? `${key}=${value}` : ""))
+        .join("&")}`
     : ""
 
   const result = baseRoute + pathString + queryString

@@ -1,15 +1,30 @@
+import { useSearchParams } from "next/navigation"
+
+import { FeedItem } from "@/interface/feed"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 
 import { apiRoute } from "@/lib/api-route"
 import { getDynamicRoute } from "@/lib/utils"
+import { useToast } from "@/components/ui/use-toast"
 
 export default function useFeedDelete() {
   const queryClient = useQueryClient()
 
-  const { mutateAsync: deleteFeed } = useMutation(
+  const { toast } = useToast()
+
+  const searchParams = useSearchParams()
+
+  const searchTerm = searchParams.get("searchTerm")
+
+  const { mutateAsync: deleteFeed, isLoading } = useMutation(
     [apiRoute.Feed],
     async (feedId: number) => {
+      queryClient.setQueryData<FeedItem[]>(
+        [apiRoute.Feed, searchTerm],
+        (list) => list?.filter(({ id }) => id !== feedId)
+      )
+
       await axios.delete(
         getDynamicRoute(apiRoute.Feed, {
           query: {
@@ -19,7 +34,12 @@ export default function useFeedDelete() {
       )
     },
     {
-      onSuccess: async () => {
+      onSuccess: () => {
+        toast({
+          title: "방어덱이 제거되었습니다.",
+        })
+      },
+      onSettled: async () => {
         await Promise.all([
           queryClient.invalidateQueries([apiRoute.Feed]),
           queryClient.invalidateQueries([apiRoute.Comment]),
@@ -28,5 +48,5 @@ export default function useFeedDelete() {
     }
   )
 
-  return { deleteFeed }
+  return { deleteFeed, isLoading }
 }

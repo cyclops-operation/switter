@@ -25,7 +25,7 @@ const Loading = ({
 }: LoadingProps) => {
   return (
     <div
-      className={clsx(`w-${width} h-${height} flex justify-center`, className)}
+      className={clsx(`flex justify-center w-${width} h-${height}`, className)}
     >
       <Image src={loading} alt="로딩 이미지" />
     </div>
