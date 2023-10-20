@@ -4,7 +4,6 @@ import {
   ContentTitle,
 } from "@/components/common/content-header"
 
-import AddMonsterDialog from "./src/ui/add-monster-dialog"
 import MonsterTable from "./src/ui/monster-table"
 
 const AdminMonster = () => (
@@ -17,7 +16,7 @@ const AdminMonster = () => (
       </ContentSubtitle>
     </ContentHeader>
 
-    <AddMonsterDialog />
+    {/* <AddMonsterDialog /> 추후 이미지 업로드 기능 업데이트 된 후 반영 */}
     <MonsterTable />
   </>
 )

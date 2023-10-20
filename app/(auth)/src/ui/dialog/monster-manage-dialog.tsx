@@ -64,8 +64,8 @@ const MonsterManageDialog = ({
   const form = useForm<MonsterInfo>({
     resolver: zodResolver(monsterInfo),
     defaultValues: initValue ?? {
-      originName: "",
-      monsterName: null,
+      // originName: "",
+      // monsterName: null,
       elementType: null,
       keyword: [],
     },
@@ -110,6 +110,7 @@ const MonsterManageDialog = ({
             className="relative flex h-full max-h-full flex-col gap-4"
             onSubmit={form.handleSubmit(handleSubmit)}
           >
+            {/* 추후 이미지 업데이트 기능 반영 후 적용
             <FormField
               control={form.control}
               name="originName"
@@ -144,7 +145,7 @@ const MonsterManageDialog = ({
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             <FormField
               control={form.control}
