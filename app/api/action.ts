@@ -1,6 +1,9 @@
 "use server"
 
+import { Prisma } from "@prisma/client"
+
 import { apiErrorCode, apiErrorMessage } from "@/lib/error-message"
+import prisma from "@/lib/prisma"
 
 /** api error reponse 생성 */
 function createApiErrorResponse(
@@ -12,4 +15,11 @@ function createApiErrorResponse(
   })
 }
 
+type ModelKey = Prisma.TypeMap["meta"]["modelProps"]
+
+function findManyDynamic<K extends ModelKey>(tableName: ModelKey) {
+  const table = prisma[tableName]
+
+  return prisma[tableName]
+}
 export { createApiErrorResponse }

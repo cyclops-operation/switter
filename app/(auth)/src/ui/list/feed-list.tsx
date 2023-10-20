@@ -3,14 +3,10 @@
 import { useRouter } from "next/navigation"
 
 import { userRole } from "@/interface/user"
-import {
-  AnimatePresence,
-  AnimationProps,
-  motion,
-  useIsPresent,
-} from "framer-motion"
+import { AnimatePresence, motion, useIsPresent } from "framer-motion"
 import { useSession } from "next-auth/react"
 
+import { scaleAnimation } from "@/lib/animation"
 import { apiErrorMessage } from "@/lib/error-message"
 import { pageRoute } from "@/lib/page-route"
 import { getDynamicRoute } from "@/lib/utils"
@@ -21,13 +17,6 @@ import useFeedDelete from "../../hooks/useFeedDelete"
 import useFeedList from "../../hooks/useFeedList"
 import FeedCard from "../card/feed-card"
 import FeedDialog from "../dialog/feed-dialog"
-
-const animations: AnimationProps = {
-  initial: { scale: 0, opacity: 0 },
-  animate: { scale: 1, opacity: 1 },
-  exit: { scale: 0, opacity: 0 },
-  transition: { type: "spring", stiffness: 900, damping: 40 },
-}
 
 export default function FeedList() {
   const { data: session } = useSession()
@@ -91,7 +80,7 @@ export default function FeedList() {
 
                     handleFeedClick(props.id)
                   }}
-                  {...animations}
+                  {...scaleAnimation}
                 >
                   <FeedCard
                     {...props}

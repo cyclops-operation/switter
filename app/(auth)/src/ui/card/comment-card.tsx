@@ -1,7 +1,7 @@
 "use client"
 
 import { CommentItem } from "@/interface/comment"
-import { monsterList } from "@/interface/monster"
+import { deckMonsterList } from "@/interface/monster"
 import { userRole } from "@/interface/user"
 import clsx from "clsx"
 
@@ -23,7 +23,7 @@ const CommentCard = ({
   monsterList: attackMonsterList,
   onDelete,
 }: CommentCardProps) => {
-  const commentList = monsterList.parse(attackMonsterList)
+  const commentList = deckMonsterList.parse(attackMonsterList)
 
   return (
     <div className="group relative flex h-max cursor-pointer justify-between gap-6 overflow-hidden rounded-lg border p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">

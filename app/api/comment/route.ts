@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 
 import { attackMonster } from "@/interface/comment"
-import { MonsterList } from "@/interface/monster"
+import { DeckMonsterList } from "@/interface/monster"
 import { getServerSession } from "next-auth"
 import z from "zod"
 
@@ -75,7 +75,9 @@ export async function POST(request: NextRequest) {
           },
         },
       },
-    })) as { comments: { monsterList: MonsterList }[] }
+    })) as {
+      comments: { monsterList: DeckMonsterList }[]
+    }
 
     const { comments } = savedCommnetListAtCurrentFeed
 
