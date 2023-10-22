@@ -14,12 +14,14 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import {
   Form,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
+import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import FullPageLoading from "@/components/common/loading/full-page"
 import MonsterImage from "@/components/common/monster-image"
@@ -65,6 +67,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
     resolver: zodResolver(attackMonster),
     defaultValues: {
       attackMonsterList: [],
+      description: "",
     },
   })
 
@@ -84,6 +87,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
 
   const handleSubmit = (values: AttackMonster) => {
     createComment(values)
+
     handleReset()
   }
 
@@ -100,7 +104,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
 
-      <DialogContent className="max-w-xs max-md:max-w-[calc(100%-48px)]">
+      <DialogContent className="max-w-md max-md:max-w-[calc(100%-48px)]">
         <Form {...form}>
           <form
             className="relative flex h-full max-h-full flex-col gap-4"
@@ -195,6 +199,23 @@ export default function CommentDialog({ children }: CommentDialogProps) {
                       )
                     })}
                   </div>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Separator className="max-md:hidden" />
+
+            <FormField
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>설명</FormLabel>
+
+                  <FormDescription>공격덱의 설명을 남겨주세요.</FormDescription>
+
+                  <Textarea placeholder="설명을 입력해주세요." {...field} />
 
                   <FormMessage />
                 </FormItem>
