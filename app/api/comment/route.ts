@@ -54,8 +54,11 @@ export async function POST(request: NextRequest) {
   try {
     const payload = await request.json()
 
-    const { feedId, attackMonsterList: monsterList } =
-      attackMonster.parse(payload)
+    const {
+      feedId,
+      attackMonsterList: monsterList,
+      description,
+    } = attackMonster.parse(payload)
 
     const session = await getServerSession(authOptions)
 
@@ -103,6 +106,7 @@ export async function POST(request: NextRequest) {
     await prisma.comment.create({
       data: {
         monsterList,
+        description,
         authorId: session.user.id,
         feedId: Number(feedId),
       },
@@ -110,6 +114,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ status: "ok" })
   } catch (error) {
+    console.log(error)
     if (error instanceof z.ZodError) {
       return createApiErrorResponse("BadRequest")
     }

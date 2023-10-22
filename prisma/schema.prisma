@@ -47,6 +47,8 @@ model Comment {
   feed   Feed @relation(fields: [feedId], references: [id], onDelete: Cascade)
   feedId Int
 
+  description String? @default("")
+
   @@index([feedId])
   @@index([authorId])
 }

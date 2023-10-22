@@ -27,6 +27,7 @@ import Loading from "@/components/common/loading"
 import MonsterImage from "@/components/common/monster-image"
 
 import useCommentDelete from "../../hooks/useCommentDelete"
+import useCommentDescription from "../../hooks/useCommentDescription"
 import useCommentList from "../../hooks/useCommentList"
 import CommentCard from "../card/comment-card"
 import CommentDialog from "../dialog/comment-dialog"
@@ -52,9 +53,17 @@ export default function CommentSheet() {
   const { deleteComment, isLoading: isDeleteCommentLoading } =
     useCommentDelete()
 
+  const {
+    updateCommentDescription,
+    isLoading: isUpdateCommentDescriptionLoading,
+  } = useCommentDescription()
+
   const isPresent = useIsPresent()
 
-  const isLoading = isCommentListLoading || isDeleteCommentLoading
+  const isLoading =
+    isCommentListLoading ||
+    isDeleteCommentLoading ||
+    isUpdateCommentDescriptionLoading
 
   const sessionUserId = session?.user.id
 
@@ -78,6 +87,18 @@ export default function CommentSheet() {
     if (!feedId) throw Error(apiErrorMessage.BadRequest)
 
     deleteComment(commentId)
+  }
+
+  const handleCommentDescriptionUpdate = ({
+    commentId,
+    description,
+  }: {
+    commentId: number
+    description?: string
+  }) => {
+    if (!description) return
+
+    updateCommentDescription({ commentId, description })
   }
 
   return (
@@ -174,6 +195,7 @@ export default function CommentSheet() {
                                 ? (id) => handleCommentDelete(id)
                                 : undefined
                             }
+                            onDescriptionUpdate={handleCommentDescriptionUpdate}
                           />
                         </motion.li>
                       )
