@@ -18,6 +18,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -32,6 +33,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Icons } from "@/components/common/icons"
 import Tag from "@/components/common/tag"
 
 const elementTypeLabel = {
@@ -53,12 +61,12 @@ export interface MonsterManageDialogProps {
   initValue?: MonsterInfo
 }
 
-const MonsterManageDialog = ({
+export default function MonsterManageDialog({
   children,
   title,
   onSubmit,
   initValue,
-}: MonsterManageDialogProps) => {
+}: MonsterManageDialogProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const form = useForm<MonsterInfo>({
@@ -188,9 +196,24 @@ const MonsterManageDialog = ({
                 <FormItem>
                   <FormLabel>키워드</FormLabel>
 
+                  <FormDescription className="flex items-center gap-1">
+                    키워드를 입력하고 스페이스바를 눌러주세요.
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Icons.info size={16} />
+                        </TooltipTrigger>
+
+                        <TooltipContent>
+                          추가한 키워드를 클릭하면 삭제할 수 있습니다.
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </FormDescription>
+
                   <FormControl>
                     <Input
-                      placeholder="키워드를 입력하고 스페이스바를 눌러주세요."
+                      placeholder="키워드를 입력해주세요."
                       onKeyUp={(e) => {
                         const keyword = getKeyword(e)
 
@@ -249,5 +272,3 @@ const MonsterManageDialog = ({
     </Dialog>
   )
 }
-
-export default MonsterManageDialog

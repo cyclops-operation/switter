@@ -20,12 +20,12 @@ interface DeleteDialogProps {
   onDelete: () => void
 }
 
-const DeleteDialog = ({
+export default function DeleteDialog({
   children,
   title,
   description,
   onDelete,
-}: DeleteDialogProps) => {
+}: DeleteDialogProps) {
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -66,5 +66,3 @@ const DeleteDialog = ({
     </AlertDialog>
   )
 }
-
-export default DeleteDialog

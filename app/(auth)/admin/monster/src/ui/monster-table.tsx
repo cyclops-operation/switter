@@ -3,13 +3,10 @@
 import { ChangeEvent, useEffect, useState } from "react"
 
 import useDebounceState from "@/hook/useDebounceState"
-import {
-  MonsterElement,
-  MonsterInfo,
-  monsterElement,
-} from "@/interface/monster"
+import { MonsterElement, MonsterInfo } from "@/interface/monster"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
+import clsx from "clsx"
 
 import { apiRoute } from "@/lib/api-route"
 import { getDynamicRoute } from "@/lib/utils"
@@ -33,18 +30,7 @@ import DeleteDialog from "@/app/(auth)/src/ui/dialog/delete-dialog"
 import MonsterManageDialog from "@/app/(auth)/src/ui/dialog/monster-manage-dialog"
 
 const ElementIcon = ({ elementType }: { elementType: MonsterElement }) => {
-  switch (elementType) {
-    case monsterElement.Enum.dark:
-      return <Icons.moon className="text-purple-700 dark:text-purple-400" />
-    case monsterElement.Enum.light:
-      return <Icons.sun className="text-yellow-700 dark:text-yellow-400" />
-    case monsterElement.Enum.water:
-      return <Icons.droplet className="text-sky-700 dark:text-sky-400" />
-    case monsterElement.Enum.wind:
-      return <Icons.wind className="text-green-700 dark:text-green-400" />
-    case monsterElement.Enum.fire:
-      return <Icons.flame className="text-red-700 dark:text-red-400" />
-  }
+  return <i className={clsx("monster-elements inline-block", elementType)} />
 }
 
 const MonsterTable = () => {

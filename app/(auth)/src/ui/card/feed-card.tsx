@@ -19,7 +19,7 @@ interface FeedCardProps extends FeedItem {
   onDelete?: (id: number) => void
 }
 
-const FeedCard = ({
+export default function FeedCard({
   id,
   author,
   viewCount,
@@ -27,7 +27,7 @@ const FeedCard = ({
   monsterList,
   comments,
   onDelete,
-}: FeedCardProps) => {
+}: FeedCardProps) {
   const defenseMonsterList = monsterList as DeckMonsterList
   const attackMonsterList = comments as Comment[]
 
@@ -125,5 +125,3 @@ const FeedCard = ({
     </div>
   )
 }
-
-export default FeedCard
