@@ -108,17 +108,32 @@ export default function CommentCard({
           </span>
 
           {allowsEditing && (
-            <DeleteDialog
-              title="공격덱을 삭제하시겠습니까?"
-              description="삭제한 공격덱은 복구가 불가능합니다."
-              onDelete={() => {
-                onDelete?.(id)
-              }}
-            >
-              <Button variant="ghost" size="icon-sm">
-                <Icons.trash className="h-5 w-5 text-foreground opacity-70" />
+            <div className="flex gap-1">
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                title="수정"
+                onClick={() => setIsEdit(true)}
+              >
+                <Icons.fileEdit className="h-5 w-5 text-foreground opacity-70" />
+
+                <span className="sr-only">수정</span>
               </Button>
-            </DeleteDialog>
+
+              <DeleteDialog
+                title="공격덱을 삭제하시겠습니까?"
+                description="삭제한 공격덱은 복구가 불가능합니다."
+                onDelete={() => {
+                  onDelete?.(id)
+                }}
+              >
+                <Button variant="ghost" size="icon-sm" title="삭제">
+                  <Icons.trash className="h-5 w-5 text-foreground opacity-70" />
+
+                  <span className="sr-only">삭제</span>
+                </Button>
+              </DeleteDialog>
+            </div>
           )}
         </div>
 
@@ -160,19 +175,9 @@ export default function CommentCard({
                   </div>
                 </>
               ) : (
-                <>
-                  <p className="whitespace-pre text-sm text-gray-500">
-                    {description || ""}
-                  </p>
-
-                  <Button
-                    variant="default"
-                    size="sm"
-                    onClick={() => setIsEdit(true)}
-                  >
-                    수정
-                  </Button>
-                </>
+                <p className="whitespace-pre text-sm text-gray-500">
+                  {description || "공격덱 설명을 작성해주세요."}
+                </p>
               )}
             </>
           ) : (
