@@ -25,7 +25,6 @@ export default async function Waiting() {
       />
 
       <CardContent>
-        {/* @ts-expect-error Async Server Component */}
         <AccountPending />
       </CardContent>
 
