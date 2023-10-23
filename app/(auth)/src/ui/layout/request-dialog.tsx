@@ -14,6 +14,7 @@ import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 
 import { apiRoute } from "@/lib/api-route"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -95,21 +96,31 @@ export default function RequestDialog() {
     >
       <DialogTrigger className="fixed bottom-10 right-10 z-[9999]">
         <motion.span
-          className="block rounded-full bg-zinc-900 p-[12px] dark:bg-zinc-300"
+          className={cn(
+            "block rounded-full bg-zinc-900 p-3 dark:bg-zinc-300",
+            "max-mobile:p-2"
+          )}
           whileHover={{ scale: 1.1 }}
         >
-          <Icons.mail className="text-zinc-200 dark:text-zinc-700" size={20} />
+          <Icons.mail
+            className={cn(
+              "h-5 w-5 text-zinc-200 dark:text-zinc-700",
+              "max-mobile:h-4 max-mobile:w-4"
+            )}
+          />
         </motion.span>
       </DialogTrigger>
 
-      <DialogContent className="w-96">
+      <DialogContent className="w-full">
         <DialogTitle>요청사항 작성</DialogTitle>
 
-        <DialogDescription className="whitespace-pre-line">{`서비스를 사용하시면서 발생한 요청사항에 대해 작성해주세요!\n새로운 기능부터 버그라고 생각되는 부분까지 전부 작성 가능합니다.`}</DialogDescription>
+        <DialogDescription className="whitespace-pre-line">
+          서비스를 사용하시면서 발생한 요청사항에 대해 작성해주세요!
+        </DialogDescription>
 
         <Form {...form}>
           <form
-            className="relative flex h-full max-h-full flex-col gap-4"
+            className="h-full space-y-4"
             onSubmit={form.handleSubmit(handleSubmit)}
           >
             <FormField
@@ -178,7 +189,7 @@ export default function RequestDialog() {
                   <FormControl>
                     <Textarea
                       {...field}
-                      className="h-64"
+                      className="h-32"
                       placeholder="요청사항의 내용을 작성해주세요."
                       autoComplete="off"
                     />
@@ -189,7 +200,7 @@ export default function RequestDialog() {
               )}
             />
 
-            <Button type="submit" disabled={isLoading}>
+            <Button className="w-full" type="submit" disabled={isLoading}>
               요청사항 전달하기
             </Button>
           </form>
