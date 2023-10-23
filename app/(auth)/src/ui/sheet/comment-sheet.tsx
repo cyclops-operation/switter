@@ -128,7 +128,7 @@ export default function CommentSheet() {
               {hasCommentList && (
                 <>
                   <SheetHeader>
-                    <div className="flex justify-center">
+                    <div className="flex">
                       <div className="flex gap-2">
                         {feedInfo?.feed.monsterList.map((monsterInfo) => (
                           <MonsterImage

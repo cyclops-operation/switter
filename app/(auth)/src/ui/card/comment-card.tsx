@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react"
 import { dateDistanceToNow } from "@/lib/date"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { Icons } from "@/components/common/icons"
 import MonsterImage from "@/components/common/monster-image"
@@ -39,7 +40,6 @@ export default function CommentCard({
 }: CommentCardProps) {
   const { data: session } = useSession()
 
-  const [isOpen, setOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
@@ -97,98 +97,86 @@ export default function CommentCard({
         </div>
       </div>
 
-      {isOpen && (
-        <>
-          <div className="flex items-center justify-end">
-            {allowsEditing && (
-              <div className="flex gap-1">
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  title="수정"
-                  onClick={() => setIsEdit(true)}
-                >
-                  <Icons.fileEdit
-                    size={18}
-                    className="text-foreground opacity-70"
-                  />
-                  <span className="sr-only">수정</span>
-                </Button>
-                <DeleteDialog
-                  title="공격덱을 삭제하시겠습니까?"
-                  description="삭제한 공격덱은 복구가 불가능합니다."
-                  onDelete={() => {
-                    onDelete?.(id)
-                  }}
-                >
-                  <Button variant="ghost" size="icon-sm" title="삭제">
-                    <Icons.trash
-                      size={18}
-                      className="text-foreground opacity-70"
-                    />
-                    <span className="sr-only">삭제</span>
-                  </Button>
-                </DeleteDialog>
-              </div>
-            )}
-          </div>
+      <Separator />
 
-          <div className="flex flex-col gap-2">
-            {allowsEditing ? (
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-foreground">설명</p>
+
+        {allowsEditing && (
+          <div className="flex gap-1">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              title="수정"
+              onClick={() => setIsEdit(true)}
+            >
+              <Icons.fileEdit
+                size={18}
+                className="text-foreground opacity-70"
+              />
+              <span className="sr-only">수정</span>
+            </Button>
+            <DeleteDialog
+              title="공격덱을 삭제하시겠습니까?"
+              description="삭제한 공격덱은 복구가 불가능합니다."
+              onDelete={() => {
+                onDelete?.(id)
+              }}
+            >
+              <Button variant="ghost" size="icon-sm" title="삭제">
+                <Icons.trash size={18} className="text-foreground opacity-70" />
+                <span className="sr-only">삭제</span>
+              </Button>
+            </DeleteDialog>
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-2">
+        {allowsEditing ? (
+          <>
+            {isEdit ? (
               <>
-                {isEdit ? (
-                  <>
-                    <Textarea
-                      ref={textAreaRef}
-                      defaultValue={description ?? undefined}
-                      className={clsx("text-sm whitespace-pre", {
-                        "text-foreground": Boolean(description),
-                      })}
-                    />
-                    <div className="flex gap-2">
-                      <Button
-                        className="flex-1"
-                        variant="outline"
-                        onClick={() => setIsEdit(false)}
-                      >
-                        취소
-                      </Button>
-                      <Button
-                        className="flex-1"
-                        variant="default"
-                        onClick={() =>
-                          onDescriptionUpdate?.({
-                            commentId: id,
-                            description: textAreaRef.current?.value,
-                          })
-                        }
-                      >
-                        저장
-                      </Button>
-                    </div>
-                  </>
-                ) : (
-                  <p className="whitespace-pre text-sm text-gray-700 dark:text-gray-300">
-                    {description || "공격덱 설명을 작성해주세요."}
-                  </p>
-                )}
+                <Textarea
+                  ref={textAreaRef}
+                  defaultValue={description ?? undefined}
+                  className={clsx("text-sm whitespace-pre", {
+                    "text-foreground": Boolean(description),
+                  })}
+                />
+                <div className="flex gap-2">
+                  <Button
+                    className="flex-1"
+                    variant="outline"
+                    onClick={() => setIsEdit(false)}
+                  >
+                    취소
+                  </Button>
+                  <Button
+                    className="flex-1"
+                    variant="default"
+                    onClick={() =>
+                      onDescriptionUpdate?.({
+                        commentId: id,
+                        description: textAreaRef.current?.value,
+                      })
+                    }
+                  >
+                    저장
+                  </Button>
+                </div>
               </>
             ) : (
-              <p className="whitespace-pre text-sm text-gray-500">
-                {description || "공격덱 설명이 없습니다."}
+              <p className="whitespace-pre text-sm text-foreground">
+                {description || "공격덱 설명을 작성해주세요."}
               </p>
             )}
-          </div>
-        </>
-      )}
-
-      <div className="flex justify-center pt-3">
-        <Icons.arrowDown
-          className={clsx("text-zinc-400 cursor-pointer transition-transform", {
-            "rotate-180": isOpen,
-          })}
-          onClick={() => setOpen((prev) => !prev)}
-        />
+          </>
+        ) : (
+          <p className="whitespace-pre text-sm text-gray-500">
+            {description || "공격덱 설명이 없습니다."}
+          </p>
+        )}
       </div>
     </div>
   )
