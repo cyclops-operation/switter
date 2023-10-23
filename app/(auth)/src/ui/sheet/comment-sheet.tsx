@@ -174,7 +174,7 @@ export default function CommentSheet() {
               </CommentDialog>
 
               {hasCommentList && (
-                <ul className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
+                <ul className="grid grid-cols-1 gap-4">
                   <AnimatePresence>
                     {commentList?.map((props) => {
                       return (

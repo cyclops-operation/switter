@@ -9,6 +9,7 @@ import clsx from "clsx"
 import { useSession } from "next-auth/react"
 
 import { dateDistanceToNow } from "@/lib/date"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   HoverCard,
@@ -60,9 +61,14 @@ export default function CommentCard({
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <div className="group relative flex h-max cursor-pointer justify-between gap-6 overflow-hidden rounded-lg border p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">
+        <div className="group relative flex h-max cursor-pointer justify-between gap-6 overflow-hidden rounded-lg border p-4 shadow-sm transition-shadow duration-300 hover:shadow-md max-mobile:flex-col max-mobile:gap-3">
           <div className="flex flex-col items-center gap-2 backdrop-blur-sm">
-            <div className="flex flex-col gap-1">
+            <div
+              className={cn(
+                "flex flex-col gap-1",
+                "max-mobile:w-full max-mobile:flex-row max-mobile:justify-between max-mobile:px-4"
+              )}
+            >
               <span className="flex select-none flex-col">
                 <em className="flex items-center text-xs font-semibold not-italic text-gray-400">
                   {isAdmin ? (
