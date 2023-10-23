@@ -56,23 +56,25 @@ export default function MobileMenuSheet() {
                 if (hasSubRoute) {
                   return (
                     <li key={routePath}>
-                      {routes?.map(({ title, href, description }) => (
-                        <div className="flex flex-col items-start pt-2">
-                          <Button
-                            key={href}
-                            type="button"
-                            variant="link"
-                            className="w-auto font-semibold"
-                            onClick={() => handleRoute(routePath)}
-                          >
-                            {title}
-                          </Button>
+                      {routes?.map(
+                        ({ title, href: subRoutePath, description }) => (
+                          <div className="flex flex-col items-start pt-2">
+                            <Button
+                              key={subRoutePath}
+                              type="button"
+                              variant="link"
+                              className="w-auto font-semibold"
+                              onClick={() => handleRoute(subRoutePath)}
+                            >
+                              {title}
+                            </Button>
 
-                          <span className="px-4 text-xs text-gray-400">
-                            {description}
-                          </span>
-                        </div>
-                      ))}
+                            <span className="px-4 text-xs text-gray-400">
+                              {description}
+                            </span>
+                          </div>
+                        )
+                      )}
                     </li>
                   )
                 }
