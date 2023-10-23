@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.7-hotfix1](https://github.com/cyclops-operation/switter/compare/v1.0.7...v1.0.7-hotfix1) (2023-10-23)
+
+
+### Others
+
+* 1.0.7 Hotfix1 배포 🔥 ([#84](https://github.com/cyclops-operation/switter/issues/84)) ([647085e](https://github.com/cyclops-operation/switter/commit/647085e6075f9c992d5fdaec215d5437606e928b))
+
+
+### Bug Fixes
+
+* 모바일 분기 내 `&lt;Dialog&gt;` 및 `<AlertDialog>` 컴포넌트 스타일 수정 ([647085e](https://github.com/cyclops-operation/switter/commit/647085e6075f9c992d5fdaec215d5437606e928b))
+
 ## [1.0.7](https://github.com/cyclops-operation/switter/compare/v1.0.6-hotfix2...v1.0.7) (2023-10-23)
 
 
