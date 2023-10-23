@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/cyclops-operation/switter/compare/v1.0.6-hotfix2...v1.0.7) (2023-10-23)
+
+
+### Others
+
+* 1.0.7 버전 배포 🎉 ([#80](https://github.com/cyclops-operation/switter/issues/80)) ([30c679b](https://github.com/cyclops-operation/switter/commit/30c679b2547848fe79c9ac1b96f17740e9afdf5a)), closes [#75](https://github.com/cyclops-operation/switter/issues/75)
+
 ## [1.0.6-hotfix2](https://github.com/cyclops-operation/switter/compare/v1.0.6-hotfix1...v1.0.6-hotfix2) (2023-10-22)
 
 
