@@ -101,13 +101,13 @@ const MonsterTable = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[250px]">원어명</TableHead>
-              <TableHead className="w-[250px]">한글명</TableHead>
-              <TableHead className="w-[200px]">속성</TableHead>
-              <TableHead>키워드</TableHead>
-              <TableHead className="w-[80px]">수정</TableHead>
+              <TableHead className="min-w-[72px]">원어명</TableHead>
+              <TableHead className="min-w-[100px]">한글명</TableHead>
+              <TableHead className="min-w-[64px]">속성</TableHead>
+              <TableHead className="min-w-[280px]">키워드</TableHead>
+              <TableHead className="min-w-[64px]">수정</TableHead>
 
-              <TableHead className="w-[80px]">삭제</TableHead>
+              <TableHead className="min-w-[64px]">삭제</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

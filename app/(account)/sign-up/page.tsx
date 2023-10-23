@@ -1,5 +1,7 @@
-import { CardContent } from "@/components/ui/card"
+import { pageRoute } from "@/lib/page-route"
+import { CardContent, CardFooter } from "@/components/ui/card"
 
+import AccountFooterLink from "../src/ui/footer-link"
 import AccountHeader from "../src/ui/header"
 import SignUpForm from "./src/ui/sign-up-form"
 
@@ -14,6 +16,12 @@ export default async function SignUp() {
       <CardContent>
         <SignUpForm />
       </CardContent>
+
+      <CardFooter className="flex justify-center">
+        <AccountFooterLink href={pageRoute.SignIn}>
+          로그인으로 돌아가기
+        </AccountFooterLink>
+      </CardFooter>
     </>
   )
 }

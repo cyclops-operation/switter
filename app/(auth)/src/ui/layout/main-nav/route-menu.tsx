@@ -35,7 +35,7 @@ const Route = ({ title, description, href }: SiteConfigRoute) => (
 
 const RouteMenu = ({ sessionRole }: RouteMenuProps) => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="max-sm:hidden">
       <NavigationMenuList>
         {siteConfig.mainNav.map(({ href, title, role, routes }) => {
           const isCorrespondedRole = !role || role === sessionRole
