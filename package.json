@@ -1,6 +1,6 @@
 {
   "name": "switter",
-  "version": "1.0.6-hotfix2",
+  "version": "1.0.7",
   "private": true,
   "scripts": {
     "dev": "next dev",
