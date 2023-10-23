@@ -10,7 +10,7 @@ export default function AccountHeader({
   description,
 }: AccountHeaderProps) {
   return (
-    <CardHeader>
+    <CardHeader className="pb-0">
       <CardTitle>{title}</CardTitle>
 
       {description ? (
