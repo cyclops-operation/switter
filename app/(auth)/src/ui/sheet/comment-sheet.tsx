@@ -114,9 +114,9 @@ export default function CommentSheet() {
       <SheetContent
         side="left"
         className={clsx(
-          "flex flex-col transition-all justify-between sm:max-w-3xl",
+          "flex flex-col transition-all justify-between sm:max-w-[600px] max-mobile:w-[90%]",
           {
-            "sm:max-w-sm": !hasCommentList,
+            "mobile:max-w-sm": !hasCommentList,
           }
         )}
       >
@@ -128,7 +128,7 @@ export default function CommentSheet() {
               {hasCommentList && (
                 <>
                   <SheetHeader>
-                    <div className="flex justify-between">
+                    <div className="flex justify-center">
                       <div className="flex gap-2">
                         {feedInfo?.feed.monsterList.map((monsterInfo) => (
                           <MonsterImage
@@ -174,7 +174,7 @@ export default function CommentSheet() {
               </CommentDialog>
 
               {hasCommentList && (
-                <ul className="grid grid-cols-1 gap-4">
+                <ul className="grid grid-cols-1 gap-4 overflow-y-auto">
                   <AnimatePresence>
                     {commentList?.map((props) => {
                       return (
