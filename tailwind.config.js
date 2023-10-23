@@ -5,6 +5,9 @@ module.exports = {
   darkMode: ["class"],
   content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
   theme: {
+    screens: {
+      mobile: "640px", // 넓이에 대한 기준은 임시로 `tailwindcss` 의 `sm` 사이즈로 정의
+    },
     container: {
       padding: "24px",
       screens: {
