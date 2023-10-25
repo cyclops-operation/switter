@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.8](https://github.com/cyclops-operation/switter/compare/v1.0.7-hotfix1...v1.0.8) (2023-10-25)
+
+
+### Others
+
+* **seed:** 시딩 셋팅 추가 ([7a64d08](https://github.com/cyclops-operation/switter/commit/7a64d088ae4b096596f10adfeb1d86bde0a66b7c))
+
+
+### Features
+
+* **deploy:** sbk 서버 추가 ([#87](https://github.com/cyclops-operation/switter/issues/87)) ([e7a880b](https://github.com/cyclops-operation/switter/commit/e7a880bdb7c5e3f47e3ea257b72ff243a2682f99))
+
 ## [1.0.7-hotfix1](https://github.com/cyclops-operation/switter/compare/v1.0.7...v1.0.7-hotfix1) (2023-10-23)
 
 
