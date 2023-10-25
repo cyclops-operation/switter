@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8-hotfix1](https://github.com/cyclops-operation/switter/compare/v1.0.7-hotfix1...v1.0.8-hotfix1) (2023-10-25)
+
+
+### Others
+
+* **seed:** 시딩 셋팅 추가 ([7a64d08](https://github.com/cyclops-operation/switter/commit/7a64d088ae4b096596f10adfeb1d86bde0a66b7c))
+
 ## [1.0.7-hotfix1](https://github.com/cyclops-operation/switter/compare/v1.0.7...v1.0.7-hotfix1) (2023-10-23)
 
 
