@@ -13,6 +13,7 @@ import {
   FileEdit,
   Flame,
   Info,
+  LayoutList,
   LucideProps,
   Mail,
   Menu,
@@ -62,11 +63,65 @@ const Icons = {
   droplet: Droplet,
   wind: Wind,
   flame: Flame,
-  prev: (props: LucideProps) => (
+  bookmark: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={props.size}
       height={props.size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-book-marked"
+      {...props}
+    >
+      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+      <polyline points="10 2 10 10 13 7 16 10 16 2" />
+    </svg>
+  ),
+  bookmarkActive: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.size || 24}
+      height={props.size || 24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-bookmark-check"
+      {...props}
+    >
+      <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z" />
+      <path d="m9 10 2 2 4-4" />
+    </svg>
+  ),
+  bookmarkDefault: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.size || 24}
+      height={props.size || 24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-bookmark"
+      {...props}
+    >
+      <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+    </svg>
+  ),
+  layoutList: LayoutList,
+  prev: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.size || 24}
+      height={props.size || 24}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 
 import { DefenseMonsterSearch, defenseMonsterSearch } from "@/interface/feed"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useResetAtom } from "jotai/utils"
 import { useForm } from "react-hook-form"
 
 import { pageRoute } from "@/lib/page-route"
@@ -20,12 +21,16 @@ import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Icons } from "@/components/common/icons"
 
+import { feedAtoms } from "../../states/feed"
+
 export default function FeedSearch() {
   const searchParams = useSearchParams()
 
   const searchTerm = searchParams.get("searchTerm")
 
   const { push } = useRouter()
+
+  const resetFeedTabType = useResetAtom(feedAtoms.feedTabTypeAtom)
 
   const { success: hasSearchTerm } = defenseMonsterSearch.safeParse({
     searchTerm,
@@ -46,6 +51,7 @@ export default function FeedSearch() {
       : pageRoute.Feed
 
     push(url)
+    resetFeedTabType()
   }
 
   const handleReset = () => {

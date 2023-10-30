@@ -52,7 +52,7 @@ export default function FeedList() {
       {isFeedListLoading ? (
         <Loading className="pt-56" height="fit" />
       ) : (
-        <ul className="max-lg:grid-cols-3 max-md:grid-cols-2 grid grid-cols-4 gap-[16px_8px] max-mobile:grid-cols-1">
+        <ul className="grid grid-cols-4 gap-[16px_8px] max-lg:grid-cols-3 max-md:grid-cols-2 max-mobile:grid-cols-1">
           <FeedDialog>
             <li className="group flex h-full min-h-[200px] cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border border-dashed p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">
               <Icons.plus

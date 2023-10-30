@@ -15,9 +15,9 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 
-import FeedList from "../src/ui/list/feed-list"
 import FeedSearch from "../src/ui/search/feed-search"
 import CommentSheet from "../src/ui/sheet/comment-sheet"
+import FeedTabs from "../src/ui/tabs/FeedTabs"
 
 function FallbackCompnent({
   error,
@@ -55,7 +55,7 @@ export default function FeedPage() {
       <FeedSearch />
 
       <ErrorBoundary FallbackComponent={FallbackCompnent}>
-        <FeedList />
+        <FeedTabs />
 
         <CommentSheet />
       </ErrorBoundary>

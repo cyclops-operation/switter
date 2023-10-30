@@ -58,7 +58,10 @@ export default function MobileMenuSheet() {
                     <li key={routePath}>
                       {routes?.map(
                         ({ title, href: subRoutePath, description }) => (
-                          <div className="flex flex-col items-start pt-2">
+                          <div
+                            key={subRoutePath}
+                            className="flex flex-col items-start pt-2"
+                          >
                             <Button
                               key={subRoutePath}
                               type="button"

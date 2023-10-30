@@ -5,6 +5,8 @@ import { formErrorMessage } from "@/lib/error-message"
 
 import { deckMonsterList } from "./monster"
 
+const tabType = z.enum(["all", "bookmark"])
+
 const defenseMonster = z.object({
   keyword: z
     .string()
@@ -23,10 +25,14 @@ type DefenseMonsterSearch = z.infer<typeof defenseMonsterSearch>
 
 type FeedItem = { author: User; comments: Comment[] } & Feed
 
+type FeedTabType = z.infer<typeof tabType>
+
 export {
   defenseMonster,
   defenseMonsterSearch,
+  tabType,
   type DefenseMonster,
   type DefenseMonsterSearch,
   type FeedItem,
+  type FeedTabType,
 }
