@@ -8,8 +8,8 @@ import { deckMonsterList } from "./monster"
 const defenseMonster = z.object({
   keyword: z
     .string()
-    .min(3, { message: formErrorMessage.keyword.minLength })
-    .max(3, { message: formErrorMessage.keyword.maxLength }),
+    .max(3, { message: formErrorMessage.keyword.maxLength })
+    .optional(),
   defencseMonsterList: deckMonsterList,
 })
 
