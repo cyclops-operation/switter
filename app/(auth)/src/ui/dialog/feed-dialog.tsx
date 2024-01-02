@@ -14,7 +14,6 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -105,10 +104,6 @@ export default function FeedDialog({ children }: FeedDialogProps) {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>키워드</FormLabel>
-
-                  <FormDescription>
-                    키워드를 저장해야 검색이 가능합니다.
-                  </FormDescription>
 
                   <FormControl>
                     <Input
