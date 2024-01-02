@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/cyclops-operation/switter/compare/v1.0.8...v1.0.9) (2024-01-02)
+
+
+### Bug Fixes
+
+* **feed:** 피드 생성시 keyword 값 옵셔널로 변경 ([#90](https://github.com/cyclops-operation/switter/issues/90)) ([#91](https://github.com/cyclops-operation/switter/issues/91)) ([abb7119](https://github.com/cyclops-operation/switter/commit/abb711957e4d9aad996b3e7a64539e5ebb50ff0a))
+
 ## [1.0.8](https://github.com/cyclops-operation/switter/compare/v1.0.7-hotfix1...v1.0.8) (2023-10-25)
 
 
