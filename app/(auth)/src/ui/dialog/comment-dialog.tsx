@@ -164,7 +164,7 @@ export default function CommentDialog({ children }: CommentDialogProps) {
                         ) : undefined
                       }
                       renderSearchedMonster={(monsterList) => (
-                        <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto overflow-x-hidden">
+                        <div className="flex max-h-[300px] flex-wrap items-center gap-4 overflow-y-auto">
                           {monsterList.map((monsterInfo) => (
                             <MonsterImage
                               className="cursor-pointer"
