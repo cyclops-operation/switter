@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/cyclops-operation/switter/compare/v1.0.9...v1.1.0) (2024-01-06)
+
+
+### Features
+
+* **monster:** 신규 몬스터 이미지 추가 ([#94](https://github.com/cyclops-operation/switter/issues/94)) ([051b402](https://github.com/cyclops-operation/switter/commit/051b402619eae99c8d091d8f481ce487bf4cd239))
+
 ## [1.0.9](https://github.com/cyclops-operation/switter/compare/v1.0.8...v1.0.9) (2024-01-02)
 
 
